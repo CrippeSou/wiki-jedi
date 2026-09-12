@@ -3,234 +3,262 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Les compétences · Wiki Jedi</title>
-<meta name="description" content="Les bonus permanents de l&#x27;arbre de compétences. Ils agissent en continu, sans rien lancer, tant que tu es sur un job Jedi.">
+<title>Compétences · Wiki Jedi</title>
+<meta name="description" content="Les bonus permanents de l&#x27;arbre de compétences, leur coût en points et en dataris.">
+<meta name="theme-color" content="#04060B">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<style>html,body{background:#04060B;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap">
-<link rel="stylesheet" href="style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
-<div class="voute" aria-hidden="true"></div>
-<input type="checkbox" id="menu" class="bascule-menu" hidden>
-<label for="menu" class="bouton-menu" aria-label="Menu">Menu</label>
+<canvas id="etoiles"></canvas>
 
-<aside class="cote">
-  <a class="marque" href="index.html"><svg class="crete" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M13 37a19 19 0 0 0 38 0"/><path d="M13 37C10 25 12 15 16.5 9c1.8 8 4.6 14.5 8.5 18.5"/><path d="M51 37c3-12 1-22-3.5-28-1.8 8-4.6 14.5-8.5 18.5"/></g><path class="lame" d="M32 4l1.7 15.5V45h-3.4V19.5z" fill="currentColor"/></svg><span class="nom">Ordre Jedi<small>Archives du Temple</small></span></a>
-  <nav class="nav-pages"><a href="index.html" class="">Le fonctionnement</a><a href="pouvoirs.html" class="">Les pouvoirs</a><a href="formes.html" class="">Les formes</a><a href="competences.html" class="actif">Les compétences</a></nav>
-  <div class="sommaire"><span class="titre-sommaire">Sur cette page</span><a href="#tronc">Tronc commun</a><a href="#gardien">Gardien</a><a href="#sentinelle">Sentinelle</a><a href="#consulaire">Consulaire</a></div>
-  <div class="pied-cote">Créé par Poté</div>
-</aside>
+<nav>
+  <a class="nav-marque" href="index.html">
+    <span class="nav-embleme"><img src="logo.svg" alt=""></span>
+    <span class="nav-nom">Wiki Jedi</span>
+  </a>
+  <a href="index.html">Accueil</a><a href="pouvoirs.html">Pouvoirs</a><a href="formes.html">Formes</a><a href="competences.html" class="actif">Compétences</a>
+</nav>
 
-<main>
-  <header class="entete">
-    <div class="fil">Wiki Jedi · Les compétences</div>
+<div class="contenu">
+  <header class="tete-page">
+    <div class="sur-titre">Archives de l'Ordre</div>
     <h1>Les compétences</h1>
-    <p class="chapeau">Les bonus permanents de l&#x27;arbre de compétences. Ils agissent en continu, sans rien lancer, tant que tu es sur un job Jedi.</p>
+    <p class="intro-page">Des bonus permanents, qui agissent en continu sans rien lancer, tant que tu es sur un job Jedi. Les points viennent de ton niveau ; chaque compétence coûte en plus des dataris et s&#x27;achète dans l&#x27;ordre. Une voie complète demande 45 points et 110 000 dataris, le tronc 6 points et 13 000.</p>
+    <nav class="ancres"><a href="#tronc" style="--voie:#8FB4D8">Tronc commun</a><a href="#gardien" style="--voie:#5AA8FF">Gardien</a><a href="#sentinelle" style="--voie:#E8BC4C">Sentinelle</a><a href="#consulaire" style="--voie:#56D08D">Consulaire</a></nav>
   </header>
-  <p class="encadre">Les points viennent de ton <strong>niveau</strong>, qui monte en jouant sur un job Jedi. Chaque compétence coûte en plus des dataris, et s'achète <strong>dans l'ordre</strong> : la deuxième exige la première. Une voie complète demande 45 points et 110 000 dataris, le tronc 6 points et 13 000.</p><section class="bloc section-voie" id="tronc" style="--voie:#7E9AB4">
-  <div class="tete-voie"><h2>Tronc commun</h2><span class="compteur">3 compétences</span></div>
-  <ol class="escalier"><li>
-  <div class="rang">1</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Athlétisme</h3><span class="pastille">1 point · 2 000 dataris</span></div>
-    <div class="chips"><span class="chip">vitesse de course +5</span><span class="chip">vitesse en marchant +5</span></div>
-    <p>Un corps entretenu : +5 de vitesse de course, +5 de marche.</p>
+  <section class="section-voie" id="tronc" style="--voie:#8FB4D8">
+  <div class="tete-section">
+    <span class="num-section">01</span>
+    <h2 class="titre-section">Tronc commun</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">3 compétences</span>
   </div>
-</li><li>
-  <div class="rang">2</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Vigueur</h3><span class="pastille">2 points · 4 000 dataris</span></div>
-    <div class="chips"><span class="chip">PV maximum +50</span></div>
-    <p>Une constitution plus solide : +50 points de vie maximum.</p>
+    <ol class="escalier"><li>
+      <span class="rang">1</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Athlétisme</h3><span class="badge">1 point · 2 000 dataris</span></div>
+        <div class="chips"><span class="chip">vitesse de course +5</span><span class="chip">vitesse en marchant +5</span></div>
+        <p>Un corps entretenu : +5 de vitesse de course, +5 de marche.</p>
+      </div>
+    </li><li>
+      <span class="rang">2</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Vigueur</h3><span class="badge">2 points · 4 000 dataris</span></div>
+        <div class="chips"><span class="chip">PV maximum +50</span></div>
+        <p>Une constitution plus solide : +50 points de vie maximum.</p>
+      </div>
+    </li><li>
+      <span class="rang">3</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Agilité</h3><span class="badge">3 points · 7 000 dataris</span></div>
+        <div class="chips"><span class="chip">hauteur de saut +10 %</span><span class="chip">dégâts de chute −50 %</span></div>
+        <p>Le corps suit la Force : +10 % de puissance de saut et moitié moins de dégâts de chute.</p>
+      </div>
+    </li></ol>
+  </section>  <section class="section-voie" id="gardien" style="--voie:#5AA8FF">
+  <div class="tete-section">
+    <span class="num-section">02</span>
+    <h2 class="titre-section">Gardien</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">8 compétences</span>
   </div>
-</li><li>
-  <div class="rang">3</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Agilité</h3><span class="pastille">3 points · 7 000 dataris</span></div>
-    <div class="chips"><span class="chip">hauteur de saut +10 %</span><span class="chip">dégâts de chute −50 %</span></div>
-    <p>Le corps suit la Force : +10 % de puissance de saut et moitié moins de dégâts de chute.</p>
+    <ol class="escalier"><li>
+      <span class="rang">1</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Peau de fer</h3><span class="badge">2 points · 3 000 dataris</span></div>
+        <div class="chips"><span class="chip">armure +50</span></div>
+        <p>50 points d&#x27;armure à chaque réapparition.</p>
+      </div>
+    </li><li>
+      <span class="rang">2</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Résilience</h3><span class="badge">3 points · 5 000 dataris</span></div>
+        <div class="chips"><span class="chip">dégâts subis −2 %</span></div>
+        <p>2 % de dégâts subis en moins, quelle que soit la source.</p>
+      </div>
+    </li><li>
+      <span class="rang">3</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Vigilance</h3><span class="badge">4 points · 7 000 dataris</span></div>
+        <div class="chips"><span class="chip">vitesse de course +10</span></div>
+        <p>+10 de vitesse de course (total 15).</p>
+      </div>
+    </li><li>
+      <span class="rang">4</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Endurance</h3><span class="badge">5 points · 10 000 dataris</span></div>
+        <div class="chips"><span class="chip">PV maximum +50</span></div>
+        <p>+50 points de vie maximum (total 100).</p>
+      </div>
+    </li><li>
+      <span class="rang">5</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Cuirasse</h3><span class="badge">6 points · 14 000 dataris</span></div>
+        <div class="chips"><span class="chip">armure +60</span></div>
+        <p>60 points d&#x27;armure de plus à la réapparition (total 110).</p>
+      </div>
+    </li><li>
+      <span class="rang">6</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Garde solide</h3><span class="badge">7 points · 18 000 dataris</span></div>
+        <div class="chips"><span class="chip">garde ×1.05</span></div>
+        <p>La garde se vide 1,05 fois moins vite.</p>
+      </div>
+    </li><li>
+      <span class="rang">7</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Ténacité</h3><span class="badge">8 points · 23 000 dataris</span></div>
+        <div class="chips"><span class="chip">dégâts subis −3 %</span><span class="chip">PV maximum +25</span></div>
+        <p>3 % de dégâts subis en moins (total 5 %) et +25 points de vie maximum.</p>
+      </div>
+    </li><li>
+      <span class="rang">8</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Bastion</h3><span class="badge">10 points · 30 000 dataris</span></div>
+        <div class="chips"><span class="chip">armure +40</span><span class="chip">garde ×1.1</span><span class="chip">PV maximum +25</span></div>
+        <p>Armure de spawn à 150, garde 1,10 fois plus tenace et +25 points de vie (total 150).</p>
+      </div>
+    </li></ol>
+  </section>  <section class="section-voie" id="sentinelle" style="--voie:#E8BC4C">
+  <div class="tete-section">
+    <span class="num-section">03</span>
+    <h2 class="titre-section">Sentinelle</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">8 compétences</span>
   </div>
-</li></ol>
-</section><section class="bloc section-voie" id="gardien" style="--voie:#5A9DF0">
-  <div class="tete-voie"><h2>Gardien</h2><span class="compteur">8 compétences</span></div>
-  <ol class="escalier"><li>
-  <div class="rang">1</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Peau de fer</h3><span class="pastille">2 points · 3 000 dataris</span></div>
-    <div class="chips"><span class="chip">armure +50</span></div>
-    <p>50 points d&#x27;armure à chaque réapparition.</p>
+    <ol class="escalier"><li>
+      <span class="rang">1</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Fureur</h3><span class="badge">2 points · 3 000 dataris</span></div>
+        <div class="chips"><span class="chip">dégâts de sabre +5 %</span></div>
+        <p>+5 % de dégâts au sabre.</p>
+      </div>
+    </li><li>
+      <span class="rang">2</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Célérité</h3><span class="badge">3 points · 5 000 dataris</span></div>
+        <div class="chips"><span class="chip">vitesse de course +12</span><span class="chip">vitesse en marchant +5</span></div>
+        <p>+12 de vitesse de course et +5 de marche.</p>
+      </div>
+    </li><li>
+      <span class="rang">3</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Vivacité</h3><span class="badge">4 points · 7 000 dataris</span></div>
+        <div class="chips"><span class="chip">hauteur de saut +5 %</span></div>
+        <p>+5 % de puissance de saut (total 15 %).</p>
+      </div>
+    </li><li>
+      <span class="rang">4</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Frappe précise</h3><span class="badge">5 points · 10 000 dataris</span></div>
+        <div class="chips"><span class="chip">dégâts de sabre +5 %</span></div>
+        <p>+5 % de dégâts au sabre (total 10 %).</p>
+      </div>
+    </li><li>
+      <span class="rang">5</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Souffle long</h3><span class="badge">6 points · 14 000 dataris</span></div>
+        <div class="chips"><span class="chip">vitesse de course +13</span><span class="chip">vitesse en marchant +5</span><span class="chip">PV maximum +50</span></div>
+        <p>+13 de course et +5 de marche (total 30 et 15), et +50 points de vie maximum (total 100).</p>
+      </div>
+    </li><li>
+      <span class="rang">6</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Économie de Force</h3><span class="badge">7 points · 18 000 dataris</span></div>
+        <div class="chips"><span class="chip">coût des pouvoirs −8 %</span></div>
+        <p>Les pouvoirs coûtent 8 % de Force en moins.</p>
+      </div>
+    </li><li>
+      <span class="rang">7</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Lame affûtée</h3><span class="badge">8 points · 23 000 dataris</span></div>
+        <div class="chips"><span class="chip">dégâts de sabre +5 %</span><span class="chip">armure +40</span></div>
+        <p>+5 % de dégâts au sabre (total 15 %) et 40 points d&#x27;armure à la réapparition.</p>
+      </div>
+    </li><li>
+      <span class="rang">8</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Exécuteur</h3><span class="badge">10 points · 30 000 dataris</span></div>
+        <div class="chips"><span class="chip">dégâts de sabre +5 %</span><span class="chip">coût des pouvoirs −7 %</span><span class="chip">armure +35</span></div>
+        <p>+5 % de dégâts au sabre (total 20 %), 7 % de coût en moins (total 15 %) et armure à 75.</p>
+      </div>
+    </li></ol>
+  </section>  <section class="section-voie" id="consulaire" style="--voie:#56D08D">
+  <div class="tete-section">
+    <span class="num-section">04</span>
+    <h2 class="titre-section">Consulaire</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">8 compétences</span>
   </div>
-</li><li>
-  <div class="rang">2</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Résilience</h3><span class="pastille">3 points · 5 000 dataris</span></div>
-    <div class="chips"><span class="chip">dégâts subis −2 %</span></div>
-    <p>2 % de dégâts subis en moins, quelle que soit la source.</p>
-  </div>
-</li><li>
-  <div class="rang">3</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Vigilance</h3><span class="pastille">4 points · 7 000 dataris</span></div>
-    <div class="chips"><span class="chip">vitesse de course +10</span></div>
-    <p>+10 de vitesse de course (total 15).</p>
-  </div>
-</li><li>
-  <div class="rang">4</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Endurance</h3><span class="pastille">5 points · 10 000 dataris</span></div>
-    <div class="chips"><span class="chip">PV maximum +50</span></div>
-    <p>+50 points de vie maximum (total 100).</p>
-  </div>
-</li><li>
-  <div class="rang">5</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Cuirasse</h3><span class="pastille">6 points · 14 000 dataris</span></div>
-    <div class="chips"><span class="chip">armure +60</span></div>
-    <p>60 points d&#x27;armure de plus à la réapparition (total 110).</p>
-  </div>
-</li><li>
-  <div class="rang">6</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Garde solide</h3><span class="pastille">7 points · 18 000 dataris</span></div>
-    <div class="chips"><span class="chip">garde ×1.05</span></div>
-    <p>La garde se vide 1,05 fois moins vite.</p>
-  </div>
-</li><li>
-  <div class="rang">7</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Ténacité</h3><span class="pastille">8 points · 23 000 dataris</span></div>
-    <div class="chips"><span class="chip">dégâts subis −3 %</span><span class="chip">PV maximum +25</span></div>
-    <p>3 % de dégâts subis en moins (total 5 %) et +25 points de vie maximum.</p>
-  </div>
-</li><li>
-  <div class="rang">8</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Bastion</h3><span class="pastille">10 points · 30 000 dataris</span></div>
-    <div class="chips"><span class="chip">armure +40</span><span class="chip">garde ×1.1</span><span class="chip">PV maximum +25</span></div>
-    <p>Armure de spawn à 150, garde 1,10 fois plus tenace et +25 points de vie (total 150).</p>
-  </div>
-</li></ol>
-</section><section class="bloc section-voie" id="sentinelle" style="--voie:#F5CD5F">
-  <div class="tete-voie"><h2>Sentinelle</h2><span class="compteur">8 compétences</span></div>
-  <ol class="escalier"><li>
-  <div class="rang">1</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Fureur</h3><span class="pastille">2 points · 3 000 dataris</span></div>
-    <div class="chips"><span class="chip">dégâts de sabre +5 %</span></div>
-    <p>+5 % de dégâts au sabre.</p>
-  </div>
-</li><li>
-  <div class="rang">2</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Célérité</h3><span class="pastille">3 points · 5 000 dataris</span></div>
-    <div class="chips"><span class="chip">vitesse de course +12</span><span class="chip">vitesse en marchant +5</span></div>
-    <p>+12 de vitesse de course et +5 de marche.</p>
-  </div>
-</li><li>
-  <div class="rang">3</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Vivacité</h3><span class="pastille">4 points · 7 000 dataris</span></div>
-    <div class="chips"><span class="chip">hauteur de saut +5 %</span></div>
-    <p>+5 % de puissance de saut (total 15 %).</p>
-  </div>
-</li><li>
-  <div class="rang">4</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Frappe précise</h3><span class="pastille">5 points · 10 000 dataris</span></div>
-    <div class="chips"><span class="chip">dégâts de sabre +5 %</span></div>
-    <p>+5 % de dégâts au sabre (total 10 %).</p>
-  </div>
-</li><li>
-  <div class="rang">5</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Souffle long</h3><span class="pastille">6 points · 14 000 dataris</span></div>
-    <div class="chips"><span class="chip">vitesse de course +13</span><span class="chip">vitesse en marchant +5</span><span class="chip">PV maximum +50</span></div>
-    <p>+13 de course et +5 de marche (total 30 et 15), et +50 points de vie maximum (total 100).</p>
-  </div>
-</li><li>
-  <div class="rang">6</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Économie de Force</h3><span class="pastille">7 points · 18 000 dataris</span></div>
-    <div class="chips"><span class="chip">coût des pouvoirs −8 %</span></div>
-    <p>Les pouvoirs coûtent 8 % de Force en moins.</p>
-  </div>
-</li><li>
-  <div class="rang">7</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Lame affûtée</h3><span class="pastille">8 points · 23 000 dataris</span></div>
-    <div class="chips"><span class="chip">dégâts de sabre +5 %</span><span class="chip">armure +40</span></div>
-    <p>+5 % de dégâts au sabre (total 15 %) et 40 points d&#x27;armure à la réapparition.</p>
-  </div>
-</li><li>
-  <div class="rang">8</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Exécuteur</h3><span class="pastille">10 points · 30 000 dataris</span></div>
-    <div class="chips"><span class="chip">dégâts de sabre +5 %</span><span class="chip">coût des pouvoirs −7 %</span><span class="chip">armure +35</span></div>
-    <p>+5 % de dégâts au sabre (total 20 %), 7 % de coût en moins (total 15 %) et armure à 75.</p>
-  </div>
-</li></ol>
-</section><section class="bloc section-voie" id="consulaire" style="--voie:#50BE76">
-  <div class="tete-voie"><h2>Consulaire</h2><span class="compteur">8 compétences</span></div>
-  <ol class="escalier"><li>
-  <div class="rang">1</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Méditation</h3><span class="pastille">2 points · 3 000 dataris</span></div>
-    <div class="chips"><span class="chip">régénération de Force ×1.3</span></div>
-    <p>La Force se régénère 1,3 fois plus vite.</p>
-  </div>
-</li><li>
-  <div class="rang">2</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Réserve</h3><span class="pastille">3 points · 5 000 dataris</span></div>
-    <div class="chips"><span class="chip">Force maximum +25</span></div>
-    <p>+25 de Force maximum.</p>
-  </div>
-</li><li>
-  <div class="rang">3</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Sérénité</h3><span class="pastille">4 points · 7 000 dataris</span></div>
-    <div class="chips"><span class="chip">PV régénérés hors combat +3</span></div>
-    <p>Hors combat (30 s sans être touché), récupère 3 PV toutes les 5 s.</p>
-  </div>
-</li><li>
-  <div class="rang">4</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Constitution</h3><span class="pastille">5 points · 10 000 dataris</span></div>
-    <div class="chips"><span class="chip">PV maximum +50</span></div>
-    <p>+50 points de vie maximum (total 100).</p>
-  </div>
-</li><li>
-  <div class="rang">5</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Harmonie</h3><span class="pastille">6 points · 14 000 dataris</span></div>
-    <div class="chips"><span class="chip">régénération de Force ×1.6</span></div>
-    <p>La Force se régénère 1,6 fois plus vite (remplace Méditation).</p>
-  </div>
-</li><li>
-  <div class="rang">6</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Puits de Force</h3><span class="pastille">7 points · 18 000 dataris</span></div>
-    <div class="chips"><span class="chip">Force maximum +25</span><span class="chip">armure +40</span></div>
-    <p>+25 de Force maximum (total 50) et 40 points d&#x27;armure à la réapparition.</p>
-  </div>
-</li><li>
-  <div class="rang">7</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Clarté</h3><span class="pastille">8 points · 23 000 dataris</span></div>
-    <div class="chips"><span class="chip">PV régénérés hors combat +3</span></div>
-    <p>3 PV de plus par tick de récupération (total 6 toutes les 5 s).</p>
-  </div>
-</li><li>
-  <div class="rang">8</div>
-  <div class="contenu">
-    <div class="fiche-tete"><h3>Ascendance</h3><span class="pastille">10 points · 30 000 dataris</span></div>
-    <div class="chips"><span class="chip">régénération de Force ×1.6</span><span class="chip">Force maximum +25</span><span class="chip">PV régénérés hors combat +4</span><span class="chip">armure +35</span></div>
-    <p>Régénération 2 fois plus rapide, +25 de Force maximum (total 75), 4 PV de plus par tick (total 10) et armure à 75.</p>
-  </div>
-</li></ol>
-</section>
-  <footer>Créé par Poté</footer>
-</main>
+    <ol class="escalier"><li>
+      <span class="rang">1</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Méditation</h3><span class="badge">2 points · 3 000 dataris</span></div>
+        <div class="chips"><span class="chip">régénération de Force ×1.3</span></div>
+        <p>La Force se régénère 1,3 fois plus vite.</p>
+      </div>
+    </li><li>
+      <span class="rang">2</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Réserve</h3><span class="badge">3 points · 5 000 dataris</span></div>
+        <div class="chips"><span class="chip">Force maximum +25</span></div>
+        <p>+25 de Force maximum.</p>
+      </div>
+    </li><li>
+      <span class="rang">3</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Sérénité</h3><span class="badge">4 points · 7 000 dataris</span></div>
+        <div class="chips"><span class="chip">PV régénérés hors combat +3</span></div>
+        <p>Hors combat (30 s sans être touché), récupère 3 PV toutes les 5 s.</p>
+      </div>
+    </li><li>
+      <span class="rang">4</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Constitution</h3><span class="badge">5 points · 10 000 dataris</span></div>
+        <div class="chips"><span class="chip">PV maximum +50</span></div>
+        <p>+50 points de vie maximum (total 100).</p>
+      </div>
+    </li><li>
+      <span class="rang">5</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Harmonie</h3><span class="badge">6 points · 14 000 dataris</span></div>
+        <div class="chips"><span class="chip">régénération de Force ×1.6</span></div>
+        <p>La Force se régénère 1,6 fois plus vite (remplace Méditation).</p>
+      </div>
+    </li><li>
+      <span class="rang">6</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Puits de Force</h3><span class="badge">7 points · 18 000 dataris</span></div>
+        <div class="chips"><span class="chip">Force maximum +25</span><span class="chip">armure +40</span></div>
+        <p>+25 de Force maximum (total 50) et 40 points d&#x27;armure à la réapparition.</p>
+      </div>
+    </li><li>
+      <span class="rang">7</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Clarté</h3><span class="badge">8 points · 23 000 dataris</span></div>
+        <div class="chips"><span class="chip">PV régénérés hors combat +3</span></div>
+        <p>3 PV de plus par tick de récupération (total 6 toutes les 5 s).</p>
+      </div>
+    </li><li>
+      <span class="rang">8</span>
+      <div class="rang-corps">
+        <div class="carte-tete"><h3>Ascendance</h3><span class="badge">10 points · 30 000 dataris</span></div>
+        <div class="chips"><span class="chip">régénération de Force ×1.6</span><span class="chip">Force maximum +25</span><span class="chip">PV régénérés hors combat +4</span><span class="chip">armure +35</span></div>
+        <p>Régénération 2 fois plus rapide, +25 de Force maximum (total 75), 4 PV de plus par tick (total 10) et armure à 75.</p>
+      </div>
+    </li></ol>
+  </section>
+  <footer>
+    <span class="pied-embleme"><img src="logo.svg" alt=""></span>
+    Créé par Poté
+  </footer>
+</div>
 
+<script src="script.js?v=5"></script>
 </body>
 </html>

@@ -3,437 +3,485 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Les pouvoirs · Wiki Jedi</title>
-<meta name="description" content="Tout ce qu&#x27;un Jedi peut apprendre, voie par voie et palier par palier. Les pouvoirs absents de l&#x27;arbre ne figurent pas ici : personne ne peut les obtenir.">
+<title>Pouvoirs · Wiki Jedi</title>
+<meta name="description" content="Tout ce qu&#x27;un Jedi peut apprendre, voie par voie et palier par palier.">
+<meta name="theme-color" content="#04060B">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<style>html,body{background:#04060B;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap">
-<link rel="stylesheet" href="style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
-<div class="voute" aria-hidden="true"></div>
-<input type="checkbox" id="menu" class="bascule-menu" hidden>
-<label for="menu" class="bouton-menu" aria-label="Menu">Menu</label>
+<canvas id="etoiles"></canvas>
 
-<aside class="cote">
-  <a class="marque" href="index.html"><svg class="crete" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M13 37a19 19 0 0 0 38 0"/><path d="M13 37C10 25 12 15 16.5 9c1.8 8 4.6 14.5 8.5 18.5"/><path d="M51 37c3-12 1-22-3.5-28-1.8 8-4.6 14.5-8.5 18.5"/></g><path class="lame" d="M32 4l1.7 15.5V45h-3.4V19.5z" fill="currentColor"/></svg><span class="nom">Ordre Jedi<small>Archives du Temple</small></span></a>
-  <nav class="nav-pages"><a href="index.html" class="">Le fonctionnement</a><a href="pouvoirs.html" class="actif">Les pouvoirs</a><a href="formes.html" class="">Les formes</a><a href="competences.html" class="">Les compétences</a></nav>
-  <div class="sommaire"><span class="titre-sommaire">Sur cette page</span><a href="#padawan">Padawan Jedi</a><a href="#chevalier">Chevalier Jedi</a><a href="#consulaire_i">Consulaire · Initié</a><a href="#consulaire_a">Consulaire · Avancé</a><a href="#consulaire_m">Consulaire · Maître</a><a href="#gardien_i">Gardien · Initié</a><a href="#gardien_a">Gardien · Avancé</a><a href="#gardien_m">Gardien · Maître</a><a href="#sentinelle_i">Sentinelle · Initié</a><a href="#sentinelle_a">Sentinelle · Avancé</a><a href="#sentinelle_m">Sentinelle · Maître</a><a href="#conseil">Conseil Jedi</a></div>
-  <div class="pied-cote">Créé par Poté</div>
-</aside>
+<nav>
+  <a class="nav-marque" href="index.html">
+    <span class="nav-embleme"><img src="logo.svg" alt=""></span>
+    <span class="nav-nom">Wiki Jedi</span>
+  </a>
+  <a href="index.html">Accueil</a><a href="pouvoirs.html" class="actif">Pouvoirs</a><a href="formes.html">Formes</a><a href="competences.html">Compétences</a>
+</nav>
 
-<main>
-  <header class="entete">
-    <div class="fil">Wiki Jedi · Les pouvoirs</div>
+<div class="contenu">
+  <header class="tete-page">
+    <div class="sur-titre">Archives de l'Ordre</div>
     <h1>Les pouvoirs</h1>
-    <p class="chapeau">Tout ce qu&#x27;un Jedi peut apprendre, voie par voie et palier par palier. Les pouvoirs absents de l&#x27;arbre ne figurent pas ici : personne ne peut les obtenir.</p>
+    <p class="intro-page">Les pouvoirs de Force présents dans l&#x27;arbre, avec leur coût, leur rechargement et le nombre de séances. Ceux qui n&#x27;y figurent pas ne sont apprenables par personne.</p>
+    <nav class="ancres"><a href="#padawan" style="--voie:#8FB4D8">Padawan Jedi</a><a href="#chevalier" style="--voie:#A8CBEA">Chevalier Jedi</a><a href="#consulaire_i" style="--voie:#56D08D">Consulaire · Initié</a><a href="#consulaire_a" style="--voie:#3BBA73">Consulaire · Avancé</a><a href="#consulaire_m" style="--voie:#2AA05E">Consulaire · Maître</a><a href="#gardien_i" style="--voie:#5AA8FF">Gardien · Initié</a><a href="#gardien_a" style="--voie:#3D8BEE">Gardien · Avancé</a><a href="#gardien_m" style="--voie:#2A6FD8">Gardien · Maître</a><a href="#sentinelle_i" style="--voie:#F5D174">Sentinelle · Initié</a><a href="#sentinelle_a" style="--voie:#E8BC4C">Sentinelle · Avancé</a><a href="#sentinelle_m" style="--voie:#D5A22C">Sentinelle · Maître</a><a href="#conseil" style="--voie:#FFD86B">Conseil Jedi</a></nav>
   </header>
   <div class="recherche">
-  <input type="search" id="filtre" placeholder="Chercher un pouvoir, un effet, un coût…" autocomplete="off">
-  <span class="compte" id="compte"></span>
-</div><section class="bloc section-voie" id="padawan" style="--voie:#7E9AB4">
-  <div class="tete-voie"><h2>Padawan Jedi</h2><span class="compteur">4 pouvoirs</span></div>
-  <p class="note-voie">Le tronc commun, avant toute spécialisation.</p>
-  <div class="fiches"><article class="fiche" style="--voie:#7E9AB4">
-  <div class="fiche-tete"><h3>Saut</h3><span class="pastille seances">Gratuit</span></div>
+    <input type="search" id="filtre" placeholder="Chercher un pouvoir, un effet, un coût..." autocomplete="off">
+    <span class="compte" id="compte"></span>
+  </div>
+  <section class="section-voie" id="padawan" style="--voie:#8FB4D8">
+  <div class="tete-section">
+    <span class="num-section">01</span>
+    <h2 class="titre-section">Padawan Jedi</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">4 pouvoirs</span>
+  </div>
+    <p class="intro-section">Le tronc commun, avant toute spécialisation.</p>
+    <div class="grille-cartes"><article class="carte" style="--voie:#8FB4D8">
+  <div class="carte-tete"><h3>Saut</h3><span class="badge">Gratuit</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Bond en avant propulsé par la Force. Une onde de choc part au décollage (25 dégâts) et à l'arrivée (50 dégâts) dans un rayon de 200. Aucune chute ne te blesse pendant les 15 s qui suivent.</p>
-</article><article class="fiche" style="--voie:#7E9AB4">
-  <div class="fiche-tete"><h3>Concentration</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#8FB4D8">
+  <div class="carte-tete"><h3>Concentration</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Rend 25 points de Force. Tu es ralenti de moitié pendant 15 s : on médite à l'abri, pas au milieu d'un échange.</p>
-</article><article class="fiche" style="--voie:#7E9AB4">
-  <div class="fiche-tete"><h3>Extinction</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#8FB4D8">
+  <div class="carte-tete"><h3>Extinction</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
   <p>Éteint les flammes sur la cible visée.</p>
-</article><article class="fiche" style="--voie:#7E9AB4">
-  <div class="fiche-tete"><h3>Brèche</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#8FB4D8">
+  <div class="carte-tete"><h3>Brèche</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Ouvre une porte verrouillée à moins de 150 unités. Rien ne se consomme si tu ne vises pas une porte.</p>
 </article></div>
-</section><section class="bloc section-voie" id="chevalier" style="--voie:#9BB8D4">
-  <div class="tete-voie"><h2>Chevalier Jedi</h2><span class="compteur">4 pouvoirs</span></div>
-  <p class="note-voie">Ce qu&#x27;un Chevalier ajoute au tronc commun.</p>
-  <div class="fiches"><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>Lancer</h3><span class="pastille seances">3 séances</span></div>
+  </section>  <section class="section-voie" id="chevalier" style="--voie:#A8CBEA">
+  <div class="tete-section">
+    <span class="num-section">02</span>
+    <h2 class="titre-section">Chevalier Jedi</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">4 pouvoirs</span>
+  </div>
+    <p class="intro-section">Ce qu&#x27;un Chevalier ajoute au tronc commun.</p>
+    <div class="grille-cartes"><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>Lancer</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Projette l'objet que tu tiens par la Force.</p>
-</article><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>Attraction</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>Attraction</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Attire vers toi ce que tu vises, jusqu'à 200 unités.</p>
-</article><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>Poussée</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>Poussée</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Repousse devant toi, jusqu'à 800 unités. Aucun dégât : c'est du déplacement.</p>
-</article><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>Saut II</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>Saut II</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Même bond, plus haut. Utile pour franchir un mur ou décrocher d'un combat.</p>
 </article></div>
-</section><section class="bloc section-voie" id="consulaire_i" style="--voie:#50BE76">
-  <div class="tete-voie"><h2>Consulaire · Initié</h2><span class="compteur">12 pouvoirs</span></div>
-  <p class="note-voie">L&#x27;esprit ouvert à la Force : soigner, soutenir, tenir le groupe debout.</p>
-  <div class="fiches"><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Concentration avancée</h3><span class="pastille seances">4 séances</span></div>
+  </section>  <section class="section-voie" id="consulaire_i" style="--voie:#56D08D">
+  <div class="tete-section">
+    <span class="num-section">03</span>
+    <h2 class="titre-section">Consulaire · Initié</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">12 pouvoirs</span>
+  </div>
+    <p class="intro-section">L&#x27;esprit ouvert à la Force : soigner, soutenir, tenir le groupe debout.</p>
+    <div class="grille-cartes"><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Concentration avancée</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Rend 40 points de Force, avec un ralentissement un peu plus court (10 s).</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Soin</h3><span class="pastille seances">1 séance</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Soin</h3><span class="badge">1 séance</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>4 s</span></div>
   <p>Rend 200 PV, sur toi. Sans effet si tu es déjà au maximum, et rien n'est consommé dans ce cas.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Soin d&#x27;autrui</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Soin d&#x27;autrui</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
   <p>Rend 500 PV au joueur visé, à moins de 300 unités. C'est le soin d'appoint du groupe.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Attraction II</h3><span class="pastille seances">1 séance</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Attraction II</h3><span class="badge">1 séance</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Attire plus loin (500) et plus fort.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Poussée II</h3><span class="pastille seances">1 séance</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Poussée II</h3><span class="badge">1 séance</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Repousse deux fois plus fort.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Saisie</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Saisie</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>4 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>5 s entre deux prises</span></div>
   <p>Soulève une cible à distance (600) et la maintient tant que tu tiens la touche.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Perception</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Perception</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Tu vois les présences à travers les murs pendant 10 s, jusqu'à 800 unités, avec leur vie.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Barrière</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Barrière</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Bouclier personnel qui encaisse à ta place.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Barrière de Force : Mur</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Barrière de Force : Mur</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture</span><span class="chip"><span class="cle">Rechargement</span>10 s après la fin</span></div>
   <p>Mur de Force devant toi. Ce qui vient du dehors ne blesse plus ceux qui sont derrière, et chaque coup absorbé te coûte de la Force. Il tient 30 s au maximum.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Jugement I</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Jugement I</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair de jugement bleu, 40 dégâts par impulsion, dans un cône de 14° jusqu'à 700 unités. Se maintient 3,5 s.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Démantèlement</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Démantèlement</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
   <p>Se charge en maintenant la touche : jusqu'à 350 dégâts sur ce que tu vises à moins de 400 unités. Plus tu charges, plus ça frappe fort.</p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Soin de masse</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Soin de masse</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>5 de Force par personne</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
   <p>Soigne 30 % des PV maximum de chaque joueur dans un rayon de 200, et continue pendant 3,5 s tant que tu maintiens.</p>
 </article></div>
-</section><section class="bloc section-voie" id="consulaire_a" style="--voie:#2DA55A">
-  <div class="tete-voie"><h2>Consulaire · Avancé</h2><span class="compteur">11 pouvoirs</span></div>
-  
-  <div class="fiches"><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Perception [Avancé]</h3><span class="pastille seances">2 séances</span></div>
+  </section>  <section class="section-voie" id="consulaire_a" style="--voie:#3BBA73">
+  <div class="tete-section">
+    <span class="num-section">04</span>
+    <h2 class="titre-section">Consulaire · Avancé</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">11 pouvoirs</span>
+  </div>
+
+    <div class="grille-cartes"><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Perception [Avancé]</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>15 s de vision, jusqu'à 1600 unités.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Réanimation</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Réanimation</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>100 de Force</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
   <p>Rappelle un allié tombé, à l'endroit de son corps. Vise le corps. Le rechargement ne part que si la réanimation réussit.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Soin II</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Soin II</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
   <p>Rend 500 PV, sur toi.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Embrasement</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Embrasement</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
   <p>Embrase la cible visée à moins de 200 unités.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Tourbillon</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Tourbillon</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>20 s</span></div>
   <p>Pose un vortex au sol jusqu'à 800 unités. Il aspire tout, fait monter les gens dans les airs pendant 3 s, inflige 200 dégâts au sommet puis les éjecte. L'Immunité ne protège pas de ce pouvoir.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Immunité</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Immunité</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>passif</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
   <p>Tant que ta Force dépasse 50 %, les pouvoirs de Force lancés sur toi n'ont aucun effet et t'en rendent un peu. Rien à activer : il suffit de l'apprendre.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Barrière de Force : Dôme</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Barrière de Force : Dôme</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture</span><span class="chip"><span class="cle">Rechargement</span>10 s après la fin</span></div>
   <p>Dôme de protection autour de toi. Les tirs venus de l'extérieur n'atteignent plus ceux qui sont dedans, à ton prix en Force. Il tient 30 s au maximum.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Assaut télékinétique</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Assaut télékinétique</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
   <p>Arrache un rocher et le projette sur ta cible.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Jugement II</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Jugement II</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair vert, 55 dégâts par impulsion.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Agenouillement [Ciblé]</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Agenouillement [Ciblé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Force la cible visée à rester à genoux tant que tu maintiens la touche.</p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Rempart</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Rempart</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>24 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Rempart : tu échanges ta position avec un joueur proche (300 unités).</p>
 </article></div>
-</section><section class="bloc section-voie" id="consulaire_m" style="--voie:#148744">
-  <div class="tete-voie"><h2>Consulaire · Maître</h2><span class="compteur">8 pouvoirs</span></div>
-  
-  <div class="fiches"><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Grand soin</h3><span class="pastille seances">2 séances</span></div>
+  </section>  <section class="section-voie" id="consulaire_m" style="--voie:#2AA05E">
+  <div class="tete-section">
+    <span class="num-section">05</span>
+    <h2 class="titre-section">Consulaire · Maître</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">8 pouvoirs</span>
+  </div>
+
+    <div class="grille-cartes"><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Grand soin</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
   <p>Remet toute ta vie d'un coup. C'est le soin d'urgence, il coûte une vraie réserve.</p>
-</article><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Soin III</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Soin III</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Rend 700 PV, sur toi.</p>
-</article><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Perception [Maîtrisé]</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Perception [Maîtrisé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>25 s de vision, jusqu'à 2400 unités.</p>
-</article><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Téléportation</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Téléportation</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Tu te projettes jusqu'à 1500 unités devant toi, en te rattrapant aux rebords.</p>
-</article><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Grande poussée</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Grande poussée</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Souffle large : tout ce qui est devant toi part à 900 unités, très vite. Aucun dégât direct.</p>
-</article><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Grande attraction</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Grande attraction</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Attire violemment tout ce qui est devant toi, jusqu'à 900 unités.</p>
-</article><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Jugement III</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Jugement III</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair violet, 70 dégâts par impulsion.</p>
-</article><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Agenouillement</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Agenouillement</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
   <p>Met à genoux tout le monde dans un rayon de 300 pendant 6 s.</p>
 </article></div>
-</section><section class="bloc section-voie" id="gardien_i" style="--voie:#5A9DF0">
-  <div class="tete-voie"><h2>Gardien · Initié</h2><span class="compteur">9 pouvoirs</span></div>
-  <p class="note-voie">Le rempart de l&#x27;Ordre : encaisser, protéger, contenir.</p>
-  <div class="fiches"><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Concentration avancée</h3><span class="pastille seances">2 séances</span></div>
+  </section>  <section class="section-voie" id="gardien_i" style="--voie:#5AA8FF">
+  <div class="tete-section">
+    <span class="num-section">06</span>
+    <h2 class="titre-section">Gardien · Initié</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">9 pouvoirs</span>
+  </div>
+    <p class="intro-section">Le rempart de l&#x27;Ordre : encaisser, protéger, contenir.</p>
+    <div class="grille-cartes"><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Concentration avancée</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Rend 40 points de Force, avec un ralentissement un peu plus court (10 s).</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Attraction II</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Attraction II</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Attire plus loin (500) et plus fort.</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Poussée II</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Poussée II</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Repousse deux fois plus fort.</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Riposte</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Riposte</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>12 s</span></div>
   <p>Pendant 10 s, tu renvoies la moitié des dégâts reçus à celui qui te frappe, et tu n'en encaisses qu'une petite partie.</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Immunité</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Immunité</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>passif</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
   <p>Tant que ta Force dépasse 50 %, les pouvoirs de Force lancés sur toi n'ont aucun effet et t'en rendent un peu. Rien à activer : il suffit de l'apprendre.</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Barrière</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Barrière</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Bouclier personnel qui encaisse à ta place.</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Adrénaline</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Adrénaline</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>+200 de vitesse de course tant que tu maintiens.</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Saisie</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Saisie</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>4 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>5 s entre deux prises</span></div>
   <p>Soulève une cible à distance (600) et la maintient tant que tu tiens la touche.</p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Perception</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Perception</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Tu vois les présences à travers les murs pendant 10 s, jusqu'à 800 unités, avec leur vie.</p>
 </article></div>
-</section><section class="bloc section-voie" id="gardien_a" style="--voie:#377DE1">
-  <div class="tete-voie"><h2>Gardien · Avancé</h2><span class="compteur">5 pouvoirs</span></div>
-  
-  <div class="fiches"><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Barrière de Force : Mur</h3><span class="pastille seances">2 séances</span></div>
+  </section>  <section class="section-voie" id="gardien_a" style="--voie:#3D8BEE">
+  <div class="tete-section">
+    <span class="num-section">07</span>
+    <h2 class="titre-section">Gardien · Avancé</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">5 pouvoirs</span>
+  </div>
+
+    <div class="grille-cartes"><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Barrière de Force : Mur</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture</span><span class="chip"><span class="cle">Rechargement</span>10 s après la fin</span></div>
   <p>Mur de Force devant toi. Ce qui vient du dehors ne blesse plus ceux qui sont derrière, et chaque coup absorbé te coûte de la Force. Il tient 30 s au maximum.</p>
-</article><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Jugement II</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Jugement II</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair vert, 55 dégâts par impulsion.</p>
-</article><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Immunité [Avancé]</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Immunité [Avancé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>passif</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
   <p>Même protection, mais elle tient tant que ta Force dépasse 35 %.</p>
-</article><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Agenouillement [Ciblé]</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Agenouillement [Ciblé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Force la cible visée à rester à genoux tant que tu maintiens la touche.</p>
-</article><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Assaut télékinétique</h3><span class="pastille seances">6 séances</span></div>
+</article><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Assaut télékinétique</h3><span class="badge">6 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
   <p>Arrache un rocher et le projette sur ta cible.</p>
 </article></div>
-</section><section class="bloc section-voie" id="gardien_m" style="--voie:#1E5FCD">
-  <div class="tete-voie"><h2>Gardien · Maître</h2><span class="compteur">5 pouvoirs</span></div>
-  
-  <div class="fiches"><article class="fiche" style="--voie:#1E5FCD">
-  <div class="fiche-tete"><h3>Agenouillement</h3><span class="pastille seances">5 séances</span></div>
+  </section>  <section class="section-voie" id="gardien_m" style="--voie:#2A6FD8">
+  <div class="tete-section">
+    <span class="num-section">08</span>
+    <h2 class="titre-section">Gardien · Maître</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">5 pouvoirs</span>
+  </div>
+
+    <div class="grille-cartes"><article class="carte" style="--voie:#2A6FD8">
+  <div class="carte-tete"><h3>Agenouillement</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
   <p>Met à genoux tout le monde dans un rayon de 300 pendant 6 s.</p>
-</article><article class="fiche" style="--voie:#1E5FCD">
-  <div class="fiche-tete"><h3>Jugement Fulgurant</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#2A6FD8">
+  <div class="carte-tete"><h3>Jugement Fulgurant</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force (50 requis)</span><span class="chip"><span class="cle">Rechargement</span>25 s</span></div>
   <p>Un éclair bleu frappe une cible unique jusqu'à 1000 unités : 40 dégâts, et elle tombe à genoux, immobilisée 6 s, entourée d'une aura électrique.</p>
-</article><article class="fiche" style="--voie:#1E5FCD">
-  <div class="fiche-tete"><h3>Immunité [Maîtrisé]</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#2A6FD8">
+  <div class="carte-tete"><h3>Immunité [Maîtrisé]</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>passif</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
   <p>Même protection, jusqu'à 20 % de Force seulement.</p>
-</article><article class="fiche" style="--voie:#1E5FCD">
-  <div class="fiche-tete"><h3>Grande poussée</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#2A6FD8">
+  <div class="carte-tete"><h3>Grande poussée</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Souffle large : tout ce qui est devant toi part à 900 unités, très vite. Aucun dégât direct.</p>
-</article><article class="fiche" style="--voie:#1E5FCD">
-  <div class="fiche-tete"><h3>Grande attraction</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#2A6FD8">
+  <div class="carte-tete"><h3>Grande attraction</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Attire violemment tout ce qui est devant toi, jusqu'à 900 unités.</p>
 </article></div>
-</section><section class="bloc section-voie" id="sentinelle_i" style="--voie:#F5CD5F">
-  <div class="tete-voie"><h2>Sentinelle · Initié</h2><span class="compteur">8 pouvoirs</span></div>
-  <p class="note-voie">La lame qui frappe la première : vitesse, discrétion, information.</p>
-  <div class="fiches"><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Concentration avancée</h3><span class="pastille seances">2 séances</span></div>
+  </section>  <section class="section-voie" id="sentinelle_i" style="--voie:#F5D174">
+  <div class="tete-section">
+    <span class="num-section">09</span>
+    <h2 class="titre-section">Sentinelle · Initié</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">8 pouvoirs</span>
+  </div>
+    <p class="intro-section">La lame qui frappe la première : vitesse, discrétion, information.</p>
+    <div class="grille-cartes"><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Concentration avancée</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Rend 40 points de Force, avec un ralentissement un peu plus court (10 s).</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Saut III</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Saut III</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Le bond le plus haut des trois.</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Adrénaline</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Adrénaline</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>+200 de vitesse de course tant que tu maintiens.</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Attraction II</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Attraction II</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Attire plus loin (500) et plus fort.</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Barrière</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Barrière</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Bouclier personnel qui encaisse à ta place.</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Camouflage</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Camouflage</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>30 s après la fin</span></div>
   <p>Invisibilité totale pendant 25 s. Tirer, être touché, mourir ou rappuyer te révèle. Une barre affiche le temps restant.</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Perception</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Perception</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Tu vois les présences à travers les murs pendant 10 s, jusqu'à 800 unités, avec leur vie.</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Perception [Avancé]</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Perception [Avancé]</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>15 s de vision, jusqu'à 1600 unités.</p>
 </article></div>
-</section><section class="bloc section-voie" id="sentinelle_a" style="--voie:#EBB637">
-  <div class="tete-voie"><h2>Sentinelle · Avancé</h2><span class="compteur">7 pouvoirs</span></div>
-  
-  <div class="fiches"><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Rempart</h3><span class="pastille seances">2 séances</span></div>
+  </section>  <section class="section-voie" id="sentinelle_a" style="--voie:#E8BC4C">
+  <div class="tete-section">
+    <span class="num-section">10</span>
+    <h2 class="titre-section">Sentinelle · Avancé</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">7 pouvoirs</span>
+  </div>
+
+    <div class="grille-cartes"><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Rempart</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>24 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Rempart : tu échanges ta position avec un joueur proche (300 unités).</p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Perception [Maîtrisé]</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Perception [Maîtrisé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>25 s de vision, jusqu'à 2400 unités.</p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Adrénaline II</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Adrénaline II</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>+400 de vitesse.</p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Camouflage II</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Camouflage II</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>30 s après la fin</span></div>
   <p>Invisibilité totale pendant 40 s.</p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Jugement II</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Jugement II</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair vert, 55 dégâts par impulsion.</p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Agenouillement [Ciblé]</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Agenouillement [Ciblé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Force la cible visée à rester à genoux tant que tu maintiens la touche.</p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Téléportation</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Téléportation</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
   <p>Tu te projettes jusqu'à 1500 unités devant toi, en te rattrapant aux rebords.</p>
 </article></div>
-</section><section class="bloc section-voie" id="sentinelle_m" style="--voie:#D79B19">
-  <div class="tete-voie"><h2>Sentinelle · Maître</h2><span class="compteur">6 pouvoirs</span></div>
-  
-  <div class="fiches"><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Perception [Ultime]</h3><span class="pastille seances">5 séances</span></div>
+  </section>  <section class="section-voie" id="sentinelle_m" style="--voie:#D5A22C">
+  <div class="tete-section">
+    <span class="num-section">11</span>
+    <h2 class="titre-section">Sentinelle · Maître</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">6 pouvoirs</span>
+  </div>
+
+    <div class="grille-cartes"><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Perception [Ultime]</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>40 s de vision, jusqu'à 3200 unités. La version la moins chère et la plus longue.</p>
-</article><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Tourbillon</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Tourbillon</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>20 s</span></div>
   <p>Pose un vortex au sol jusqu'à 800 unités. Il aspire tout, fait monter les gens dans les airs pendant 3 s, inflige 200 dégâts au sommet puis les éjecte. L'Immunité ne protège pas de ce pouvoir.</p>
-</article><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Jugement Fulgurant</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Jugement Fulgurant</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force (50 requis)</span><span class="chip"><span class="cle">Rechargement</span>25 s</span></div>
   <p>Un éclair bleu frappe une cible unique jusqu'à 1000 unités : 40 dégâts, et elle tombe à genoux, immobilisée 6 s, entourée d'une aura électrique.</p>
-</article><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Agenouillement</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Agenouillement</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
   <p>Met à genoux tout le monde dans un rayon de 300 pendant 6 s.</p>
-</article><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Adrénaline III</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Adrénaline III</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>+400 de vitesse, pour une consommation identique.</p>
-</article><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Camouflage III</h3><span class="pastille seances">6 séances</span></div>
+</article><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Camouflage III</h3><span class="badge">6 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>30 s après la fin</span></div>
   <p>Invisibilité totale pendant 120 s.</p>
 </article></div>
-</section><section class="bloc section-voie" id="conseil" style="--voie:#FFD250">
-  <div class="tete-voie"><h2>Conseil Jedi</h2><span class="compteur">4 pouvoirs</span></div>
-  <p class="note-voie">Réservé au Conseil, au Maître de l&#x27;Ordre et au Grand Maître.</p>
-  <div class="fiches"><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Boulder Lancer</h3><span class="pastille seances">7 séances</span></div>
+  </section>  <section class="section-voie" id="conseil" style="--voie:#FFD86B">
+  <div class="tete-section">
+    <span class="num-section">12</span>
+    <h2 class="titre-section">Conseil Jedi</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">4 pouvoirs</span>
+  </div>
+    <p class="intro-section">Réservé au Conseil, au Maître de l&#x27;Ordre et au Grand Maître.</p>
+    <div class="grille-cartes"><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Boulder Lancer</h3><span class="badge">7 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>100 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
   <p>Un bloc de pierre lancé à pleine vitesse. Il faut appuyer deux fois pour confirmer : c'est cher et ça ne se lance pas par erreur.</p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Pas de l&#x27;ombre</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Pas de l&#x27;ombre</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force puis un filet</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>Pas de l'ombre : +400 de vitesse, la course du Conseil.</p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Jugement IV</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Jugement IV</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair doré, 85 dégâts par impulsion. Réservé au Conseil.</p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Aveuglement</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Aveuglement</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>80 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
   <p>Aveugle tous les adversaires dans un rayon de 200 pendant 8,5 s. Ils voient un voile très sombre, pas un écran noir.</p>
 </article></div>
-</section>
-  <footer>Créé par Poté</footer>
-</main>
-<script>
-(function(){
-  var champ = document.getElementById("filtre");
-  var compte = document.getElementById("compte");
-  var fiches = Array.prototype.slice.call(document.querySelectorAll(".fiche"));
-  var sections = Array.prototype.slice.call(document.querySelectorAll(".section-voie"));
-  function filtrer(){
-    var q = champ.value.trim().toLowerCase();
-    var n = 0;
-    fiches.forEach(function(f){
-      var visible = q === "" || f.textContent.toLowerCase().indexOf(q) !== -1;
-      f.hidden = !visible;
-      if (visible) n++;
-    });
-    sections.forEach(function(s){
-      s.hidden = s.querySelectorAll(".fiche:not([hidden])").length === 0;
-    });
-    compte.textContent = q === "" ? "" : n + (n > 1 ? " résultats" : " résultat");
-  }
-  champ.addEventListener("input", filtrer);
-})();
-</script>
+  </section>
+  <footer>
+    <span class="pied-embleme"><img src="logo.svg" alt=""></span>
+    Créé par Poté
+  </footer>
+</div>
+
+<script src="script.js?v=5"></script>
 </body>
 </html>

@@ -3,241 +3,289 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Les formes · Wiki Jedi</title>
+<title>Formes · Wiki Jedi</title>
 <meta name="description" content="Les styles de combat au sabre, dans l&#x27;ordre où on les apprend.">
+<meta name="theme-color" content="#04060B">
+<link rel="icon" type="image/svg+xml" href="logo.svg">
+<style>html,body{background:#04060B;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap">
-<link rel="stylesheet" href="style.css?v=3">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
-<div class="voute" aria-hidden="true"></div>
-<input type="checkbox" id="menu" class="bascule-menu" hidden>
-<label for="menu" class="bouton-menu" aria-label="Menu">Menu</label>
+<canvas id="etoiles"></canvas>
 
-<aside class="cote">
-  <a class="marque" href="index.html"><svg class="crete" viewBox="0 0 64 64" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M13 37a19 19 0 0 0 38 0"/><path d="M13 37C10 25 12 15 16.5 9c1.8 8 4.6 14.5 8.5 18.5"/><path d="M51 37c3-12 1-22-3.5-28-1.8 8-4.6 14.5-8.5 18.5"/></g><path class="lame" d="M32 4l1.7 15.5V45h-3.4V19.5z" fill="currentColor"/></svg><span class="nom">Ordre Jedi<small>Archives du Temple</small></span></a>
-  <nav class="nav-pages"><a href="index.html" class="">Le fonctionnement</a><a href="pouvoirs.html" class="">Les pouvoirs</a><a href="formes.html" class="actif">Les formes</a><a href="competences.html" class="">Les compétences</a></nav>
-  <div class="sommaire"><span class="titre-sommaire">Sur cette page</span><a href="#padawan">Padawan Jedi</a><a href="#chevalier">Chevalier Jedi</a><a href="#consulaire_i">Consulaire · Initié</a><a href="#consulaire_a">Consulaire · Avancé</a><a href="#consulaire_m">Consulaire · Maître</a><a href="#gardien_i">Gardien · Initié</a><a href="#gardien_a">Gardien · Avancé</a><a href="#gardien_m">Gardien · Maître</a><a href="#sentinelle_i">Sentinelle · Initié</a><a href="#sentinelle_a">Sentinelle · Avancé</a><a href="#sentinelle_m">Sentinelle · Maître</a><a href="#conseil">Conseil Jedi</a></div>
-  <div class="pied-cote">Créé par Poté</div>
-</aside>
+<nav>
+  <a class="nav-marque" href="index.html">
+    <span class="nav-embleme"><img src="logo.svg" alt=""></span>
+    <span class="nav-nom">Wiki Jedi</span>
+  </a>
+  <a href="index.html">Accueil</a><a href="pouvoirs.html">Pouvoirs</a><a href="formes.html" class="actif">Formes</a><a href="competences.html">Compétences</a>
+</nav>
 
-<main>
-  <header class="entete">
-    <div class="fil">Wiki Jedi · Les formes</div>
+<div class="contenu">
+  <header class="tete-page">
+    <div class="sur-titre">Archives de l'Ordre</div>
     <h1>Les formes</h1>
-    <p class="chapeau">Les styles de combat au sabre, dans l&#x27;ordre où on les apprend.</p>
+    <p class="intro-page">Une forme change tes enchaînements, tes dégâts au sabre et la garde que tu perds en bloquant. Celles marquées double sabre utilisent la lame de la main gauche ; avec une forme à une main, le second manche reste au fourreau.</p>
+    <nav class="ancres"><a href="#padawan" style="--voie:#8FB4D8">Padawan Jedi</a><a href="#chevalier" style="--voie:#A8CBEA">Chevalier Jedi</a><a href="#consulaire_i" style="--voie:#56D08D">Consulaire · Initié</a><a href="#consulaire_a" style="--voie:#3BBA73">Consulaire · Avancé</a><a href="#consulaire_m" style="--voie:#2AA05E">Consulaire · Maître</a><a href="#gardien_i" style="--voie:#5AA8FF">Gardien · Initié</a><a href="#gardien_a" style="--voie:#3D8BEE">Gardien · Avancé</a><a href="#gardien_m" style="--voie:#2A6FD8">Gardien · Maître</a><a href="#sentinelle_i" style="--voie:#F5D174">Sentinelle · Initié</a><a href="#sentinelle_a" style="--voie:#E8BC4C">Sentinelle · Avancé</a><a href="#sentinelle_m" style="--voie:#D5A22C">Sentinelle · Maître</a><a href="#conseil" style="--voie:#FFD86B">Conseil Jedi</a></nav>
   </header>
   <div class="recherche">
-  <input type="search" id="filtre" placeholder="Chercher une forme…" autocomplete="off">
-  <span class="compte" id="compte"></span>
-</div><p class="encadre">Une forme change tes enchaînements, tes dégâts au sabre et la garde que tu perds quand tu bloques. Celles marquées <strong>double sabre</strong> utilisent la lame de la main gauche ; avec une forme à une main, le second manche reste au fourreau.</p><section class="bloc section-voie" id="padawan" style="--voie:#7E9AB4">
-  <div class="tete-voie"><h2>Padawan Jedi</h2><span class="compteur">1 forme</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#7E9AB4">
-  <div class="fiche-tete"><h3>Shii-Cho (Forme I)</h3><span class="pastille seances">Gratuit</span></div>
+    <input type="search" id="filtre" placeholder="Chercher une forme..." autocomplete="off">
+    <span class="compte" id="compte"></span>
+  </div>
+  <section class="section-voie" id="padawan" style="--voie:#8FB4D8">
+  <div class="tete-section">
+    <span class="num-section">01</span>
+    <h2 class="titre-section">Padawan Jedi</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">1 forme</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#8FB4D8">
+  <div class="carte-tete"><h3>Shii-Cho (Forme I)</h3><span class="badge">Gratuit</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>20</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p>La forme d'entrée, celle qu'on apprend en premier.</p>
 </article></div>
-</section><section class="bloc section-voie" id="chevalier" style="--voie:#9BB8D4">
-  <div class="tete-voie"><h2>Chevalier Jedi</h2><span class="compteur">4 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>Soresu (Forme III)</h3><span class="pastille seances">3 séances</span></div>
+  </section>  <section class="section-voie" id="chevalier" style="--voie:#A8CBEA">
+  <div class="tete-section">
+    <span class="num-section">02</span>
+    <h2 class="titre-section">Chevalier Jedi</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">4 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>Soresu (Forme III)</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>20</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p>Soresu : la défense, pensée pour encaisser les tirs.</p>
-</article><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>Djem So (Forme V)</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>Djem So (Forme V)</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+5 %</span><span class="chip"><span class="cle">Garde perdue</span>50</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>Défensive</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>Défensive</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#9BB8D4">
-  <div class="fiche-tete"><h3>YongLi</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#A8CBEA">
+  <div class="carte-tete"><h3>YongLi</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="consulaire_i" style="--voie:#50BE76">
-  <div class="tete-voie"><h2>Consulaire · Initié</h2><span class="compteur">2 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Croissant</h3><span class="pastille seances">6 séances</span></div>
+  </section>  <section class="section-voie" id="consulaire_i" style="--voie:#56D08D">
+  <div class="tete-section">
+    <span class="num-section">03</span>
+    <h2 class="titre-section">Consulaire · Initié</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">2 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Croissant</h3><span class="badge">6 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>50</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#50BE76">
-  <div class="fiche-tete"><h3>Shien Djem So (Forme V)</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#56D08D">
+  <div class="carte-tete"><h3>Shien Djem So (Forme V)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>20</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p>Shien Djem So : le contre, renvoyer la force du coup.</p>
 </article></div>
-</section><section class="bloc section-voie" id="consulaire_a" style="--voie:#2DA55A">
-  <div class="tete-voie"><h2>Consulaire · Avancé</h2><span class="compteur">2 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Su Ma</h3><span class="pastille seances">6 séances</span></div>
+  </section>  <section class="section-voie" id="consulaire_a" style="--voie:#3BBA73">
+  <div class="tete-section">
+    <span class="num-section">04</span>
+    <h2 class="titre-section">Consulaire · Avancé</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">2 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Su Ma</h3><span class="badge">6 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#2DA55A">
-  <div class="fiche-tete"><h3>Shien Djem So avancé (Forme V)</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#3BBA73">
+  <div class="carte-tete"><h3>Shien Djem So avancé (Forme V)</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+2 %</span><span class="chip"><span class="cle">Garde perdue</span>25</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="consulaire_m" style="--voie:#148744">
-  <div class="tete-voie"><h2>Consulaire · Maître</h2><span class="compteur">1 forme</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#148744">
-  <div class="fiche-tete"><h3>Maîtrise de Shien Djem So (Forme V)</h3><span class="pastille seances">6 séances</span></div>
+  </section>  <section class="section-voie" id="consulaire_m" style="--voie:#2AA05E">
+  <div class="tete-section">
+    <span class="num-section">05</span>
+    <h2 class="titre-section">Consulaire · Maître</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">1 forme</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#2AA05E">
+  <div class="carte-tete"><h3>Maîtrise de Shien Djem So (Forme V)</h3><span class="badge">6 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+5 %</span><span class="chip"><span class="cle">Garde perdue</span>10</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="gardien_i" style="--voie:#5A9DF0">
-  <div class="tete-voie"><h2>Gardien · Initié</h2><span class="compteur">3 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Agile</h3><span class="pastille seances">5 séances</span></div>
+  </section>  <section class="section-voie" id="gardien_i" style="--voie:#5AA8FF">
+  <div class="tete-section">
+    <span class="num-section">06</span>
+    <h2 class="titre-section">Gardien · Initié</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">3 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Agile</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>75</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Zez&#x27;Kai (Forme XI)</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Zez&#x27;Kai (Forme XI)</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+36 %</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#5A9DF0">
-  <div class="fiche-tete"><h3>Soresu avancé (Forme III)</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#5AA8FF">
+  <div class="carte-tete"><h3>Soresu avancé (Forme III)</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+9 %</span><span class="chip"><span class="cle">Garde perdue</span>15</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="gardien_a" style="--voie:#377DE1">
-  <div class="tete-voie"><h2>Gardien · Avancé</h2><span class="compteur">4 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Visigoth</h3><span class="pastille seances">5 séances</span></div>
+  </section>  <section class="section-voie" id="gardien_a" style="--voie:#3D8BEE">
+  <div class="tete-section">
+    <span class="num-section">07</span>
+    <h2 class="titre-section">Gardien · Avancé</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">4 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Visigoth</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Niman</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Niman</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+27 %</span><span class="chip"><span class="cle">Garde perdue</span>50</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Ataru avancé (Forme IV)</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Ataru avancé (Forme IV)</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+4 %</span><span class="chip"><span class="cle">Garde perdue</span>15</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#377DE1">
-  <div class="fiche-tete"><h3>Maîtrise de Soresu (Forme III)</h3><span class="pastille seances">3 séances</span></div>
+</article><article class="carte" style="--voie:#3D8BEE">
+  <div class="carte-tete"><h3>Maîtrise de Soresu (Forme III)</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+18 %</span><span class="chip"><span class="cle">Garde perdue</span>10</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="gardien_m" style="--voie:#1E5FCD">
-  <div class="tete-voie"><h2>Gardien · Maître</h2><span class="compteur">1 forme</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#1E5FCD">
-  <div class="fiche-tete"><h3>Maîtrise d&#x27;Ataru (Forme IV)</h3><span class="pastille seances">5 séances</span></div>
+  </section>  <section class="section-voie" id="gardien_m" style="--voie:#2A6FD8">
+  <div class="tete-section">
+    <span class="num-section">08</span>
+    <h2 class="titre-section">Gardien · Maître</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">1 forme</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#2A6FD8">
+  <div class="carte-tete"><h3>Maîtrise d&#x27;Ataru (Forme IV)</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+9 %</span><span class="chip"><span class="cle">Garde perdue</span>10</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="sentinelle_i" style="--voie:#F5CD5F">
-  <div class="tete-voie"><h2>Sentinelle · Initié</h2><span class="compteur">4 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Jar&#x27;Kai</h3><span class="pastille seances">1 séance</span></div>
+  </section>  <section class="section-voie" id="sentinelle_i" style="--voie:#F5D174">
+  <div class="tete-section">
+    <span class="num-section">09</span>
+    <h2 class="titre-section">Sentinelle · Initié</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">4 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Jar&#x27;Kai</h3><span class="badge">1 séance</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+31 %</span><span class="chip"><span class="cle">Garde perdue</span>50</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Makashi (Forme II)</h3><span class="pastille seances">2 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Makashi (Forme II)</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>20</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p>Makashi : le duel au sabre, précis et économe.</p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Agile (double sabre)</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Agile (double sabre)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>75</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#F5CD5F">
-  <div class="fiche-tete"><h3>Lus-ma (double sabre)</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#F5D174">
+  <div class="carte-tete"><h3>Lus-ma (double sabre)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>35</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="sentinelle_a" style="--voie:#EBB637">
-  <div class="tete-voie"><h2>Sentinelle · Avancé</h2><span class="compteur">4 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Su Ma (double sabre)</h3><span class="pastille seances">4 séances</span></div>
+  </section>  <section class="section-voie" id="sentinelle_a" style="--voie:#E8BC4C">
+  <div class="tete-section">
+    <span class="num-section">10</span>
+    <h2 class="titre-section">Sentinelle · Avancé</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">4 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Su Ma (double sabre)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>50</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Su Ma</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Su Ma</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Makashi avancé (Forme II)</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Makashi avancé (Forme II)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+12 %</span><span class="chip"><span class="cle">Garde perdue</span>15</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#EBB637">
-  <div class="fiche-tete"><h3>Guerrier (double sabre)</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#E8BC4C">
+  <div class="carte-tete"><h3>Guerrier (double sabre)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>50</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="sentinelle_m" style="--voie:#D79B19">
-  <div class="tete-voie"><h2>Sentinelle · Maître</h2><span class="compteur">2 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Papillon</h3><span class="pastille seances">4 séances</span></div>
+  </section>  <section class="section-voie" id="sentinelle_m" style="--voie:#D5A22C">
+  <div class="tete-section">
+    <span class="num-section">11</span>
+    <h2 class="titre-section">Sentinelle · Maître</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">2 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Papillon</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>35</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#D79B19">
-  <div class="fiche-tete"><h3>Maîtrise de Makashi (Forme II)</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#D5A22C">
+  <div class="carte-tete"><h3>Maîtrise de Makashi (Forme II)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+23 %</span><span class="chip"><span class="cle">Garde perdue</span>10</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section><section class="bloc section-voie" id="conseil" style="--voie:#FFD250">
-  <div class="tete-voie"><h2>Conseil Jedi</h2><span class="compteur">9 formes</span></div>
-  <div class="fiches"><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Zez&#x27;Kai (Forme XI, double sabre)</h3><span class="pastille seances">5 séances</span></div>
+  </section>  <section class="section-voie" id="conseil" style="--voie:#FFD86B">
+  <div class="tete-section">
+    <span class="num-section">12</span>
+    <h2 class="titre-section">Conseil Jedi</h2>
+    <span class="ligne-section"></span>
+    <span class="compte-section">9 formes</span>
+  </div>
+    <div class="grille-cartes"><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Zez&#x27;Kai (Forme XI, double sabre)</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+36 %</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Visigoth (double sabre)</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Visigoth (double sabre)</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>-</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Shien So (Forme V)</h3><span class="pastille seances">4 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Shien So (Forme V)</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+14 %</span><span class="chip"><span class="cle">Garde perdue</span>75</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Shien So (Forme V, double sabre)</h3><span class="pastille seances">5 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Shien So (Forme V, double sabre)</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+14 %</span><span class="chip"><span class="cle">Garde perdue</span>75</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Juyo (Forme VII)</h3><span class="pastille seances">7 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Juyo (Forme VII)</h3><span class="badge">7 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>normaux</span><span class="chip"><span class="cle">Garde perdue</span>20</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p>Juyo : la forme la plus agressive, réservée au Conseil.</p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Juyo avancé (Forme VII)</h3><span class="pastille seances">7 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Juyo avancé (Forme VII)</h3><span class="badge">7 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+20 %</span><span class="chip"><span class="cle">Garde perdue</span>15</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Juyo-Vaapad (Forme VII)</h3><span class="pastille seances">7 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Juyo-Vaapad (Forme VII)</h3><span class="badge">7 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+40 %</span><span class="chip"><span class="cle">Garde perdue</span>75</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Juyo-Vaapad (Forme VII, double sabre)</h3><span class="pastille seances">7 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Juyo-Vaapad (Forme VII, double sabre)</h3><span class="badge">7 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+40 %</span><span class="chip"><span class="cle">Garde perdue</span>75</span><span class="chip"><span class="cle">Sabre</span>double</span></div>
   <p></p>
-</article><article class="fiche" style="--voie:#FFD250">
-  <div class="fiche-tete"><h3>Maîtrise de Juyo (Forme VII)</h3><span class="pastille seances">7 séances</span></div>
+</article><article class="carte" style="--voie:#FFD86B">
+  <div class="carte-tete"><h3>Maîtrise de Juyo (Forme VII)</h3><span class="badge">7 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Dégâts</span>+40 %</span><span class="chip"><span class="cle">Garde perdue</span>10</span><span class="chip"><span class="cle">Sabre</span>simple</span></div>
   <p></p>
 </article></div>
-</section>
-  <footer>Créé par Poté</footer>
-</main>
-<script>
-(function(){
-  var champ = document.getElementById("filtre");
-  var compte = document.getElementById("compte");
-  var fiches = Array.prototype.slice.call(document.querySelectorAll(".fiche"));
-  var sections = Array.prototype.slice.call(document.querySelectorAll(".section-voie"));
-  function filtrer(){
-    var q = champ.value.trim().toLowerCase();
-    var n = 0;
-    fiches.forEach(function(f){
-      var visible = q === "" || f.textContent.toLowerCase().indexOf(q) !== -1;
-      f.hidden = !visible;
-      if (visible) n++;
-    });
-    sections.forEach(function(s){
-      s.hidden = s.querySelectorAll(".fiche:not([hidden])").length === 0;
-    });
-    compte.textContent = q === "" ? "" : n + (n > 1 ? " résultats" : " résultat");
-  }
-  champ.addEventListener("input", filtrer);
-})();
-</script>
+  </section>
+  <footer>
+    <span class="pied-embleme"><img src="logo.svg" alt=""></span>
+    Créé par Poté
+  </footer>
+</div>
+
+<script src="script.js?v=5"></script>
 </body>
 </html>

@@ -1,575 +1,643 @@
-/* Wiki Jedi - feuille de style unique. Cree par Pote.
+/* Wiki Jedi. Cree par Pote.
    -------------------------------------------------------------------------
-   Direction artistique : les Archives du Temple. Fond de vide spatial, titres
-   graves en capitales romaines (Cinzel), corps de texte en Barlow et chiffres
-   en Share Tech Mono, comme une console. La seule lumiere de la page est celle
-   d'une lame : un bleu sabre, pose avec parcimonie.
-   La couleur de chaque voie est celle du jeu (--voie) : vert Consulaire, bleu
-   Gardien, or Sentinelle, or du Conseil.
+   Direction artistique calquee sur le site de l'Escouade Omega : ciel etoile,
+   barre de navigation collante, hero avec l'embleme rond, en-tetes de section
+   numerotes, cartes a coin coupe. Les couleurs, elles, sont celles de l'Ordre :
+   le bleu d'une lame, l'or d'un kyber, le vert du Consulaire.
+   La variable --voie porte la couleur de la branche courante, exactement celle
+   que le joueur voit dans son arbre en jeu.
    ------------------------------------------------------------------------- */
 
-:root {
-  --vide:        #05070C;
-  --panneau:     #0C1119;
-  --panneau-haut:#121925;
-  --trait:       #1C2432;
-  --trait-fort:  #2D3A4C;
-  --texte:       #D9E1EC;
-  --doux:        #94A2B5;
-  --faible:      #66748A;
-  --sabre:       #57ABFF;
-  --kyber:       #E0B45C;
-  --voie:        #8AA3BC;
-  --cote-l:      276px;
-  --grave:       "Cinzel", "Trajan Pro", Georgia, serif;
-  --corps:       "Barlow", "Segoe UI", Helvetica, Arial, sans-serif;
-  --console:     "Share Tech Mono", Consolas, "Courier New", monospace;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-* { box-sizing: border-box; }
+:root {
+  --sabre:       #4FA8FF;
+  --sabre-clair: #A8D6FF;
+  --sabre-sombre:#1C5CB0;
+  --kyber:       #E8C46A;
+  --vert:        #56D08D;
+
+  --nuit:  #04060B;
+  --nuit2: #070A11;
+  --nuit3: #0B0F18;
+
+  --verre:  rgba(79, 168, 255, .055);
+  --bord:   rgba(79, 168, 255, .20);
+  --bord-or:rgba(232, 196, 106, .28);
+
+  --texte: #96A5B8;
+  --clair: #E9F2FB;
+
+  --voie: var(--sabre);
+}
 
 html { scroll-behavior: smooth; }
 
 body {
-  margin: 0;
-  background: var(--vide);
+  background: var(--nuit);
   color: var(--texte);
-  font-family: var(--corps);
+  font-family: "Rajdhani", "Segoe UI", sans-serif;
   font-size: 17px;
-  line-height: 1.68;
-  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-a { color: inherit; }
-
-/* Le ciel derriere la page : une lueur froide en haut, un fond de nuit ailleurs.
-   Fixe, donc elle ne defile pas avec le texte. */
-.voute {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(1100px 620px at 22% -12%, rgba(70, 140, 235, .20), transparent 70%),
-    radial-gradient(820px 520px at 96% 4%, rgba(224, 180, 92, .07), transparent 72%),
-    linear-gradient(#05070C, #04050A);
-}
-
-.cote, main { position: relative; z-index: 1; }
+#etoiles { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
 /* --------------------------------------------------------------------------
-   Barre laterale
+   Navigation
    -------------------------------------------------------------------------- */
-.cote {
-  position: fixed;
-  inset: 0 auto 0 0;
-  width: var(--cote-l);
-  background: rgba(5, 7, 12, .86);
-  backdrop-filter: blur(8px);
-  border-right: 1px solid var(--trait);
-  padding: 30px 0 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 26px;
-  overflow-y: auto;
-  z-index: 20;
-}
-
-.marque {
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 72px;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
-  gap: 13px;
-  padding: 0 24px;
-  text-decoration: none;
-  color: var(--texte);
+  gap: 1.4rem;
+  overflow-x: auto;
+  background: rgba(6, 9, 15, .9);
+  border-bottom: 1px solid var(--bord);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
-.marque .crete {
-  width: 38px;
-  height: 38px;
-  flex: none;
-  color: var(--sabre);
-  opacity: .92;
-}
-.marque .crete .lame {
-  filter: drop-shadow(0 0 5px rgba(120, 190, 255, .9));
-}
-.marque .nom {
-  display: flex;
-  flex-direction: column;
-  font-family: var(--grave);
-  font-weight: 600;
-  font-size: 17px;
-  letter-spacing: .13em;
-  text-transform: uppercase;
-  line-height: 1.15;
-}
-.marque small {
-  font-family: var(--corps);
-  font-size: 10.5px;
-  font-weight: 400;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--faible);
-  margin-top: 3px;
-}
-
-.nav-pages { display: flex; flex-direction: column; }
-.nav-pages a {
-  padding: 9px 24px;
-  text-decoration: none;
-  color: var(--doux);
-  font-size: 15.5px;
-  border-left: 2px solid transparent;
-  transition: color .14s ease, background .14s ease;
-}
-.nav-pages a:hover { color: var(--texte); background: rgba(255, 255, 255, .035); }
-.nav-pages a.actif {
-  color: #EAF2FF;
-  font-weight: 600;
-  border-left-color: var(--sabre);
-  background: linear-gradient(90deg, rgba(87, 171, 255, .16), transparent);
-  box-shadow: inset 1px 0 8px -2px rgba(87, 171, 255, .55);
-}
-
-.sommaire {
-  display: flex;
-  flex-direction: column;
-  border-top: 1px solid var(--trait);
-  padding-top: 20px;
-}
-.titre-sommaire {
-  padding: 0 24px 9px;
-  font-family: var(--console);
-  font-size: 11px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--faible);
-}
-.sommaire a {
-  padding: 5px 24px;
-  text-decoration: none;
-  color: var(--doux);
-  font-size: 14.5px;
-  border-left: 2px solid transparent;
-}
-.sommaire a:hover { color: var(--texte); border-left-color: var(--trait-fort); }
-
-.pied-cote {
-  margin-top: auto;
-  padding: 18px 24px 0;
-  border-top: 1px solid var(--trait);
-  font-family: var(--console);
-  font-size: 12px;
-  color: var(--faible);
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-.bouton-menu { display: none; }
-
-/* --------------------------------------------------------------------------
-   Colonne principale
-   -------------------------------------------------------------------------- */
-main {
-  margin-left: var(--cote-l);
-  max-width: 960px;
-  padding: 62px 44px 100px;
-}
-
-.entete { margin-bottom: 52px; }
-.fil {
-  font-family: var(--console);
-  font-size: 11.5px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--faible);
-  margin-bottom: 16px;
-}
-h1 {
-  font-family: var(--grave);
-  font-weight: 600;
-  font-size: clamp(32px, 5.4vw, 47px);
-  line-height: 1.1;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  margin: 0 0 20px;
-  text-wrap: balance;
-}
-/* La lame sous le titre : c'est la seule vraie citation graphique du sabre. */
-h1::after {
-  content: "";
-  display: block;
-  width: 132px;
-  height: 2px;
-  margin-top: 18px;
-  border-radius: 2px;
-  background: linear-gradient(90deg, #DCEDFF, var(--sabre) 35%, rgba(87, 171, 255, 0));
-  box-shadow: 0 0 10px rgba(87, 171, 255, .65);
-}
-.chapeau {
-  margin: 0;
-  max-width: 60ch;
-  font-size: 18px;
-  color: var(--doux);
-}
-
-.bloc {
-  border-top: 1px solid var(--trait);
-  padding-top: 34px;
-  margin-bottom: 56px;
-  scroll-margin-top: 24px;
-}
-.bloc > h2, .tete-voie h2 {
-  font-family: var(--grave);
-  font-weight: 600;
-  font-size: 22px;
-  letter-spacing: .11em;
-  text-transform: uppercase;
-  margin: 0 0 20px;
-  padding-left: 15px;
-  border-left: 3px solid var(--voie);
-  line-height: 1.25;
-}
-.tete-voie {
+.nav-marque {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
+  gap: .9rem;
+  margin-right: auto;
+  flex-shrink: 0;
+  text-decoration: none;
 }
-.tete-voie h2 { margin: 0; }
-.compteur {
-  font-family: var(--console);
-  font-size: 12px;
-  color: var(--faible);
-  letter-spacing: .12em;
+.nav-embleme {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--bord-or);
+  background: rgba(79, 168, 255, .07);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px -4px rgba(79, 168, 255, .8);
+}
+.nav-embleme img { width: 82%; height: 82%; display: block; }
+.nav-nom {
+  font-family: "Orbitron", monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--clair);
+  letter-spacing: 2.5px;
   text-transform: uppercase;
+  white-space: nowrap;
 }
-.note-voie {
-  margin: 0 0 22px 18px;
-  color: var(--doux);
-  font-style: italic;
-  max-width: 58ch;
+nav a:not(.nav-marque) {
+  font-family: "Rajdhani", sans-serif;
+  font-size: .85rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: var(--texte);
+  text-decoration: none;
+  text-transform: uppercase;
+  padding: .4rem .7rem;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  white-space: nowrap;
+  transition: all .2s;
+}
+nav a:not(.nav-marque):hover,
+nav a.actif {
+  color: var(--sabre-clair);
+  border-color: var(--sabre);
+  text-shadow: 0 0 8px rgba(79, 168, 255, .8);
 }
 
-.bloc p { max-width: 64ch; }
-.bloc ul { max-width: 64ch; padding-left: 20px; }
-.bloc li { margin-bottom: 8px; }
-
-.encadre {
-  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau));
-  border: 1px solid var(--trait);
-  border-left: 3px solid var(--voie);
-  padding: 16px 20px;
-  margin: 24px 0 0;
-  color: var(--doux);
-  max-width: 68ch;
-}
-.encadre strong { color: var(--texte); }
+.contenu { position: relative; z-index: 10; }
 
 /* --------------------------------------------------------------------------
-   Fiches (pouvoirs, formes)
+   Hero
    -------------------------------------------------------------------------- */
-.fiches {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
-  gap: 15px;
-  margin-top: 20px;
-}
-
-.fiche {
+#hero {
+  min-height: 76vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
   position: relative;
-  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 60%);
-  border: 1px solid var(--trait);
-  padding: 17px 19px 19px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: border-color .15s ease, transform .15s ease;
+  border-bottom: none;
+  max-width: 1180px;
+  margin: 0 auto;
 }
-/* Le liseré de voie tient lieu de reliure : c'est lui qui dit a quelle branche
-   appartient la fiche, sans repeter le nom de la voie sur chaque carte. */
-.fiche::before {
+#hero::before {
   content: "";
   position: absolute;
-  inset: -1px -1px auto -1px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--voie), rgba(255, 255, 255, 0) 85%);
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(79, 168, 255, .13) 0%, transparent 68%);
 }
-.fiche:hover { border-color: var(--trait-fort); transform: translateY(-1px); }
+.hero-embleme {
+  width: 178px;
+  height: 178px;
+  border-radius: 50%;
+  border: 2px solid var(--kyber);
+  background: rgba(79, 168, 255, .05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 34px rgba(79, 168, 255, .45), inset 0 0 30px rgba(79, 168, 255, .1);
+  animation: halo 4s ease-in-out infinite, apparition .5s ease both;
+}
+.hero-embleme img { width: 84%; height: 84%; display: block; }
+.hero-titre {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(2.8rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(135deg, var(--sabre-clair), var(--sabre) 45%, var(--kyber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: apparition .5s ease both;
+  margin-bottom: .5rem;
+}
+.hero-sous {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(.8rem, 2.3vw, 1.25rem);
+  color: var(--clair);
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  animation: apparition .5s ease both;
+}
+.hero-devise {
+  font-size: 1.05rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  border-top: 1px solid var(--bord);
+  border-bottom: 1px solid var(--bord);
+  padding: .75rem 2rem;
+  margin-bottom: 2.6rem;
+  max-width: 640px;
+  animation: apparition .5s ease both;
+}
+.hero-devise em { color: var(--kyber); font-style: normal; }
 
-.fiche-tete {
+.raccourcis {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.3rem;
+  width: 100%;
+  animation: apparition .5s ease both;
+}
+.raccourci {
+  display: block;
+  background: var(--verre);
+  border: 1px solid var(--bord);
+  padding: 1.7rem 1.4rem;
+  text-decoration: none;
+  text-align: center;
+  transition: all .25s;
+}
+.raccourci:hover {
+  border-color: var(--sabre);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 34px -18px rgba(79, 168, 255, .5);
+}
+.raccourci-num {
+  display: inline-block;
+  font-family: "Orbitron", monospace;
+  font-size: .72rem;
+  color: var(--kyber);
+  letter-spacing: 2px;
+  border: 1px solid var(--bord-or);
+  background: rgba(232, 196, 106, .07);
+  padding: .25rem .6rem;
+  margin-bottom: 1rem;
+}
+.raccourci-titre {
+  display: block;
+  font-family: "Orbitron", monospace;
+  font-size: .92rem;
+  color: var(--clair);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: .35rem;
+}
+.raccourci-desc { display: block; font-size: .88rem; color: var(--texte); }
+
+/* --------------------------------------------------------------------------
+   En-tete des pages internes
+   -------------------------------------------------------------------------- */
+.tete-page {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 4.5rem 2rem 0;
+}
+.sur-titre {
+  font-family: "Share Tech Mono", monospace;
+  font-size: .78rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--kyber);
+  margin-bottom: .9rem;
+}
+h1 {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(1.9rem, 5vw, 3.1rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: transparent;
+  background: linear-gradient(120deg, var(--sabre-clair), var(--sabre) 55%, var(--kyber));
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-bottom: 1.1rem;
+}
+.intro-page {
+  font-size: 1.06rem;
+  line-height: 1.7;
+  max-width: 78ch;
+  margin-bottom: 1.8rem;
+}
+.intro-page strong { color: var(--clair); }
+
+.ancres { display: flex; flex-wrap: wrap; gap: .5rem; }
+.ancres a {
+  font-family: "Share Tech Mono", monospace;
+  font-size: .75rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--voie);
+  border: 1px solid color-mix(in srgb, var(--voie) 40%, transparent);
+  background: color-mix(in srgb, var(--voie) 8%, transparent);
+  padding: .3rem .65rem;
+  transition: all .2s;
+}
+.ancres a:hover { background: color-mix(in srgb, var(--voie) 20%, transparent); color: var(--clair); }
+
+/* --------------------------------------------------------------------------
+   Sections
+   -------------------------------------------------------------------------- */
+section {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 4.5rem 2rem;
+  border-bottom: 1px solid rgba(79, 168, 255, .09);
+}
+.tete-section {
+  display: flex;
+  align-items: center;
+  gap: 1.3rem;
+  margin-bottom: 2.2rem;
+}
+.num-section {
+  font-family: "Orbitron", monospace;
+  font-size: .72rem;
+  color: var(--voie);
+  border: 1px solid color-mix(in srgb, var(--voie) 55%, transparent);
+  padding: .3rem .6rem;
+  letter-spacing: 2px;
+  flex-shrink: 0;
+}
+.titre-section {
+  font-family: "Orbitron", monospace;
+  font-size: clamp(1.05rem, 2.8vw, 1.6rem);
+  font-weight: 700;
+  color: var(--clair);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.ligne-section {
+  flex: 1;
+  height: 1px;
+  min-width: 20px;
+  background: linear-gradient(to right, var(--voie), transparent);
+}
+.compte-section {
+  font-family: "Share Tech Mono", monospace;
+  font-size: .75rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--texte);
+  flex-shrink: 0;
+}
+.intro-section {
+  font-size: 1.02rem;
+  line-height: 1.72;
+  max-width: 80ch;
+  margin-bottom: 2rem;
+}
+.intro-section strong { color: var(--clair); }
+
+.note {
+  background: var(--verre);
+  border: 1px solid var(--bord);
+  border-left: 3px solid var(--kyber);
+  padding: 1.1rem 1.4rem;
+  margin-top: 2rem;
+  font-size: .98rem;
+  line-height: 1.7;
+  max-width: 80ch;
+}
+.note strong { color: var(--clair); }
+
+/* --------------------------------------------------------------------------
+   Cartes (pouvoirs, formes)
+   -------------------------------------------------------------------------- */
+.grille-cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(324px, 1fr));
+  gap: 1.1rem;
+}
+.carte {
+  position: relative;
+  background: var(--verre);
+  border: 1px solid var(--bord);
+  border-left: 2px solid var(--voie);
+  padding: 1.3rem 1.4rem;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+  transition: background .25s, border-color .25s, transform .25s;
+}
+.carte::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 14px;
+  height: 14px;
+  background: var(--voie);
+  clip-path: polygon(0 0, 100% 100%, 100% 0);
+}
+.carte:hover {
+  background: color-mix(in srgb, var(--voie) 9%, transparent);
+  border-color: color-mix(in srgb, var(--voie) 55%, transparent);
+  transform: translateY(-3px);
+}
+.carte-tete {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 10px;
+  gap: .8rem;
+  margin-bottom: .8rem;
 }
-.fiche h3, .escalier h3 {
-  font-family: var(--grave);
+.carte h3, .escalier h3 {
+  font-family: "Orbitron", monospace;
+  font-size: .92rem;
   font-weight: 600;
-  font-size: 17px;
-  letter-spacing: .07em;
+  color: var(--clair);
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  margin: 0;
-  color: var(--voie);
-  line-height: 1.3;
+  line-height: 1.35;
 }
-.fiche p, .escalier p {
-  margin: 0;
-  font-size: 15.5px;
-  color: var(--doux);
-  max-width: none;
-}
-
-.pastille {
+.badge {
   flex: none;
-  font-family: var(--console);
-  font-size: 11.5px;
-  letter-spacing: .09em;
+  font-family: "Share Tech Mono", monospace;
+  font-size: .7rem;
+  letter-spacing: 1px;
   text-transform: uppercase;
-  color: var(--faible);
-  border: 1px solid var(--trait-fort);
-  padding: 2px 9px;
+  color: var(--voie);
+  border: 1px solid color-mix(in srgb, var(--voie) 35%, transparent);
+  background: color-mix(in srgb, var(--voie) 8%, transparent);
+  padding: .15rem .5rem;
   white-space: nowrap;
 }
+.carte p, .escalier p { font-size: .95rem; line-height: 1.62; color: var(--texte); }
 
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .85rem; }
 .chip {
-  font-family: var(--console);
-  font-size: 12.5px;
+  font-family: "Share Tech Mono", monospace;
+  font-size: .74rem;
+  letter-spacing: .5px;
+  color: var(--clair);
   background: rgba(255, 255, 255, .035);
-  border: 1px solid var(--trait);
-  padding: 3px 9px;
-  color: var(--texte);
+  border: 1px solid rgba(79, 168, 255, .16);
+  padding: .16rem .5rem;
   font-variant-numeric: tabular-nums;
 }
-.chip .cle {
-  color: var(--faible);
-  margin-right: 7px;
-  text-transform: uppercase;
-  font-size: 10.5px;
-  letter-spacing: .12em;
-}
+.chip .cle { color: var(--texte); margin-right: .45rem; text-transform: uppercase; font-size: .66rem; letter-spacing: 1px; }
 
 /* --------------------------------------------------------------------------
    Recherche
    -------------------------------------------------------------------------- */
 .recherche {
+  max-width: 1180px;
+  margin: 2.6rem auto 0;
+  padding: 0 2rem;
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 38px;
+  gap: 1rem;
 }
 .recherche input {
   flex: 1;
   min-width: 0;
-  background: var(--panneau);
-  border: 1px solid var(--trait-fort);
-  padding: 12px 15px;
-  color: var(--texte);
-  font-family: var(--corps);
-  font-size: 16px;
+  background: var(--nuit3);
+  border: 1px solid var(--bord);
+  padding: .8rem 1rem;
+  color: var(--clair);
+  font-family: "Rajdhani", sans-serif;
+  font-size: 1rem;
+  letter-spacing: .5px;
 }
-.recherche input::placeholder { color: var(--faible); }
+.recherche input::placeholder { color: var(--texte); }
 .recherche input:focus {
   outline: none;
   border-color: var(--sabre);
-  box-shadow: 0 0 0 1px rgba(87, 171, 255, .45), 0 0 16px -4px rgba(87, 171, 255, .8);
+  box-shadow: 0 0 16px -4px rgba(79, 168, 255, .85);
 }
 .compte {
-  font-family: var(--console);
-  font-size: 12.5px;
-  color: var(--faible);
+  font-family: "Share Tech Mono", monospace;
+  font-size: .78rem;
+  letter-spacing: 1px;
+  color: var(--kyber);
   white-space: nowrap;
-  letter-spacing: .08em;
 }
 
 /* --------------------------------------------------------------------------
-   Page d'accueil
+   Accueil : echelle, voies, encarts
    -------------------------------------------------------------------------- */
-.grille-bref {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(206px, 1fr));
-  gap: 15px;
-  margin-top: 4px;
-}
-.bref {
-  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 70%);
-  border: 1px solid var(--trait);
-  padding: 18px 20px;
-}
-.bref .nombre {
-  display: block;
-  font-family: var(--grave);
-  font-weight: 700;
-  font-size: 38px;
-  line-height: 1;
-  color: var(--sabre);
-  text-shadow: 0 0 18px rgba(87, 171, 255, .45);
-}
-.bref .quoi {
-  display: block;
-  font-family: var(--console);
-  font-size: 11.5px;
-  letter-spacing: .17em;
-  text-transform: uppercase;
-  color: var(--faible);
-  margin: 10px 0;
-}
-.bref p { margin: 0; font-size: 15px; color: var(--doux); max-width: none; }
-
-/* L'echelle est numerotee parce que l'ordre compte vraiment : on ne passe pas
-   un palier avant d'avoir fini le precedent. */
-.echelle { list-style: none; margin: 0; padding: 0; counter-reset: palier; }
+.echelle { list-style: none; counter-reset: palier; }
 .echelle li {
   counter-increment: palier;
   position: relative;
-  padding: 0 0 26px 48px;
-  border-left: 1px solid var(--trait);
-  margin-left: 15px;
+  padding: 0 0 1.7rem 3rem;
+  border-left: 1px solid rgba(79, 168, 255, .16);
+  margin-left: 1rem;
 }
 .echelle li:last-child { border-left-color: transparent; padding-bottom: 0; }
 .echelle li::before {
   content: counter(palier);
   position: absolute;
-  left: -15px;
-  top: 1px;
-  width: 30px;
-  height: 30px;
+  left: -1rem;
+  top: 0;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
-  background: var(--vide);
+  background: var(--nuit);
   border: 1px solid var(--voie);
   color: var(--voie);
-  font-family: var(--console);
-  font-size: 13.5px;
+  font-family: "Orbitron", monospace;
+  font-size: .78rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 14px -4px var(--voie);
+  box-shadow: 0 0 16px -5px var(--voie);
 }
 .echelle h3 {
-  font-family: var(--grave);
+  font-family: "Orbitron", monospace;
+  font-size: .92rem;
   font-weight: 600;
-  font-size: 17px;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  margin: 3px 0 5px;
   color: var(--voie);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin: .3rem 0 .35rem;
 }
-.echelle p { margin: 0; color: var(--doux); }
+.echelle p { font-size: .98rem; line-height: 1.65; }
 
-.grille-voies {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(246px, 1fr));
-  gap: 15px;
-  margin-bottom: 24px;
-}
+.grille-voies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
 .voie {
   position: relative;
-  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 70%);
-  border: 1px solid var(--trait);
-  padding: 20px;
+  background: var(--verre);
+  border: 1px solid var(--bord);
+  padding: 1.6rem;
+  clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
 }
 .voie::before {
   content: "";
   position: absolute;
-  inset: -1px -1px auto -1px;
-  height: 3px;
-  background: linear-gradient(90deg, var(--voie), rgba(255, 255, 255, 0));
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--voie);
 }
 .voie h3 {
-  font-family: var(--grave);
-  font-weight: 600;
-  font-size: 19px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  margin: 0;
+  font-family: "Orbitron", monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
   color: var(--voie);
+  letter-spacing: 2px;
+  text-transform: uppercase;
 }
 .voie .devise {
-  margin: 4px 0 12px;
-  font-style: italic;
-  font-size: 14.5px;
-  color: var(--faible);
+  font-size: .88rem;
+  color: var(--kyber);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin: .3rem 0 .9rem;
 }
-.voie p { margin: 0; font-size: 15px; color: var(--doux); max-width: none; }
+.voie p { font-size: .95rem; line-height: 1.65; }
+
+.grille-info { display: grid; grid-template-columns: repeat(auto-fit, minmax(238px, 1fr)); gap: 1.1rem; }
+.info {
+  background: var(--verre);
+  border: 1px solid var(--bord);
+  border-top: 2px solid var(--sabre);
+  padding: 1.3rem 1.4rem;
+}
+.info h4 {
+  font-family: "Orbitron", monospace;
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--clair);
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+.info p { font-size: .93rem; line-height: 1.62; }
+.info.tonalite-bleu { border-top-color: var(--sabre); }
+.info.tonalite-rouge { border-top-color: #FF6B6B; }
 
 /* --------------------------------------------------------------------------
-   Competences : un escalier, l'ordre d'achat est impose
+   Competences : l'ordre d'achat est impose, donc un escalier numerote
    -------------------------------------------------------------------------- */
-.escalier {
-  list-style: none;
-  margin: 20px 0 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 11px;
-}
+.escalier { list-style: none; display: flex; flex-direction: column; gap: .8rem; }
 .escalier li {
   display: flex;
-  gap: 15px;
-  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 70%);
-  border: 1px solid var(--trait);
-  border-left: 3px solid var(--voie);
-  padding: 15px 17px;
+  gap: 1.1rem;
+  background: var(--verre);
+  border: 1px solid var(--bord);
+  border-left: 2px solid var(--voie);
+  padding: 1.2rem 1.4rem;
+  clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
 }
 .escalier .rang {
   flex: none;
-  width: 28px;
-  height: 28px;
+  width: 1.9rem;
+  height: 1.9rem;
   border-radius: 50%;
-  border: 1px solid var(--trait-fort);
-  color: var(--faible);
-  font-family: var(--console);
-  font-size: 13px;
+  border: 1px solid color-mix(in srgb, var(--voie) 45%, transparent);
+  color: var(--voie);
+  font-family: "Orbitron", monospace;
+  font-size: .75rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.escalier .contenu { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
-
-footer {
-  border-top: 1px solid var(--trait);
-  padding-top: 22px;
-  font-family: var(--console);
-  font-size: 12px;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--faible);
-}
+.escalier .rang-corps { flex: 1; min-width: 0; }
 
 /* --------------------------------------------------------------------------
-   Petites largeurs : la barre laterale se replie derriere un bouton
+   Pied de page
+   -------------------------------------------------------------------------- */
+footer {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-top: 1px solid var(--bord);
+  font-family: "Share Tech Mono", monospace;
+  font-size: .78rem;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(150, 165, 184, .55);
+}
+.pied-embleme {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--bord-or);
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pied-embleme img { width: 82%; height: 82%; display: block; }
+
+/* --------------------------------------------------------------------------
+   Animations
+   -------------------------------------------------------------------------- */
+@keyframes halo {
+  0%, 100% { box-shadow: 0 0 34px rgba(79, 168, 255, .45), inset 0 0 30px rgba(79, 168, 255, .1); }
+  50%      { box-shadow: 0 0 56px rgba(79, 168, 255, .7), 0 0 110px rgba(232, 196, 106, .18), inset 0 0 34px rgba(79, 168, 255, .16); }
+}
+@keyframes apparition { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+.apparait { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+.apparait.vue { opacity: 1; transform: none; }
+
+/* --------------------------------------------------------------------------
+   Petites largeurs
    -------------------------------------------------------------------------- */
 @media (max-width: 900px) {
-  .bouton-menu {
-    display: block;
-    position: fixed;
-    top: 12px;
-    left: 12px;
-    z-index: 30;
-    background: var(--panneau-haut);
-    border: 1px solid var(--trait-fort);
-    padding: 8px 15px;
-    font-family: var(--console);
-    font-size: 13px;
-    letter-spacing: .14em;
-    text-transform: uppercase;
-    color: var(--texte);
-    cursor: pointer;
-  }
-  .cote {
-    transform: translateX(-100%);
-    transition: transform .18s ease;
-    box-shadow: 0 0 46px rgba(0, 0, 0, .75);
-  }
-  .bascule-menu:checked ~ .cote { transform: none; }
-  main { margin-left: 0; padding: 72px 18px 74px; }
-  .fiches { grid-template-columns: 1fr; }
+  .raccourcis, .grille-voies { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  nav { padding: 0 1rem; height: 64px; }
+  .nav-embleme { width: 38px; height: 38px; }
+  section, .tete-page { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .recherche { padding: 0 1.1rem; }
+  section { padding-top: 3.2rem; padding-bottom: 3.2rem; }
+  .grille-cartes { grid-template-columns: 1fr; }
+  .hero-sous { letter-spacing: 3px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .cote, .fiche, .nav-pages a { transition: none; }
+  .hero-embleme { animation: none; }
+  .apparait { opacity: 1; transform: none; transition: none; }
+  .carte, .raccourci, nav a { transition: none; }
 }
