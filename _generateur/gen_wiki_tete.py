@@ -110,7 +110,7 @@ P = {
  "massheal":    ("5 de Force par personne soignée (10 requis)", "12 s", "Tant que tu maintiens la touche (3,5 s au plus), chaque joueur à moins de 200 unités, toi compris, récupère 30 % de ses PV maximum à chaque impulsion. Rien ne part si personne n'a besoin de soin."),
  "greaterheal": ("55 de Force", "6 s", "Remet toute ta vie d'un coup. C'est le soin d'urgence, il coûte une vraie réserve. Rien n'est pris si tu es déjà en pleine santé."),
  "revive":      ("100 de Force", "5 s", "Rappelle un allié tombé, à l'endroit de son corps, avec 100 PV. Vise le corps, à moins de 250 unités. Le rechargement ne part que si la réanimation réussit."),
- "grab":        ("4 de Force par seconde", "5 s", "Saisit ce que tu vises à moins de 400 unités et le maintient tant que tu tiens la touche. Clic droit pour rapprocher, clic gauche pour éloigner : au-delà de 700 unités, la cible est projetée."),
+ "grab":        ("3 de Force par seconde", "5 s", "Saisit le joueur ou l'objet que tu vises à moins de 400 unités, et le maintient tant que tu tiens la touche. Les PNJ ne se saisissent pas. Clic droit pour rapprocher, clic gauche pour éloigner : au-delà de 700 unités, la cible est projetée."),
  "sense1":      ("50 de Force", "1 s", "Tu vois les présences à travers les murs pendant 10 s, jusqu'à 800 unités, avec leur vie."),
  "sense2":      ("40 de Force", "1 s", "15 s de vision, jusqu'à 1600 unités."),
  "sense3":      ("35 de Force", "1 s", "25 s de vision, jusqu'à 2400 unités."),
