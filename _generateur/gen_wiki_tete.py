@@ -116,7 +116,7 @@ P = {
  "sense3":      ("35 de Force", "1 s", "25 s de vision, jusqu'à 2400 unités."),
  "sense":       ("20 de Force", "1 s", "40 s de vision, jusqu'à 3200 unités. La version la moins chère et la plus longue."),
  "sfbarrier":   ("50 de Force", "10 s", "Bouclier personnel pendant 10 s : tu ne subis plus que 20 % des dégâts. Ta Force ne remonte pas tant qu'il tient."),
- "wizbarrierwall": ("10 de Force à l'ouverture (40 requis)", "8 s après la fin", "Dresse un mur de Force devant toi tant que tu tiens la touche, 30 s au maximum. Chaque tir de PNJ qui le frappe te coûte 1 point de Force. Le rechargement part quand le mur tombe."),
+ "wizbarrierwall": ("10 de Force à l'ouverture (40 requis), puis 1 à 10 par coup absorbé", "8 s après la fin", "Bouclier incurvé d'environ 143 unités de rayon devant toi, tant que tu tiens la touche (30 s au maximum). Les coups venus de face n'atteignent plus ceux qui sont à l'abri, et chaque coup absorbé te coûte de la Force. Ce qui arrive de côté ou de derrière passe."),
  "wizbarrierdome": ("10 de Force à l'ouverture (40 requis), puis 1 à 10 par coup absorbé", "8 s après la fin", "Dôme d'environ 166 unités de rayon autour de toi, tant que tu tiens la touche (30 s au maximum). Les coups venus de l'extérieur n'atteignent plus ceux qui sont dedans, joueurs et PNJ, et chaque coup absorbé te coûte de la Force. Ce qui se passe à l'intérieur n'est pas protégé."),
  "judgementi":  ("7 de Force par impulsion (10 requis)", "1 s", "Éclair de jugement bleu tant que tu tiens la touche, 3,5 s au maximum : 40 dégâts par impulsion, dans un cône étroit jusqu'à 700 unités. Les impulsions coûtent même si rien n'est touché."),
  "judgementii": ("7 de Force par impulsion (10 requis)", "1 s", "Éclair vert, 55 dégâts par impulsion."),
@@ -143,7 +143,7 @@ P = {
  "sfrockthrow": ("50 de Force", "6 s", "Arrache un rocher et le tient tant que tu maintiens la touche ; relâche pour le projeter. 1500 dégâts à l'impact."),
  "ignite":      ("50 de Force", "5 s", "Embrase le joueur ou le PNJ visé à moins de 200 unités. Rien n'est pris si la cible brûle déjà."),
  "boulderthrow":("100 de Force", "6 s", "Un bloc de pierre lancé à pleine vitesse, qui explose au contact. Il faut appuyer deux fois pour confirmer : c'est cher et ça ne se lance pas par erreur."),
- "blind":       ("80 de Force", "8 s", "Aveugle tous les joueurs à moins de 200 unités pendant 8,5 s, alliés compris : leur écran devient presque noir. Rien n'est pris si personne n'est touché."),
+ "blind":       ("80 de Force", "8 s", "Aveugle tous les joueurs à moins de 200 unités pendant 8,5 s, alliés compris : leur écran devient entièrement noir. Rien n'est pris si personne n'est touché."),
 }
 
 FORMES_TXT = {
