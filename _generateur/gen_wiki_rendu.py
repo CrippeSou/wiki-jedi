@@ -1,33 +1,34 @@
 # -*- coding: utf-8 -*-
 # Partie RENDU du wiki (les donnees sont dans gen_wiki_tete.py, execute juste
-# avant). Mise en page reprise de l'esprit du site de l'Escouade Omega :
-# barre de navigation collante en haut, ciel etoile anime, hero avec l'embleme
-# rond, en-tetes de section numerotes, cartes a coin coupe.
+# avant).
 #
-# Les couleurs des voies sont celles du jeu (PALETTES dans cl_trees_uikit.lua) :
-# vert Consulaire, bleu Gardien, or Sentinelle. Un joueur retrouve dans le wiki
-# la couleur qu'il voit dans son arbre.
+# Parti pris : une page CALME. Fond de papier chaud, beaucoup d'air, coins
+# arrondis, titres en serif clair. Rien ne clignote, rien ne brille : on lit.
+#
+# Les couleurs des voies restent celles du jeu (PALETTES dans cl_trees_uikit.lua)
+# - vert Consulaire, bleu Gardien, or Sentinelle - mais assombries pour tenir
+# sur un fond clair.
 
 # Change de valeur a chaque retouche du style ou du script : sans ca, le
 # navigateur garde l'ancienne feuille en cache et la page s'affiche nue.
-VERS = "5"
+VERS = "7"
 
 # =============================================================================
 # Couleurs et libelles des voies
 # =============================================================================
 VOIES = {
- "padawan":      ("Padawan Jedi",        "#8FB4D8", "Le tronc commun, avant toute spécialisation."),
- "chevalier":    ("Chevalier Jedi",      "#A8CBEA", "Ce qu'un Chevalier ajoute au tronc commun."),
- "consulaire_i": ("Consulaire · Initié", "#56D08D", "L'esprit ouvert à la Force : soigner, soutenir, tenir le groupe debout."),
- "consulaire_a": ("Consulaire · Avancé", "#3BBA73", ""),
- "consulaire_m": ("Consulaire · Maître", "#2AA05E", ""),
- "gardien_i":    ("Gardien · Initié",    "#5AA8FF", "Le rempart de l'Ordre : encaisser, protéger, contenir."),
- "gardien_a":    ("Gardien · Avancé",    "#3D8BEE", ""),
- "gardien_m":    ("Gardien · Maître",    "#2A6FD8", ""),
- "sentinelle_i": ("Sentinelle · Initié", "#F5D174", "La lame qui frappe la première : vitesse, discrétion, information."),
- "sentinelle_a": ("Sentinelle · Avancé", "#E8BC4C", ""),
- "sentinelle_m": ("Sentinelle · Maître", "#D5A22C", ""),
- "conseil":      ("Conseil Jedi",        "#FFD86B", "Réservé au Conseil, au Maître de l'Ordre et au Grand Maître."),
+ "padawan":      ("Padawan Jedi",        "#6E7A88", "Le tronc commun, avant toute spécialisation."),
+ "chevalier":    ("Chevalier Jedi",      "#5F7283", "Ce qu'un Chevalier ajoute au tronc commun."),
+ "consulaire_i": ("Consulaire · Initié", "#4E8F6A", "L'esprit ouvert à la Force : soigner, soutenir, tenir le groupe debout."),
+ "consulaire_a": ("Consulaire · Avancé", "#3F7F5B", ""),
+ "consulaire_m": ("Consulaire · Maître", "#33704E", ""),
+ "gardien_i":    ("Gardien · Initié",    "#4F7BB5", "Le rempart de l'Ordre : encaisser, protéger, contenir."),
+ "gardien_a":    ("Gardien · Avancé",    "#416BA3", ""),
+ "gardien_m":    ("Gardien · Maître",    "#355B90", ""),
+ "sentinelle_i": ("Sentinelle · Initié", "#9C7C2E", "La lame qui frappe la première : vitesse, discrétion, information."),
+ "sentinelle_a": ("Sentinelle · Avancé", "#8B6D22", ""),
+ "sentinelle_m": ("Sentinelle · Maître", "#7A5E1A", ""),
+ "conseil":      ("Conseil Jedi",        "#A8862A", "Réservé au Conseil, au Maître de l'Ordre et au Grand Maître."),
 }
 ORDRE = ["padawan", "chevalier", "consulaire_i", "consulaire_a", "consulaire_m",
          "gardien_i", "gardien_a", "gardien_m",
@@ -52,20 +53,19 @@ def page(nom, titre, sous_titre, corps, hero=False):
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>%(titre)s · Wiki Jedi</title>
 <meta name="description" content="%(sous)s">
-<meta name="theme-color" content="#04060B">
-<link rel="icon" type="image/svg+xml" href="logo.svg">
-<style>html,body{background:#04060B;}</style>
+<meta name="theme-color" content="#F4F1EB">
+<link rel="icon" type="image/png" href="logo-encre.png">
+<style>html,body{background:#F4F1EB;}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=%(vers)s">
 </head>
 <body>
-<canvas id="etoiles"></canvas>
 
 <nav>
   <a class="nav-marque" href="index.html">
-    <span class="nav-embleme"><img src="logo.svg" alt=""></span>
+    <span class="nav-embleme"><img src="logo-encre.png" alt=""></span>
     <span class="nav-nom">Wiki Jedi</span>
   </a>
   %(liens)s
@@ -74,8 +74,8 @@ def page(nom, titre, sous_titre, corps, hero=False):
 <div class="contenu">
 %(corps)s
   <footer>
-    <span class="pied-embleme"><img src="logo.svg" alt=""></span>
-    Créé par Poté
+    <span class="pied-embleme"><img src="logo-encre.png" alt=""></span>
+    <span>Créé par Poté</span>
   </footer>
 </div>
 
@@ -142,7 +142,7 @@ cartes = "".join('''<a class="raccourci" href="%s">
     </a>''' % (f, i, e(t), e(d)) for i, (f, t, d) in enumerate(RACCOURCIS, 1))
 
 corps = '''  <section id="hero">
-    <div class="hero-embleme"><img src="logo.svg" alt="Emblème de l'Ordre Jedi"></div>
+    <div class="hero-embleme"><img src="logo-encre.png" alt="Emblème de l'Ordre Jedi"></div>
     <div class="hero-titre">Ordre Jedi</div>
     <div class="hero-sous">Wiki des Jedi · Clone Wars RP Cosmos</div>
     <div class="hero-devise"><em>Il n'y a pas d'émotion, il y a la paix</em></div>
@@ -153,11 +153,11 @@ corps = '''  <section id="hero">
 %s
     <p class="intro-section">Un Jedi monte <strong>deux arbres</strong> : celui des pouvoirs de Force et celui des formes de combat. Les deux fonctionnent de la même façon, par paliers, et le passage d'un palier au suivant ne dépend pas que de toi.</p>
     <ol class="echelle">
-      <li style="--voie:#8FB4D8"><h3>Padawan</h3><p>La branche Padawan s'ouvre à tout Jedi. Saut, Concentration, Extinction, Brèche.</p></li>
-      <li style="--voie:#A8CBEA"><h3>Chevalier</h3><p>Le grade de Chevalier ajoute la branche Chevalier : Lancer, Poussée, Attraction, Saut II.</p></li>
-      <li style="--voie:#56D08D"><h3>Initié de ta voie</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le premier palier de ta spécialisation.</p></li>
-      <li style="--voie:#E8BC4C"><h3>Avancé</h3><p>Ce palier ne s'ouvre plus tout seul : le Conseil te l'accorde depuis l'onglet Gérance.</p></li>
-      <li style="--voie:#FFD86B"><h3>Maître</h3><p>Même chose, accordé par le Conseil, une fois le palier Avancé terminé.</p></li>
+      <li style="--voie:#6E7A88"><h3>Padawan</h3><p>La branche Padawan s'ouvre à tout Jedi. Saut, Concentration, Extinction, Brèche.</p></li>
+      <li style="--voie:#5F7283"><h3>Chevalier</h3><p>Le grade de Chevalier ajoute la branche Chevalier : Lancer, Poussée, Attraction, Saut II.</p></li>
+      <li style="--voie:#4E8F6A"><h3>Initié de ta voie</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le premier palier de ta spécialisation.</p></li>
+      <li style="--voie:#8B6D22"><h3>Avancé</h3><p>Ce palier ne s'ouvre plus tout seul : le Conseil te l'accorde depuis l'onglet Gérance.</p></li>
+      <li style="--voie:#A8862A"><h3>Maître</h3><p>Même chose, accordé par le Conseil, une fois le palier Avancé terminé.</p></li>
     </ol>
     <div class="note"><strong>Deux conditions pour ouvrir un palier :</strong> avoir la whitelist du palier, <em>et</em> avoir terminé le palier précédent en entier. À l'intérieur d'un palier, tu apprends ce que tu veux, dans l'ordre que tu veux.</div>
   </section>
@@ -177,9 +177,9 @@ corps = '''  <section id="hero">
 %s
     <p class="intro-section">On ne monte que dans <strong>une</strong> voie. Dès qu'un palier t'est accordé, les deux autres se ferment ; pour en changer, le Conseil doit d'abord te retirer tes paliers.</p>
     <div class="grille-voies">
-      <div class="voie" style="--voie:#56D08D"><h3>Consulaire</h3><p class="devise">L'esprit ouvert à la Force</p><p>Le soin et le soutien : Soin I à III, Soin d'autrui, Soin de masse, Réanimation, Grand soin. C'est la voie qui tient un groupe debout.</p></div>
-      <div class="voie" style="--voie:#5AA8FF"><h3>Gardien</h3><p class="devise">Le rempart de l'Ordre</p><p>Encaisser et contenir : Immunité, Riposte, Barrière, Mur de Force, Jugements, Agenouillement. La voie qui reste debout au milieu.</p></div>
-      <div class="voie" style="--voie:#E8BC4C"><h3>Sentinelle</h3><p class="devise">La lame qui frappe la première</p><p>Vitesse et information : Camouflage, Perception, Adrénaline, Téléportation, Rempart, Tourbillon. La voie qui choisit ses combats.</p></div>
+      <div class="voie" style="--voie:#4E8F6A"><h3>Consulaire</h3><p class="devise">L'esprit ouvert à la Force</p><p>Le soin et le soutien : Soin I à III, Soin d'autrui, Soin de masse, Réanimation, Grand soin. C'est la voie qui tient un groupe debout.</p></div>
+      <div class="voie" style="--voie:#4F7BB5"><h3>Gardien</h3><p class="devise">Le rempart de l'Ordre</p><p>Encaisser et contenir : Immunité, Riposte, Barrière, Mur de Force, Jugements, Agenouillement. La voie qui reste debout au milieu.</p></div>
+      <div class="voie" style="--voie:#8B6D22"><h3>Sentinelle</h3><p class="devise">La lame qui frappe la première</p><p>Vitesse et information : Camouflage, Perception, Adrénaline, Téléportation, Rempart, Tourbillon. La voie qui choisit ses combats.</p></div>
     </div>
   </section>
 
@@ -203,11 +203,11 @@ corps = '''  <section id="hero">
     </div>
   </section>
 ''' % (cartes,
-       entete_section(1, "Ta progression", "5 paliers", "#5AA8FF"),
-       entete_section(2, "Les séances d'entraînement", "1 par jour", "#5AA8FF"),
-       entete_section(3, "Les trois voies", "1 seule au choix", "#5AA8FF"),
-       entete_section(4, "La Force", "ta ressource", "#5AA8FF"),
-       entete_section(5, "Pendant le combat", "lire l'écran", "#5AA8FF"))
+       entete_section(1, "Ta progression", "5 paliers", "#4F7BB5"),
+       entete_section(2, "Les séances d'entraînement", "1 par jour", "#4F7BB5"),
+       entete_section(3, "Les trois voies", "1 seule au choix", "#4F7BB5"),
+       entete_section(4, "La Force", "ta ressource", "#4F7BB5"),
+       entete_section(5, "Pendant le combat", "lire l'écran", "#4F7BB5"))
 
 page("index.html", "Accueil",
      "Le wiki des Jedi du Clone Wars RP Cosmos : pouvoirs de Force, formes de combat, compétences et progression.",
@@ -291,7 +291,7 @@ EFFETS = {
  "guard": "garde", "force_regen": "régénération de Force", "force_max": "Force maximum",
  "force_cost": "coût des pouvoirs",
 }
-COULEUR_COMP = {"tronc": "#8FB4D8", "gardien": "#5AA8FF", "sentinelle": "#E8BC4C", "consulaire": "#56D08D"}
+COULEUR_COMP = {"tronc": "#6E7A88", "gardien": "#4F7BB5", "sentinelle": "#8B6D22", "consulaire": "#4E8F6A"}
 
 
 def lisible(effets):
