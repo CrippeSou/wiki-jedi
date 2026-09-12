@@ -1,43 +1,54 @@
 # -*- coding: utf-8 -*-
-# Prepare le logo du wiki a partir du VRAI embleme de l'Ordre (celui envoye par
-# l'utilisateur, recupere sur Wikimedia Commons : Jedi-order-crest-religious-symbol).
+# Prepare le logo du wiki a partir de l'image fournie par l'utilisateur,
+# `logo_jedi.png` (posee a la main dans le dossier du wiki). C'est la SOURCE :
+# on ne la modifie jamais, on en derive.
 #
-# L'image d'origine est un aplat NOIR sur fond transparent. Sur un site sombre
-# elle serait invisible : on garde donc la forme (le canal alpha) et on remplace
-# la couleur par un ton clair. On produit deux fichiers :
-#   logo.png       clair, pour le fond sombre du site
-#   logo-encre.png sombre, au cas ou un fond clair serait ajoute plus tard
+# L'original est un aplat noir sur fond transparent. On garde sa forme exacte
+# (le canal alpha) et on ne change que la couleur, pour disposer d'une version
+# encre (fond clair) et d'une version claire (si un fond sombre revenait).
 #
-# Aucun trace a la main : c'est bien le logo d'origine, au pixel pres.
+# On recadre aussi l'image sur son contenu, puis on la centre dans un carre :
+# sans ca, le cercle du site ne tombe pas au milieu de l'embleme.
 import io, os
 from PIL import Image
 
-SRC = "jedi_crest.webp"
 DEST = r"C:\Users\ytbcr\Desktop\wiki jedi"
+SRC = os.path.join(DEST, "logo_jedi.png")
 
-# Le trait est noir pur : on ne touche qu'a la couleur, jamais a la forme.
 TEINTES = {
-    "logo.png":       (233, 240, 248),   # blanc legerement bleute
-    "logo-encre.png": (18, 22, 30),      # presque noir, pour un fond clair
+    "logo-encre.png": (26, 29, 33),      # presque noir, pour le fond papier
+    "logo-clair.png": (240, 238, 232),   # ivoire, pour un fond sombre
 }
+# Un peu d'air autour de l'embleme, en fraction du cote : dans un cadre rond,
+# une forme qui touche le bord parait a l'etroit.
+MARGE = 0.06
 
-src = Image.open(SRC).convert("RGBA")
+src = Image.open(SRC).convert("LA")
 alpha = src.getchannel("A")
 
-# Le fichier d'origine a un liseré d'antialiasing gris : l'alpha seul suffit a
-# le reproduire, donc on repart d'une image unie a laquelle on recolle l'alpha.
+# Recadrage sur le dessin, puis mise au carre en gardant le centre.
+boite = alpha.getbbox()
+alpha = alpha.crop(boite)
+cote = int(max(alpha.size) * (1 + 2 * MARGE))
+carre = Image.new("L", (cote, cote), 0)
+carre.paste(alpha, ((cote - alpha.size[0]) // 2, (cote - alpha.size[1]) // 2))
+
 for nom, rgb in TEINTES.items():
-    out = Image.new("RGBA", src.size, rgb + (0,))
-    out.putalpha(alpha)
+    out = Image.new("RGBA", (cote, cote), rgb + (0,))
+    out.putalpha(carre)
     chemin = os.path.join(DEST, nom)
     out.save(chemin, optimize=True)
     print("%-16s %s  %d o" % (nom, out.size, os.path.getsize(chemin)))
 
-# Page de controle : le logo aux trois tailles ou il sert sur le site.
+# Page de controle : dans le cadre rond du site, aux trois tailles utilisees.
 apercu = '''<!doctype html><meta charset="utf-8">
-<body style="margin:0;background:#0B0D10;display:flex;gap:44px;align-items:center;justify-content:center;height:420px">
-<img src="logo.png" style="width:300px">
-<img src="logo.png" style="width:120px">
-<img src="logo.png" style="width:44px">
-</body>'''
+<style>
+body{margin:0;background:#F4F1EB;display:flex;gap:44px;align-items:center;justify-content:center;height:420px}
+.rond{border-radius:50%;background:#fff;border:1px solid #E3DDD2;display:flex;align-items:center;justify-content:center}
+.rond img{width:76%;height:76%}
+</style>
+<div class="rond" style="width:240px;height:240px"><img src="logo-encre.png"></div>
+<div class="rond" style="width:110px;height:110px"><img src="logo-encre.png"></div>
+<div class="rond" style="width:38px;height:38px"><img src="logo-encre.png"></div>
+'''
 io.open(os.path.join(DEST, "_apercu_logo.html"), "w", encoding="utf-8", newline="\n").write(apercu)

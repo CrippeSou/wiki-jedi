@@ -11,7 +11,7 @@
 
 # Change de valeur a chaque retouche du style ou du script : sans ca, le
 # navigateur garde l'ancienne feuille en cache et la page s'affiche nue.
-VERS = "7"
+VERS = "8"
 
 # =============================================================================
 # Couleurs et libelles des voies

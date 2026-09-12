@@ -71,8 +71,20 @@ nav {
   text-decoration: none;
   color: var(--encre);
 }
-.nav-embleme { width: 34px; height: 34px; flex-shrink: 0; }
-.nav-embleme img { width: 100%; height: 100%; display: block; }
+/* L'embleme est toujours pose dans un disque : c'est la seule forme forte de
+   la page, et elle revient a l'identique de la navigation au pied de page. */
+.nav-embleme {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--trait);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-embleme img { width: 74%; height: 74%; display: block; }
 .nav-nom {
   font-family: var(--serif);
   font-size: 1.2rem;
@@ -103,8 +115,18 @@ nav a.actif { background: var(--encre); color: var(--papier); }
   text-align: center;
   border-bottom: none;
 }
-.hero-embleme { width: 128px; height: 128px; margin: 0 auto 2.2rem; opacity: .9; }
-.hero-embleme img { width: 100%; height: 100%; display: block; }
+.hero-embleme {
+  width: 148px;
+  height: 148px;
+  margin: 0 auto 2.4rem;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--trait);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-embleme img { width: 74%; height: 74%; display: block; }
 .hero-titre {
   font-family: var(--serif);
   font-size: clamp(2.6rem, 6.5vw, 4.4rem);
@@ -450,8 +472,17 @@ footer {
   font-size: .9rem;
   color: var(--encre-pale);
 }
-.pied-embleme { width: 30px; height: 30px; opacity: .45; }
-.pied-embleme img { width: 100%; height: 100%; display: block; }
+.pied-embleme {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1px solid var(--trait);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .55;
+}
+.pied-embleme img { width: 74%; height: 74%; display: block; }
 
 /* --------------------------------------------------------------------------
    Apparition au defilement : un fondu discret, jamais un mouvement
