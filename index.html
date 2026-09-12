@@ -3,68 +3,90 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Comment ça marche · Wiki Jedi</title>
+<title>Le fonctionnement · Wiki Jedi</title>
+<meta name="description" content="Comment un Jedi progresse : les séances, les paliers, les voies, la Force et ce que l&#x27;écran te dit pendant un combat.">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="site">
-  <div class="marque"><span class="lame"></span> Wiki Jedi</div>
-  <nav><a href="index.html" class="actif">Comment ça marche</a><a href="pouvoirs.html">Pouvoirs</a><a href="formes.html">Formes de combat</a><a href="competences.html">Compétences</a></nav>
-</header>
+<input type="checkbox" id="menu" class="bascule-menu" hidden>
+<label for="menu" class="bouton-menu" aria-label="Menu">☰ Menu</label>
+
+<aside class="cote">
+  <a class="marque" href="index.html"><span class="lame"></span><span>Wiki<strong>Jedi</strong></span></a>
+  <nav class="nav-pages"><a href="index.html" class="actif">Le fonctionnement</a><a href="pouvoirs.html" class="">Les pouvoirs</a><a href="formes.html" class="">Les formes</a><a href="competences.html" class="">Les compétences</a></nav>
+  <div class="sommaire"><span class="titre-sommaire">Sur cette page</span><a href="#en-bref">En bref</a><a href="#progression">Ta progression</a><a href="#seances">Les séances</a><a href="#voies">Les trois voies</a><a href="#force">La Force</a><a href="#combat">Pendant le combat</a></div>
+  <div class="pied-cote">Créé par Poté</div>
+</aside>
+
 <main>
-<h1>Comment ça marche</h1>
-<p class="chapeau">Tout ce qu'un Jedi doit savoir sur sa progression : les séances, les paliers, les whitelists, la Force et les pouvoirs.</p>
-
-<section>
-<h2>Les deux arbres</h2>
-<p>Ta progression tient dans <strong>trois pages du menu du sabre</strong> (touche F6) :</p>
-<ul>
-  <li><strong>Arbre des pouvoirs</strong> : ce que tu lances. Chaque pouvoir s'apprend en séances d'entraînement.</li>
-  <li><strong>Formes de combat</strong> : ta façon de tenir le sabre. Elles s'apprennent de la même manière.</li>
-  <li><strong>Arbre de compétences</strong> : des bonus permanents, achetés avec des points et des dataris.</li>
-</ul>
+  <header class="entete">
+    <div class="fil">Wiki Jedi · Le fonctionnement</div>
+    <h1>Le fonctionnement</h1>
+    <p class="chapeau">Comment un Jedi progresse : les séances, les paliers, les voies, la Force et ce que l&#x27;écran te dit pendant un combat.</p>
+  </header>
+  
+<section id="en-bref" class="bloc">
+  <h2>En bref</h2>
+  <div class="grille-bref">
+    <div class="bref"><span class="nombre">2</span><span class="quoi">arbres à monter</span><p>Les pouvoirs et les formes de combat, chacun avec ses paliers.</p></div>
+    <div class="bref"><span class="nombre">1</span><span class="quoi">séance par jour</span><p>Un pouvoir à « 3 séances » demande trois jours, et un seul apprentissage tourne à la fois.</p></div>
+    <div class="bref"><span class="nombre">1</span><span class="quoi">seule voie</span><p>Gardien, Sentinelle ou Consulaire. On ne cumule pas.</p></div>
+    <div class="bref"><span class="nombre">F6</span><span class="quoi">pour tout voir</span><p>Le menu du sabre : inventaire, arbres, réglages.</p></div>
+  </div>
 </section>
 
-<section>
-<h2>Les séances d'entraînement</h2>
-<p>Un pouvoir marqué « 3 séances » demande trois entraînements, <strong>un par jour</strong>. Tu cliques une première fois, tu attends 24 h, tu recliques, et ainsi de suite jusqu'à la dernière.</p>
-<p><strong>Un seul apprentissage à la fois.</strong> Tant qu'une séance est en cours, aucun autre pouvoir ne peut être commencé. Les pouvoirs marqués « gratuit » s'obtiennent d'un clic.</p>
+<section id="progression" class="bloc">
+  <h2>Ta progression, de haut en bas</h2>
+  <ol class="echelle">
+    <li style="--voie:#7E9AB4"><h3>Padawan</h3><p>La branche Padawan s'ouvre à tout Jedi. Saut, Concentration, Extinction, Brèche.</p></li>
+    <li style="--voie:#9BB8D4"><h3>Chevalier</h3><p>Le grade de Chevalier ajoute la branche Chevalier : Lancer, Poussée, Attraction, Saut II.</p></li>
+    <li style="--voie:#50BE76"><h3>Initié de ta voie</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le premier palier de ta spécialisation.</p></li>
+    <li style="--voie:#EBB637"><h3>Avancé</h3><p>Ce palier ne s'ouvre plus tout seul : le Conseil te l'accorde depuis l'onglet Gérance.</p></li>
+    <li style="--voie:#FFD250"><h3>Maître</h3><p>Même chose, accordé par le Conseil, une fois le palier Avancé terminé.</p></li>
+  </ol>
+  <p class="encadre"><strong>Deux conditions pour ouvrir un palier :</strong> avoir la whitelist du palier, <em>et</em> avoir terminé le palier précédent en entier. À l'intérieur d'un palier, tu apprends ce que tu veux, dans l'ordre que tu veux.</p>
 </section>
 
-<section>
-<h2>Grades et paliers</h2>
-<p>L'accès dépend de ton grade et de ta whitelist :</p>
-<div class="grille">
-  <div class="carte"><h3>Padawan</h3><p>La branche Padawan, rien de plus.</p></div>
-  <div class="carte"><h3>Chevalier</h3><p>Padawan et Chevalier.</p></div>
-  <div class="carte"><h3>Spécialisation</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le palier <strong>Initié</strong> de ta voie.</p></div>
-  <div class="carte"><h3>Avancé et Maître</h3><p>Ils se <strong>donnent</strong>, par le Conseil, depuis l'onglet Gérance. Le grade seul ne les ouvre plus.</p></div>
-</div>
-<p class="note">Deux conditions pour ouvrir un palier : avoir la whitelist du palier, <strong>et</strong> avoir terminé le palier précédent en entier. À l'intérieur d'un palier, l'ordre est libre.</p>
+<section id="seances" class="bloc">
+  <h2>Les séances d'entraînement</h2>
+  <p>Un pouvoir marqué « 3 séances » demande trois entraînements, <strong>un par tranche de 24 heures</strong>. Tu cliques une première fois, tu reviens le lendemain, et ainsi de suite jusqu'à la dernière séance : le pouvoir est alors appris pour de bon.</p>
+  <p>Tant qu'une séance est en cours, <strong>aucun autre apprentissage</strong> ne peut démarrer, dans aucun des deux arbres. Les entrées marquées « Gratuit » s'obtiennent d'un seul clic.</p>
+  <p class="encadre">Apprendre ne suffit pas à jouer le pouvoir : il faut ensuite l'<strong>activer</strong> dans l'arbre pour qu'il apparaisse dans ta roue. Les passifs, eux, agissent dès qu'ils sont appris.</p>
 </section>
 
-<section>
-<h2>Une seule voie</h2>
-<p>On ne monte que dans <strong>une</strong> spécialisation. Dès qu'un palier d'une voie t'est accordé, les deux autres se ferment. Pour changer, il faut que le Conseil retire d'abord les paliers obtenus.</p>
+<section id="voies" class="bloc">
+  <h2>Les trois voies</h2>
+  <div class="grille-voies">
+    <div class="voie" style="--voie:#50BE76"><h3>Consulaire</h3><p class="devise">L'esprit ouvert à la Force</p><p>Le soin et le soutien : Soin I à III, Soin d'autrui, Soin de masse, Réanimation, Grand soin. C'est la voie qui tient un groupe debout.</p></div>
+    <div class="voie" style="--voie:#5A9DF0"><h3>Gardien</h3><p class="devise">Le rempart de l'Ordre</p><p>Encaisser et contenir : Immunité, Riposte, Barrière, Mur de Force, Jugements, Agenouillement. La voie qui reste debout au milieu.</p></div>
+    <div class="voie" style="--voie:#F5CD5F"><h3>Sentinelle</h3><p class="devise">La lame qui frappe la première</p><p>Vitesse et information : Camouflage, Perception, Adrénaline, Téléportation, Rempart, Tourbillon. La voie qui choisit ses combats.</p></div>
+  </div>
+  <p>On ne monte que dans <strong>une</strong> voie. Dès qu'un palier t'est accordé, les deux autres se ferment ; pour en changer, le Conseil doit d'abord te retirer tes paliers.</p>
 </section>
 
-<section>
-<h2>La Force, ta ressource</h2>
-<p>Chaque pouvoir coûte de la Force, et ta réserve se régénère seule quand tu as les pieds au sol. Deux conséquences :</p>
-<ul>
-  <li>La <strong>Concentration</strong> en rend d'un coup, au prix d'un ralentissement.</li>
-  <li>L'<strong>Immunité</strong> ne te protège que tant que ta réserve reste au-dessus d'un seuil. Vider sa Force, c'est devenir vulnérable aux pouvoirs adverses.</li>
-</ul>
+<section id="force" class="bloc">
+  <h2>La Force, ta ressource</h2>
+  <p>Chaque pouvoir coûte de la Force. Ta réserve remonte seule quand tu as les pieds au sol, et deux pouvoirs vivent entièrement de cette mécanique :</p>
+  <ul>
+    <li><strong>Concentration</strong> t'en rend d'un coup, au prix d'un ralentissement le temps de méditer.</li>
+    <li><strong>Immunité</strong> ne te protège que tant que ta réserve reste au-dessus d'un seuil : 50 % au premier niveau, 35 % au deuxième, 20 % au troisième. Vider sa Force, c'est redevenir vulnérable aux pouvoirs adverses.</li>
+  </ul>
 </section>
 
-<section>
-<h2>Rechargements et durées</h2>
-<p>Chaque pouvoir a son propre rechargement : lancer un soin ne bloque pas tes éclairs. La roue en bas de l'écran affiche le compte à rebours du pouvoir sélectionné.</p>
-<p>Les effets qui durent (Camouflage, Perception, Riposte, Tourbillon) affichent une <strong>barre bleue</strong> au-dessus de la roue. Les effets que tu <strong>subis</strong> (étourdissement, aveuglement, agenouillement forcé) affichent la même barre en <strong>rouge</strong>.</p>
+<section id="combat" class="bloc">
+  <h2>Ce que tu vois pendant le combat</h2>
+  <div class="grille-bref">
+    <div class="bref"><span class="quoi">La roue</span><p>En bas de l'écran : tes pouvoirs actifs, et le compte à rebours de celui que tu vises. Chaque pouvoir a son propre rechargement.</p></div>
+    <div class="bref"><span class="quoi">Barre bleue</span><p>Un effet que tu as lancé et qui dure : Camouflage, Perception, Riposte, Tourbillon.</p></div>
+    <div class="bref"><span class="quoi">Barre rouge</span><p>Un effet que tu <em>subis</em> : étourdissement, aveuglement, agenouillement forcé, pris dans un tourbillon.</p></div>
+    <div class="bref"><span class="quoi">Éclat bleu</span><p>Ton Immunité vient d'absorber un pouvoir ennemi.</p></div>
+  </div>
 </section>
 
+  <footer>Créé par Poté</footer>
 </main>
-<footer>Ordre Jedi · Clone Wars RP Cosmos — page générée depuis la configuration du serveur, le 12 septembre 2026.</footer>
+
 </body>
 </html>

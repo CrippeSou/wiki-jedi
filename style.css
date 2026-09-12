@@ -1,66 +1,497 @@
-/* Wiki Jedi -- archive de l'Ordre. Sombre, dense, lisible sur un second ecran. */
-:root{
-  --fond:#0E1319; --panneau:#151C25; --ligne:#25333F;
-  --texte:#DCE6F0; --doux:#93A7BB; --faible:#6C8095;
-  --sabre:#49B0FF; --or:#F0C04B;
-  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+/* Wiki Jedi - feuille de style unique.
+   Parti pris : un fond sombre d'archive, une barre laterale fixe comme sur un
+   vrai wiki, et la couleur de la voie (vert Consulaire, bleu Gardien, or
+   Sentinelle) reprise du jeu, portee par la variable --voie.
+   Cree par Pote. */
+
+:root {
+  --fond:        #0B0E14;
+  --fond-cote:   #070910;
+  --carte:       #141A24;
+  --carte-haut:  #1A212D;
+  --trait:       #232B39;
+  --trait-fort:  #33404F;
+  --texte:       #DDE4EE;
+  --texte-doux:  #8E9BAC;
+  --texte-faible:#677383;
+  --voie:        #7E9AB4;
+  --cote-l:      264px;
+  --titre:       "Oswald", "Franklin Gothic Medium", Impact, sans-serif;
+  --corps:       "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
+  --mono:        "IBM Plex Mono", Consolas, "Courier New", monospace;
 }
-*{box-sizing:border-box}
-body{
-  margin:0; background:var(--fond); color:var(--texte);
-  font-family:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
-  font-size:16px; line-height:1.55;
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--fond);
+  color: var(--texte);
+  font-family: var(--corps);
+  font-size: 16.5px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
 }
-header.site{
-  display:flex; flex-wrap:wrap; align-items:center; gap:10px 28px;
-  padding:16px 20px; border-bottom:1px solid var(--ligne); background:var(--panneau);
-  position:sticky; top:0; z-index:5;
+
+a { color: inherit; }
+
+/* --------------------------------------------------------------------------
+   Barre laterale
+   -------------------------------------------------------------------------- */
+.cote {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: var(--cote-l);
+  background: var(--fond-cote);
+  border-right: 1px solid var(--trait);
+  padding: 26px 0 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  overflow-y: auto;
+  z-index: 20;
 }
-.marque{
-  font-family:Oswald,"Arial Narrow",sans-serif; font-weight:600; font-size:19px;
-  letter-spacing:.14em; text-transform:uppercase; display:flex; align-items:center; gap:10px;
+
+.marque {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 0 22px;
+  text-decoration: none;
+  font-family: var(--titre);
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--texte);
 }
-.lame{width:3px; height:20px; background:var(--sabre); box-shadow:0 0 8px var(--sabre); display:inline-block}
-header nav{display:flex; flex-wrap:wrap; gap:6px 18px}
-header nav a{
-  color:var(--doux); text-decoration:none; font-family:Oswald,sans-serif; font-size:14px;
-  letter-spacing:.1em; text-transform:uppercase; padding:4px 2px; border-bottom:2px solid transparent;
+.marque strong { color: #6FA8FF; font-weight: 600; }
+.marque .lame {
+  width: 3px;
+  height: 26px;
+  border-radius: 2px;
+  background: linear-gradient(#DCEBFF, #4B8FF5);
+  box-shadow: 0 0 9px rgba(90, 157, 240, .85);
+  flex: none;
 }
-header nav a:hover{color:var(--texte)}
-header nav a.actif{color:var(--sabre); border-bottom-color:var(--sabre)}
-main{max-width:1060px; margin:0 auto; padding:34px 20px 70px; display:flex; flex-direction:column; gap:34px}
-h1{
-  font-family:Oswald,"Arial Narrow",sans-serif; font-weight:600; font-size:clamp(28px,5vw,40px);
-  margin:0; line-height:1.08; text-wrap:balance;
+
+.nav-pages { display: flex; flex-direction: column; }
+.nav-pages a {
+  padding: 9px 22px;
+  text-decoration: none;
+  color: var(--texte-doux);
+  font-size: 15.5px;
+  border-left: 2px solid transparent;
 }
-h2{
-  font-family:Oswald,sans-serif; font-weight:500; font-size:20px; letter-spacing:.08em;
-  text-transform:uppercase; margin:24px 0 12px; color:var(--or);
+.nav-pages a:hover { color: var(--texte); background: rgba(255, 255, 255, .03); }
+.nav-pages a.actif {
+  color: var(--texte);
+  font-weight: 600;
+  border-left-color: #5A9DF0;
+  background: rgba(90, 157, 240, .09);
 }
-h3{font-family:Oswald,sans-serif; font-weight:500; font-size:15px; letter-spacing:.1em;
-   text-transform:uppercase; margin:0 0 4px; color:var(--sabre)}
-.chapeau{color:var(--doux); max-width:68ch; margin:0}
-section{display:block}
-p{margin:0 0 12px}
-ul{margin:0 0 12px; padding-left:20px; color:var(--doux)}
-li{margin-bottom:6px}
-li strong,p strong{color:var(--texte)}
-.note{color:var(--doux); border-left:2px solid var(--ligne); padding-left:14px}
-.grille{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:12px; margin-bottom:14px}
-.carte{background:var(--panneau); border:1px solid var(--ligne); padding:14px 16px}
-.carte p{margin:0; color:var(--doux); font-size:14.5px}
-.tableau{overflow-x:auto; border:1px solid var(--ligne); background:var(--panneau)}
-table{border-collapse:collapse; width:100%; min-width:680px}
-th,td{padding:9px 14px; text-align:left; border-bottom:1px solid var(--ligne); vertical-align:top}
-thead th{
-  font-family:Oswald,sans-serif; font-weight:400; font-size:12px; letter-spacing:.13em;
-  text-transform:uppercase; color:var(--faible);
+
+.sommaire {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--trait);
+  padding-top: 18px;
 }
-tbody tr:last-child td{border-bottom:none}
-td.n{font-family:var(--mono); font-size:13.5px; font-variant-numeric:tabular-nums; white-space:nowrap; color:var(--doux)}
-td.p{white-space:nowrap}
-footer{
-  border-top:1px solid var(--ligne); padding:18px 20px 40px; color:var(--faible);
-  font-size:13.5px; text-align:center;
+.titre-sommaire {
+  padding: 0 22px 8px;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--texte-faible);
 }
-@media (max-width:600px){ header.site{position:static} }
+.sommaire a {
+  padding: 5px 22px;
+  text-decoration: none;
+  color: var(--texte-doux);
+  font-size: 14.5px;
+  border-left: 2px solid transparent;
+}
+.sommaire a:hover { color: var(--texte); border-left-color: var(--trait-fort); }
+
+.pied-cote {
+  margin-top: auto;
+  padding: 16px 22px 0;
+  border-top: 1px solid var(--trait);
+  font-size: 12.5px;
+  color: var(--texte-faible);
+  letter-spacing: .04em;
+}
+
+/* Le bouton de menu ne sert qu'en petite largeur. */
+.bouton-menu { display: none; }
+
+/* --------------------------------------------------------------------------
+   Colonne principale
+   -------------------------------------------------------------------------- */
+main {
+  margin-left: var(--cote-l);
+  max-width: 920px;
+  padding: 54px 40px 90px;
+}
+
+.entete { margin-bottom: 46px; }
+.fil {
+  font-size: 11.5px;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--texte-faible);
+  margin-bottom: 12px;
+}
+h1 {
+  font-family: var(--titre);
+  font-weight: 500;
+  font-size: clamp(34px, 6vw, 50px);
+  line-height: 1.08;
+  letter-spacing: .015em;
+  margin: 0 0 14px;
+  text-wrap: balance;
+}
+.chapeau {
+  margin: 0;
+  max-width: 62ch;
+  font-size: 17.5px;
+  color: var(--texte-doux);
+}
+
+.bloc {
+  border-top: 1px solid var(--trait);
+  padding-top: 30px;
+  margin-bottom: 52px;
+  scroll-margin-top: 24px;
+}
+.bloc > h2, .tete-voie h2 {
+  font-family: var(--titre);
+  font-weight: 500;
+  font-size: 25px;
+  letter-spacing: .03em;
+  margin: 0 0 18px;
+  padding-left: 13px;
+  border-left: 4px solid var(--voie);
+  line-height: 1.2;
+}
+.tete-voie {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+}
+.tete-voie h2 { margin: 0; }
+.compteur {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--texte-faible);
+  letter-spacing: .05em;
+}
+.note-voie {
+  margin: 0 0 20px 17px;
+  color: var(--texte-doux);
+  font-style: italic;
+  max-width: 60ch;
+}
+
+.bloc p { max-width: 66ch; }
+.bloc ul { max-width: 66ch; padding-left: 20px; }
+.bloc li { margin-bottom: 7px; }
+
+.encadre {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-left: 3px solid var(--voie);
+  border-radius: 3px;
+  padding: 15px 18px;
+  margin: 22px 0 0;
+  color: var(--texte-doux);
+  max-width: 70ch;
+}
+.encadre strong { color: var(--texte); }
+
+/* --------------------------------------------------------------------------
+   Fiches (pouvoirs, formes)
+   -------------------------------------------------------------------------- */
+.fiches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.fiche {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-top: 2px solid var(--voie);
+  border-radius: 3px;
+  padding: 16px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.fiche-tete {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+.fiche h3, .escalier h3 {
+  font-family: var(--titre);
+  font-weight: 500;
+  font-size: 18.5px;
+  letter-spacing: .025em;
+  margin: 0;
+  color: var(--voie);
+  line-height: 1.25;
+}
+.fiche p, .escalier p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--texte-doux);
+  max-width: none;
+}
+
+.pastille {
+  flex: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: .04em;
+  color: var(--texte-faible);
+  border: 1px solid var(--trait-fort);
+  border-radius: 999px;
+  padding: 2px 9px;
+  white-space: nowrap;
+}
+.pastille.seances { color: var(--texte-doux); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font-family: var(--mono);
+  font-size: 11.5px;
+  background: var(--carte-haut);
+  border: 1px solid var(--trait);
+  border-radius: 3px;
+  padding: 3px 8px;
+  color: var(--texte);
+  font-variant-numeric: tabular-nums;
+}
+.chip .cle {
+  color: var(--texte-faible);
+  margin-right: 6px;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: .08em;
+}
+
+/* --------------------------------------------------------------------------
+   Recherche
+   -------------------------------------------------------------------------- */
+.recherche {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+.recherche input {
+  flex: 1;
+  min-width: 0;
+  background: var(--carte);
+  border: 1px solid var(--trait-fort);
+  border-radius: 3px;
+  padding: 11px 14px;
+  color: var(--texte);
+  font-family: var(--corps);
+  font-size: 15.5px;
+}
+.recherche input::placeholder { color: var(--texte-faible); }
+.recherche input:focus {
+  outline: none;
+  border-color: #5A9DF0;
+  box-shadow: 0 0 0 3px rgba(90, 157, 240, .17);
+}
+.compte {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--texte-faible);
+  white-space: nowrap;
+}
+
+/* --------------------------------------------------------------------------
+   Page d'accueil
+   -------------------------------------------------------------------------- */
+.grille-bref {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-top: 4px;
+}
+.bref {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-radius: 3px;
+  padding: 16px 18px;
+}
+.bref .nombre {
+  display: block;
+  font-family: var(--titre);
+  font-size: 36px;
+  line-height: 1;
+  color: #6FA8FF;
+}
+.bref .quoi {
+  display: block;
+  font-size: 11.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--texte-faible);
+  margin: 8px 0;
+}
+.bref p { margin: 0; font-size: 14.5px; color: var(--texte-doux); max-width: none; }
+
+/* L'echelle est numerotee parce que l'ordre compte vraiment : on ne passe pas
+   un palier avant d'avoir fini le precedent. */
+.echelle { list-style: none; margin: 0; padding: 0; counter-reset: palier; }
+.echelle li {
+  counter-increment: palier;
+  position: relative;
+  padding: 0 0 22px 46px;
+  border-left: 2px solid var(--trait);
+  margin-left: 14px;
+}
+.echelle li:last-child { border-left-color: transparent; padding-bottom: 0; }
+.echelle li::before {
+  content: counter(palier);
+  position: absolute;
+  left: -15px;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--fond);
+  border: 2px solid var(--voie);
+  color: var(--voie);
+  font-family: var(--mono);
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.echelle h3 {
+  font-family: var(--titre);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: .03em;
+  margin: 1px 0 4px;
+  color: var(--voie);
+}
+.echelle p { margin: 0; color: var(--texte-doux); }
+
+.grille-voies {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.voie {
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-top: 3px solid var(--voie);
+  border-radius: 3px;
+  padding: 18px;
+}
+.voie h3 {
+  font-family: var(--titre);
+  font-weight: 500;
+  font-size: 21px;
+  letter-spacing: .04em;
+  margin: 0;
+  color: var(--voie);
+}
+.voie .devise {
+  margin: 2px 0 10px;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--texte-faible);
+}
+.voie p { margin: 0; font-size: 14.5px; color: var(--texte-doux); max-width: none; }
+
+/* --------------------------------------------------------------------------
+   Competences : un escalier, l'ordre d'achat est impose
+   -------------------------------------------------------------------------- */
+.escalier {
+  list-style: none;
+  margin: 18px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.escalier li {
+  display: flex;
+  gap: 14px;
+  background: var(--carte);
+  border: 1px solid var(--trait);
+  border-left: 3px solid var(--voie);
+  border-radius: 3px;
+  padding: 14px 16px;
+}
+.escalier .rang {
+  flex: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid var(--trait-fort);
+  color: var(--texte-faible);
+  font-family: var(--mono);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.escalier .contenu { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+
+footer {
+  border-top: 1px solid var(--trait);
+  padding-top: 20px;
+  font-size: 12.5px;
+  letter-spacing: .05em;
+  color: var(--texte-faible);
+}
+
+/* --------------------------------------------------------------------------
+   Petites largeurs : la barre laterale se replie derriere un bouton
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .bouton-menu {
+    display: block;
+    position: fixed;
+    top: 12px;
+    left: 12px;
+    z-index: 30;
+    background: var(--carte-haut);
+    border: 1px solid var(--trait-fort);
+    border-radius: 3px;
+    padding: 7px 13px;
+    font-size: 14px;
+    color: var(--texte);
+    cursor: pointer;
+  }
+  .cote {
+    transform: translateX(-100%);
+    transition: transform .18s ease;
+    box-shadow: 0 0 40px rgba(0, 0, 0, .6);
+  }
+  .bascule-menu:checked ~ .cote { transform: none; }
+  main { margin-left: 0; padding: 66px 18px 70px; }
+  .fiches { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cote { transition: none; }
+}
