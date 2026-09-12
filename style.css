@@ -1,8 +1,11 @@
 /* Wiki Jedi. Cree par Pote.
    -------------------------------------------------------------------------
-   Une page calme : fond de papier chaud, beaucoup d'air, coins arrondis,
-   titres en serif clair. Aucun neon, aucune lueur, aucune animation continue.
-   L'embleme de l'Ordre est le seul element graphique fort de la page.
+   Une page calme, posee sur un papier chaud couleur sable. Beaucoup d'air,
+   coins arrondis, titres en serif chaud (Fraunces) et texte en Mulish.
+   Aucune lueur, aucune animation en boucle : la page se lit.
+
+   L'en-tete ne bouge pas ; les quatre rubriques sont des onglets, juste en
+   dessous, et leur contenu s'ouvre sous eux.
 
    La variable --voie porte la couleur de la branche courante : vert Consulaire,
    bleu Gardien, or Sentinelle, assombris pour rester lisibles sur du papier.
@@ -11,33 +14,35 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --papier:   #F4F1EB;
-  --surface:  #FFFFFF;
-  --surface2: #FAF8F3;
-  --trait:    #E3DDD2;
-  --trait-fin:#EDE8DE;
+  --sable:     #E8DCC8;   /* le fond de la page */
+  --sable-fonce:#DFD1B9;
+  --surface:   #F4EDE0;   /* les cartes : du papier, pas du blanc */
+  --surface2:  #EDE4D3;
+  --trait:     #D3C3A6;
+  --trait-fin: #DCCFB6;
 
-  --encre:      #23262A;
-  --encre-doux: #5E646C;
-  --encre-pale: #8C9299;
+  --encre:      #2B2419;
+  --encre-doux: #6A5E4C;
+  --encre-pale: #94876F;
 
-  --jade:      #4E8F6A;
-  --jade-pale: #EAF2ED;
+  --sceau:      #4F7A55;   /* le vert de l'Ordre, en sourdine */
+  --sceau-pale: #DFE7D8;
 
-  --voie: var(--jade);
+  --voie: var(--sceau);
 
-  --serif: "Newsreader", Georgia, "Times New Roman", serif;
-  --sans:  "Karla", "Segoe UI", Helvetica, Arial, sans-serif;
+  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --sans:  "Mulish", "Segoe UI", Helvetica, Arial, sans-serif;
 
-  --r-carte: 16px;
+  --r-carte: 18px;
   --r-doux:  10px;
-  --ombre:   0 1px 2px rgba(35, 38, 42, .04), 0 8px 24px -16px rgba(35, 38, 42, .18);
+  --ombre:   0 1px 2px rgba(43, 36, 25, .05), 0 10px 26px -18px rgba(43, 36, 25, .35);
+  --colonne: 940px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--papier);
+  background: var(--sable);
   color: var(--encre-doux);
   font-family: var(--sans);
   font-size: 17px;
@@ -46,37 +51,18 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   Navigation
+   En-tete : il ne bouge plus, il pose le lieu
    -------------------------------------------------------------------------- */
-nav {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-  padding: .85rem 2rem;
-  background: rgba(244, 241, 235, .88);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--trait-fin);
-  overflow-x: auto;
+.chapeau {
+  max-width: var(--colonne);
+  margin: 0 auto;
+  padding: 4.5rem 2rem 2.6rem;
+  text-align: center;
 }
-.nav-marque {
-  display: flex;
-  align-items: center;
-  gap: .7rem;
-  margin-right: auto;
-  flex-shrink: 0;
-  text-decoration: none;
-  color: var(--encre);
-}
-/* L'embleme est toujours pose dans un disque : c'est la seule forme forte de
-   la page, et elle revient a l'identique de la navigation au pied de page. */
-.nav-embleme {
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
+.embleme {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 1.8rem;
   border-radius: 50%;
   background: var(--surface);
   border: 1px solid var(--trait);
@@ -84,103 +70,120 @@ nav {
   align-items: center;
   justify-content: center;
 }
-.nav-embleme img { width: 74%; height: 74%; display: block; }
-.nav-nom {
+.embleme img { width: 74%; height: 74%; display: block; }
+
+.titre-site {
   font-family: var(--serif);
-  font-size: 1.2rem;
-  font-weight: 400;
-  letter-spacing: .02em;
-  white-space: nowrap;
+  font-optical-sizing: auto;
+  font-size: clamp(2.4rem, 6vw, 3.9rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--encre);
+  margin-bottom: .5rem;
 }
-nav a:not(.nav-marque) {
-  font-size: .95rem;
-  font-weight: 500;
+.sous-titre { font-size: 1rem; color: var(--encre-pale); }
+.devise {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.15rem;
+  color: var(--encre-doux);
+  max-width: 34ch;
+  margin: 1.6rem auto 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--trait);
+}
+
+/* --------------------------------------------------------------------------
+   Onglets : ils ouvrent leur rubrique juste en dessous
+   -------------------------------------------------------------------------- */
+.onglets {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .3rem;
+  padding: .8rem 1rem;
+  background: rgba(232, 220, 200, .93);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--trait-fin);
+}
+.onglets a {
+  font-size: 1rem;
+  font-weight: 600;
   color: var(--encre-doux);
   text-decoration: none;
-  padding: .35rem .9rem;
+  padding: .4rem 1.2rem;
   border-radius: 999px;
   white-space: nowrap;
   transition: background .18s, color .18s;
 }
-nav a:not(.nav-marque):hover { background: rgba(35, 38, 42, .05); color: var(--encre); }
-nav a.actif { background: var(--encre); color: var(--papier); }
+.onglets a:hover { background: rgba(43, 36, 25, .06); color: var(--encre); }
+.onglets a.actif { background: var(--encre); color: var(--sable); }
+
+/* Le fondu a l'ouverture d'un onglet : discret, et jamais un deplacement. */
+.panneau.entre { animation: fondu .32s ease both; }
+@keyframes fondu { from { opacity: 0; } to { opacity: 1; } }
 
 /* --------------------------------------------------------------------------
-   Hero
+   Tete de rubrique
    -------------------------------------------------------------------------- */
-#hero {
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 5.5rem 2rem 4.5rem;
-  text-align: center;
-  border-bottom: none;
+.tete-rubrique { max-width: var(--colonne); margin: 0 auto; padding: 3.4rem 2rem 0; }
+.titre-rubrique {
+  font-family: var(--serif);
+  font-size: clamp(1.9rem, 4.4vw, 2.8rem);
+  font-weight: 300;
+  line-height: 1.14;
+  color: var(--encre);
+  margin-bottom: 1rem;
+  text-wrap: balance;
 }
-.hero-embleme {
-  width: 148px;
-  height: 148px;
-  margin: 0 auto 2.4rem;
-  border-radius: 50%;
+.intro-rubrique { font-size: 1.08rem; max-width: 66ch; margin-bottom: 1.8rem; }
+.intro-rubrique strong { color: var(--encre); font-weight: 700; }
+.accroche { font-size: 1.15rem; margin-bottom: 2.2rem; }
+
+.ancres { display: flex; flex-wrap: wrap; gap: .45rem; }
+.ancres a {
+  font-size: .88rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--voie);
   background: var(--surface);
   border: 1px solid var(--trait);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 999px;
+  padding: .28rem .9rem;
+  transition: border-color .18s, background .18s;
 }
-.hero-embleme img { width: 74%; height: 74%; display: block; }
-.hero-titre {
-  font-family: var(--serif);
-  font-size: clamp(2.6rem, 6.5vw, 4.4rem);
-  font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -.01em;
-  color: var(--encre);
-  margin-bottom: .9rem;
-}
-.hero-sous {
-  font-size: 1.05rem;
-  color: var(--encre-pale);
-  letter-spacing: .02em;
-  margin-bottom: 2rem;
-}
-.hero-devise {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 1.22rem;
-  line-height: 1.6;
-  color: var(--encre-doux);
-  max-width: 34ch;
-  margin: 0 auto 3.4rem;
-  padding-top: 1.6rem;
-  border-top: 1px solid var(--trait);
-}
-.hero-devise em { font-style: italic; }
+.ancres a:hover { border-color: var(--voie); background: var(--surface2); }
 
-.raccourcis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; text-align: left; }
+/* --------------------------------------------------------------------------
+   Raccourcis de l'accueil
+   -------------------------------------------------------------------------- */
+.raccourcis { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .raccourci {
   display: block;
   background: var(--surface);
   border: 1px solid var(--trait);
   border-radius: var(--r-carte);
-  padding: 1.5rem 1.5rem 1.6rem;
+  padding: 1.5rem;
   text-decoration: none;
   transition: border-color .18s, box-shadow .18s, transform .18s;
 }
-.raccourci:hover {
-  border-color: var(--jade);
-  box-shadow: var(--ombre);
-  transform: translateY(-2px);
-}
+.raccourci:hover { border-color: var(--sceau); box-shadow: var(--ombre); transform: translateY(-2px); }
 .raccourci-num {
   display: block;
   font-family: var(--serif);
-  font-size: 1.1rem;
-  color: var(--jade);
+  font-size: 1.05rem;
+  color: var(--sceau);
   margin-bottom: .7rem;
 }
 .raccourci-titre {
   display: block;
   font-family: var(--serif);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 400;
   color: var(--encre);
   margin-bottom: .2rem;
@@ -188,83 +191,39 @@ nav a.actif { background: var(--encre); color: var(--papier); }
 .raccourci-desc { display: block; font-size: .95rem; color: var(--encre-pale); line-height: 1.55; }
 
 /* --------------------------------------------------------------------------
-   En-tete des pages internes
-   -------------------------------------------------------------------------- */
-.tete-page { max-width: 920px; margin: 0 auto; padding: 4.5rem 2rem 0; }
-.sur-titre {
-  font-size: .78rem;
-  font-weight: 600;
-  letter-spacing: .18em;
-  text-transform: uppercase;
-  color: var(--jade);
-  margin-bottom: 1rem;
-}
-h1 {
-  font-family: var(--serif);
-  font-size: clamp(2.1rem, 5vw, 3.2rem);
-  font-weight: 300;
-  line-height: 1.12;
-  letter-spacing: -.01em;
-  color: var(--encre);
-  margin-bottom: 1.1rem;
-  text-wrap: balance;
-}
-.intro-page { font-size: 1.1rem; max-width: 64ch; margin-bottom: 2rem; }
-.intro-page strong { color: var(--encre); font-weight: 600; }
-
-.ancres { display: flex; flex-wrap: wrap; gap: .45rem; }
-.ancres a {
-  font-size: .85rem;
-  font-weight: 500;
-  text-decoration: none;
-  color: var(--voie);
-  background: var(--surface);
-  border: 1px solid var(--trait);
-  border-radius: 999px;
-  padding: .3rem .85rem;
-  transition: border-color .18s, background .18s;
-}
-.ancres a:hover { border-color: var(--voie); background: var(--surface2); }
-
-/* --------------------------------------------------------------------------
    Sections
    -------------------------------------------------------------------------- */
 section {
-  max-width: 920px;
+  max-width: var(--colonne);
   margin: 0 auto;
-  padding: 4.2rem 2rem;
+  padding: 3.8rem 2rem;
   border-bottom: 1px solid var(--trait-fin);
 }
-.tete-section { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.6rem; }
-.num-section {
-  font-family: var(--serif);
-  font-size: 1.05rem;
-  color: var(--voie);
-  flex-shrink: 0;
-}
+.tete-section { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 1.5rem; }
+.num-section { font-family: var(--serif); font-size: 1.05rem; color: var(--voie); flex-shrink: 0; }
 .titre-section {
   font-family: var(--serif);
-  font-size: clamp(1.5rem, 3.4vw, 2rem);
+  font-size: clamp(1.45rem, 3.2vw, 1.95rem);
   font-weight: 400;
   color: var(--encre);
   line-height: 1.2;
 }
 .ligne-section { flex: 1; height: 1px; min-width: 16px; background: var(--trait); }
-.compte-section { font-size: .85rem; color: var(--encre-pale); flex-shrink: 0; white-space: nowrap; }
+.compte-section { font-size: .86rem; color: var(--encre-pale); flex-shrink: 0; white-space: nowrap; }
 
-.intro-section { font-size: 1.04rem; max-width: 68ch; margin-bottom: 2rem; }
-.intro-section strong { color: var(--encre); font-weight: 600; }
+.intro-section { font-size: 1.04rem; max-width: 68ch; margin-bottom: 1.9rem; }
+.intro-section strong { color: var(--encre); font-weight: 700; }
 
 .note {
-  background: var(--jade-pale);
+  background: var(--sceau-pale);
   border-radius: var(--r-carte);
   padding: 1.2rem 1.5rem;
   margin-top: 2rem;
   font-size: 1rem;
   max-width: 68ch;
-  color: #3D5F4C;
+  color: #3C5740;
 }
-.note strong { color: #23402F; font-weight: 600; }
+.note strong { color: #243B28; font-weight: 700; }
 
 /* --------------------------------------------------------------------------
    Cartes (pouvoirs, formes)
@@ -290,31 +249,31 @@ section {
 
 .badge {
   flex: none;
-  font-size: .78rem;
-  font-weight: 500;
+  font-size: .8rem;
+  font-weight: 600;
   color: var(--voie);
   background: var(--surface2);
   border: 1px solid var(--trait);
   border-radius: 999px;
-  padding: .1rem .65rem;
+  padding: .1rem .7rem;
   white-space: nowrap;
 }
 
 .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .9rem; }
 .chip {
-  font-size: .84rem;
+  font-size: .85rem;
   color: var(--encre);
   background: var(--surface2);
   border: 1px solid var(--trait-fin);
   border-radius: var(--r-doux);
-  padding: .12rem .6rem;
+  padding: .12rem .62rem;
   font-variant-numeric: tabular-nums;
 }
 .chip .cle {
   color: var(--encre-pale);
   margin-right: .45rem;
   font-size: .72rem;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
 }
@@ -323,8 +282,8 @@ section {
    Recherche
    -------------------------------------------------------------------------- */
 .recherche {
-  max-width: 920px;
-  margin: 2.4rem auto 0;
+  max-width: var(--colonne);
+  margin: 2.2rem auto 0;
   padding: 0 2rem;
   display: flex;
   align-items: center;
@@ -344,13 +303,13 @@ section {
 .recherche input::placeholder { color: var(--encre-pale); }
 .recherche input:focus {
   outline: none;
-  border-color: var(--jade);
-  box-shadow: 0 0 0 3px rgba(78, 143, 106, .14);
+  border-color: var(--sceau);
+  box-shadow: 0 0 0 3px rgba(79, 122, 85, .16);
 }
-.compte { font-size: .88rem; color: var(--encre-pale); white-space: nowrap; }
+.compte { font-size: .9rem; color: var(--encre-pale); white-space: nowrap; }
 
 /* --------------------------------------------------------------------------
-   Accueil : echelle, voies, encarts
+   Accueil : echelle des paliers, voies, encarts
    -------------------------------------------------------------------------- */
 .echelle { list-style: none; counter-reset: palier; }
 .echelle li {
@@ -395,15 +354,11 @@ section {
   border-radius: var(--r-carte);
   padding: 1.6rem;
 }
-.voie h3 {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: var(--encre);
-}
-.voie .devise {
+.voie h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; color: var(--encre); }
+.voie .devise-voie {
   font-family: var(--serif);
   font-style: italic;
+  font-weight: 300;
   font-size: 1rem;
   color: var(--voie);
   margin: .15rem 0 .9rem;
@@ -425,10 +380,10 @@ section {
   margin-bottom: .35rem;
 }
 .info p { font-size: .96rem; line-height: 1.62; }
-/* Les deux barres du HUD ont leur couleur reelle : bleu ce qu'on lance, rouge
-   ce qu'on subit. C'est une information, pas une decoration. */
+/* Les deux barres du HUD gardent leur couleur reelle : bleu ce qu'on lance,
+   rouge ce qu'on subit. C'est une information, pas une decoration. */
 .info.tonalite-bleu { border-top: 3px solid #4F7BB5; }
-.info.tonalite-rouge { border-top: 3px solid #C0564F; }
+.info.tonalite-rouge { border-top: 3px solid #B05348; }
 
 /* --------------------------------------------------------------------------
    Competences : l'ordre d'achat est impose, donc un escalier numerote
@@ -462,14 +417,14 @@ section {
    Pied de page
    -------------------------------------------------------------------------- */
 footer {
-  max-width: 920px;
+  max-width: var(--colonne);
   margin: 0 auto;
-  padding: 3.2rem 2rem 4rem;
+  padding: 3rem 2rem 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: .9rem;
-  font-size: .9rem;
+  font-size: .92rem;
   color: var(--encre-pale);
 }
 .pied-embleme {
@@ -480,34 +435,30 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: .55;
+  opacity: .6;
 }
 .pied-embleme img { width: 74%; height: 74%; display: block; }
 
 /* --------------------------------------------------------------------------
-   Apparition au defilement : un fondu discret, jamais un mouvement
-   -------------------------------------------------------------------------- */
-.apparait { opacity: 0; transition: opacity .5s ease; }
-.apparait.vue { opacity: 1; }
-
-/* --------------------------------------------------------------------------
    Petites largeurs
    -------------------------------------------------------------------------- */
-@media (max-width: 860px) {
+@media (max-width: 880px) {
   .raccourcis, .grille-voies { grid-template-columns: 1fr; }
 }
 @media (max-width: 640px) {
   body { font-size: 16px; }
-  nav { padding: .7rem 1.1rem; }
-  section, .tete-page, footer { padding-left: 1.1rem; padding-right: 1.1rem; }
+  .chapeau { padding: 3rem 1.1rem 2rem; }
+  .embleme { width: 104px; height: 104px; }
+  .onglets { gap: .2rem; padding: .6rem .5rem; }
+  .onglets a { font-size: .92rem; padding: .35rem .8rem; }
+  section, .tete-rubrique, footer { padding-left: 1.1rem; padding-right: 1.1rem; }
   .recherche { padding: 0 1.1rem; }
-  section { padding-top: 3rem; padding-bottom: 3rem; }
-  #hero { padding: 3.5rem 1.1rem 3rem; }
+  section { padding-top: 2.8rem; padding-bottom: 2.8rem; }
   .grille-cartes { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .apparait { opacity: 1; transition: none; }
-  .carte, .raccourci, nav a { transition: none; }
+  .panneau.entre { animation: none; }
+  .carte, .raccourci, .onglets a, .ancres a { transition: none; }
 }

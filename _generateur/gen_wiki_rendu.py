@@ -2,16 +2,23 @@
 # Partie RENDU du wiki (les donnees sont dans gen_wiki_tete.py, execute juste
 # avant).
 #
-# Parti pris : une page CALME. Fond de papier chaud, beaucoup d'air, coins
-# arrondis, titres en serif clair. Rien ne clignote, rien ne brille : on lit.
+# Parti pris : une page CALME, sur un papier chaud et sable. Beaucoup d'air,
+# coins arrondis, titres en serif chaud. Rien ne clignote, rien ne brille.
+#
+# Structure : UNE SEULE page. L'en-tete (embleme, titre, devise) reste en haut,
+# les quatre rubriques sont des ONGLETS poses juste en dessous, et le contenu
+# s'ouvre sous eux sans recharger quoi que ce soit. Les trois anciennes adresses
+# (pouvoirs.html, formes.html, competences.html) sont conservees : ce sont des
+# redirections vers l'onglet correspondant, pour ne casser aucun lien deja
+# partage.
 #
 # Les couleurs des voies restent celles du jeu (PALETTES dans cl_trees_uikit.lua)
-# - vert Consulaire, bleu Gardien, or Sentinelle - mais assombries pour tenir
-# sur un fond clair.
+# - vert Consulaire, bleu Gardien, or Sentinelle - assombries pour tenir sur un
+# fond clair.
 
 # Change de valeur a chaque retouche du style ou du script : sans ca, le
 # navigateur garde l'ancienne feuille en cache et la page s'affiche nue.
-VERS = "8"
+VERS = "9"
 
 # =============================================================================
 # Couleurs et libelles des voies
@@ -34,80 +41,21 @@ ORDRE = ["padawan", "chevalier", "consulaire_i", "consulaire_a", "consulaire_m",
          "gardien_i", "gardien_a", "gardien_m",
          "sentinelle_i", "sentinelle_a", "sentinelle_m", "conseil"]
 
-PAGES = [("index.html", "Accueil"), ("pouvoirs.html", "Pouvoirs"),
-         ("formes.html", "Formes"), ("competences.html", "Compétences")]
+ONGLETS = [("accueil", "Accueil"), ("pouvoirs", "Pouvoirs"),
+           ("formes", "Formes"), ("competences", "Compétences")]
 
 
 def e(x):
     return html.escape(str(x))
 
 
-def page(nom, titre, sous_titre, corps, hero=False):
-    liens = "".join(
-        '<a href="%s"%s>%s</a>' % (f, ' class="actif"' if f == nom else "", e(t))
-        for f, t in PAGES)
-    doc = '''<!doctype html>
-<html lang="fr">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>%(titre)s · Wiki Jedi</title>
-<meta name="description" content="%(sous)s">
-<meta name="theme-color" content="#F4F1EB">
-<link rel="icon" type="image/png" href="logo-encre.png">
-<style>html,body{background:#F4F1EB;}</style>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&family=Karla:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=%(vers)s">
-</head>
-<body>
-
-<nav>
-  <a class="nav-marque" href="index.html">
-    <span class="nav-embleme"><img src="logo-encre.png" alt=""></span>
-    <span class="nav-nom">Wiki Jedi</span>
-  </a>
-  %(liens)s
-</nav>
-
-<div class="contenu">
-%(corps)s
-  <footer>
-    <span class="pied-embleme"><img src="logo-encre.png" alt=""></span>
-    <span>Créé par Poté</span>
-  </footer>
-</div>
-
-<script src="script.js?v=%(vers)s"></script>
-</body>
-</html>
-''' % {"titre": e(titre), "sous": e(sous_titre), "liens": liens,
-       "corps": corps, "vers": VERS}
-    io.open(os.path.join(OUT, nom), "w", encoding="utf-8", newline="\n").write(doc)
-
-
-def tete_page(titre, intro, ancres):
-    """En-tete des pages internes : titre, chapeau, et les raccourcis vers
-    chaque palier (12 sections sur la page des pouvoirs, sans eux on scrolle
-    a l'aveugle)."""
-    puces = "".join('<a href="#%s" style="--voie:%s">%s</a>' % (a, c, e(l)) for a, l, c in ancres)
-    return '''  <header class="tete-page">
-    <div class="sur-titre">Archives de l'Ordre</div>
-    <h1>%s</h1>
-    <p class="intro-page">%s</p>
-    <nav class="ancres">%s</nav>
-  </header>
-''' % (e(titre), e(intro), puces)
-
-
-def entete_section(numero, titre, compte, couleur):
-    return '''  <div class="tete-section">
-    <span class="num-section">%02d</span>
-    <h2 class="titre-section">%s</h2>
-    <span class="ligne-section"></span>
-    <span class="compte-section">%s</span>
-  </div>''' % (numero, e(titre), e(compte))
+def entete_section(numero, titre, compte):
+    return '''      <div class="tete-section">
+        <span class="num-section">%02d</span>
+        <h2 class="titre-section">%s</h2>
+        <span class="ligne-section"></span>
+        <span class="compte-section">%s</span>
+      </div>''' % (numero, e(titre), e(compte))
 
 
 def fiche(nom, seances, chips, texte, couleur):
@@ -120,169 +68,167 @@ def fiche(nom, seances, chips, texte, couleur):
 </article>''' % (couleur, e(nom), e(sea), ch, texte)
 
 
-CHAMP = '''  <div class="recherche">
-    <input type="search" id="filtre" placeholder="%s" autocomplete="off">
-    <span class="compte" id="compte"></span>
-  </div>
-'''
+def tete_rubrique(titre, intro, ancres):
+    """Titre de la rubrique, son chapeau, et les raccourcis vers chaque palier
+    (12 sections sur les pouvoirs : sans eux on fait defiler a l'aveugle)."""
+    puces = "".join('<a href="#%s" style="--voie:%s">%s</a>' % (a, c, e(l)) for a, l, c in ancres)
+    return '''      <header class="tete-rubrique">
+        <h2 class="titre-rubrique">%s</h2>
+        <p class="intro-rubrique">%s</p>
+        <nav class="ancres">%s</nav>
+      </header>
+''' % (e(titre), e(intro), puces)
+
+
+def champ(placeholder):
+    return '''      <div class="recherche">
+        <input type="search" class="filtre" placeholder="%s" autocomplete="off">
+        <span class="compte"></span>
+      </div>
+''' % e(placeholder)
 
 
 # =============================================================================
-# Page 1 : l'accueil
+# Onglet 1 : l'accueil
 # =============================================================================
 RACCOURCIS = [
- ("pouvoirs.html", "Pouvoirs", "Tout ce qui s'apprend dans l'arbre, voie par voie"),
- ("formes.html", "Formes", "Les styles de combat au sabre"),
- ("competences.html", "Compétences", "Les bonus permanents et leur prix"),
+ ("pouvoirs", "Pouvoirs", "Tout ce qui s'apprend dans l'arbre, voie par voie"),
+ ("formes", "Formes", "Les styles de combat au sabre"),
+ ("competences", "Compétences", "Les bonus permanents et leur prix"),
 ]
-cartes = "".join('''<a class="raccourci" href="%s">
-      <span class="raccourci-num">%02d</span>
-      <span class="raccourci-titre">%s</span>
-      <span class="raccourci-desc">%s</span>
-    </a>''' % (f, i, e(t), e(d)) for i, (f, t, d) in enumerate(RACCOURCIS, 1))
+cartes = "".join('''<a class="raccourci" href="#%s">
+          <span class="raccourci-num">%02d</span>
+          <span class="raccourci-titre">%s</span>
+          <span class="raccourci-desc">%s</span>
+        </a>''' % (f, i, e(t), e(d)) for i, (f, t, d) in enumerate(RACCOURCIS, 1))
 
-corps = '''  <section id="hero">
-    <div class="hero-embleme"><img src="logo-encre.png" alt="Emblème de l'Ordre Jedi"></div>
-    <div class="hero-titre">Ordre Jedi</div>
-    <div class="hero-sous">Wiki des Jedi · Clone Wars RP Cosmos</div>
-    <div class="hero-devise"><em>Il n'y a pas d'émotion, il y a la paix</em></div>
-    <div class="raccourcis">%s</div>
-  </section>
+ACCUEIL = '''      <header class="tete-rubrique">
+        <p class="intro-rubrique accroche">Tout ce qu'un Jedi peut apprendre sur le serveur : les pouvoirs de Force, les formes de combat au sabre et les compétences permanentes. Les chiffres affichés sont ceux que le serveur applique vraiment.</p>
+        <div class="raccourcis">%s</div>
+      </header>
 
-  <section id="progression">
+      <section id="progression">
 %s
-    <p class="intro-section">Un Jedi monte <strong>deux arbres</strong> : celui des pouvoirs de Force et celui des formes de combat. Les deux fonctionnent de la même façon, par paliers, et le passage d'un palier au suivant ne dépend pas que de toi.</p>
-    <ol class="echelle">
-      <li style="--voie:#6E7A88"><h3>Padawan</h3><p>La branche Padawan s'ouvre à tout Jedi. Saut, Concentration, Extinction, Brèche.</p></li>
-      <li style="--voie:#5F7283"><h3>Chevalier</h3><p>Le grade de Chevalier ajoute la branche Chevalier : Lancer, Poussée, Attraction, Saut II.</p></li>
-      <li style="--voie:#4E8F6A"><h3>Initié de ta voie</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le premier palier de ta spécialisation.</p></li>
-      <li style="--voie:#8B6D22"><h3>Avancé</h3><p>Ce palier ne s'ouvre plus tout seul : le Conseil te l'accorde depuis l'onglet Gérance.</p></li>
-      <li style="--voie:#A8862A"><h3>Maître</h3><p>Même chose, accordé par le Conseil, une fois le palier Avancé terminé.</p></li>
-    </ol>
-    <div class="note"><strong>Deux conditions pour ouvrir un palier :</strong> avoir la whitelist du palier, <em>et</em> avoir terminé le palier précédent en entier. À l'intérieur d'un palier, tu apprends ce que tu veux, dans l'ordre que tu veux.</div>
-  </section>
+        <p class="intro-section">Un Jedi monte <strong>deux arbres</strong> : celui des pouvoirs de Force et celui des formes de combat. Les deux fonctionnent de la même façon, par paliers, et le passage d'un palier au suivant ne dépend pas que de toi.</p>
+        <ol class="echelle">
+          <li style="--voie:#6E7A88"><h3>Padawan</h3><p>La branche Padawan s'ouvre à tout Jedi. Saut, Concentration, Extinction, Brèche.</p></li>
+          <li style="--voie:#5F7283"><h3>Chevalier</h3><p>Le grade de Chevalier ajoute la branche Chevalier : Lancer, Poussée, Attraction, Saut II.</p></li>
+          <li style="--voie:#4E8F6A"><h3>Initié de ta voie</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le premier palier de ta spécialisation.</p></li>
+          <li style="--voie:#8B6D22"><h3>Avancé</h3><p>Ce palier ne s'ouvre plus tout seul : le Conseil te l'accorde depuis l'onglet Gérance.</p></li>
+          <li style="--voie:#A8862A"><h3>Maître</h3><p>Même chose, accordé par le Conseil, une fois le palier Avancé terminé.</p></li>
+        </ol>
+        <div class="note"><strong>Deux conditions pour ouvrir un palier :</strong> avoir la whitelist du palier, <em>et</em> avoir terminé le palier précédent en entier. À l'intérieur d'un palier, tu apprends ce que tu veux, dans l'ordre que tu veux.</div>
+      </section>
 
-  <section id="seances">
+      <section id="seances">
 %s
-    <p class="intro-section">Un pouvoir marqué « 3 séances » demande trois entraînements, <strong>un par tranche de 24 heures</strong>. Tu cliques une première fois, tu reviens le lendemain, et ainsi de suite jusqu'à la dernière séance : le pouvoir est alors appris pour de bon.</p>
-    <div class="grille-info">
-      <div class="info"><h4>Un apprentissage à la fois</h4><p>Tant qu'une séance est en cours, aucun autre apprentissage ne peut démarrer, dans aucun des deux arbres.</p></div>
-      <div class="info"><h4>Apprendre puis équiper</h4><p>Un pouvoir appris n'arrive pas tout seul dans ta roue : il faut l'activer dans l'arbre. Les passifs, eux, agissent dès qu'ils sont appris.</p></div>
-      <div class="info"><h4>Les entrées gratuites</h4><p>Celles marquées « Gratuit » s'obtiennent d'un seul clic, sans attendre.</p></div>
-      <div class="info"><h4>F6</h4><p>Le menu du sabre : inventaire, arbres, réglages. C'est de là que tout se pilote.</p></div>
-    </div>
-  </section>
+        <p class="intro-section">Un pouvoir marqué « 3 séances » demande trois entraînements, <strong>un par tranche de 24 heures</strong>. Tu cliques une première fois, tu reviens le lendemain, et ainsi de suite jusqu'à la dernière séance : le pouvoir est alors appris pour de bon.</p>
+        <div class="grille-info">
+          <div class="info"><h4>Un apprentissage à la fois</h4><p>Tant qu'une séance est en cours, aucun autre apprentissage ne peut démarrer, dans aucun des deux arbres.</p></div>
+          <div class="info"><h4>Apprendre puis équiper</h4><p>Un pouvoir appris n'arrive pas tout seul dans ta roue : il faut l'activer dans l'arbre. Les passifs, eux, agissent dès qu'ils sont appris.</p></div>
+          <div class="info"><h4>Les entrées gratuites</h4><p>Celles marquées « Gratuit » s'obtiennent d'un seul clic, sans attendre.</p></div>
+          <div class="info"><h4>F6</h4><p>Le menu du sabre : inventaire, arbres, réglages. C'est de là que tout se pilote.</p></div>
+        </div>
+      </section>
 
-  <section id="voies">
+      <section id="voies">
 %s
-    <p class="intro-section">On ne monte que dans <strong>une</strong> voie. Dès qu'un palier t'est accordé, les deux autres se ferment ; pour en changer, le Conseil doit d'abord te retirer tes paliers.</p>
-    <div class="grille-voies">
-      <div class="voie" style="--voie:#4E8F6A"><h3>Consulaire</h3><p class="devise">L'esprit ouvert à la Force</p><p>Le soin et le soutien : Soin I à III, Soin d'autrui, Soin de masse, Réanimation, Grand soin. C'est la voie qui tient un groupe debout.</p></div>
-      <div class="voie" style="--voie:#4F7BB5"><h3>Gardien</h3><p class="devise">Le rempart de l'Ordre</p><p>Encaisser et contenir : Immunité, Riposte, Barrière, Mur de Force, Jugements, Agenouillement. La voie qui reste debout au milieu.</p></div>
-      <div class="voie" style="--voie:#8B6D22"><h3>Sentinelle</h3><p class="devise">La lame qui frappe la première</p><p>Vitesse et information : Camouflage, Perception, Adrénaline, Téléportation, Rempart, Tourbillon. La voie qui choisit ses combats.</p></div>
-    </div>
-  </section>
+        <p class="intro-section">On ne monte que dans <strong>une</strong> voie. Dès qu'un palier t'est accordé, les deux autres se ferment ; pour en changer, le Conseil doit d'abord te retirer tes paliers.</p>
+        <div class="grille-voies">
+          <div class="voie" style="--voie:#4E8F6A"><h3>Consulaire</h3><p class="devise-voie">L'esprit ouvert à la Force</p><p>Le soin et le soutien : Soin I à III, Soin d'autrui, Soin de masse, Réanimation, Grand soin. C'est la voie qui tient un groupe debout.</p></div>
+          <div class="voie" style="--voie:#4F7BB5"><h3>Gardien</h3><p class="devise-voie">Le rempart de l'Ordre</p><p>Encaisser et contenir : Immunité, Riposte, Barrière, Mur de Force, Jugements, Agenouillement. La voie qui reste debout au milieu.</p></div>
+          <div class="voie" style="--voie:#8B6D22"><h3>Sentinelle</h3><p class="devise-voie">La lame qui frappe la première</p><p>Vitesse et information : Camouflage, Perception, Adrénaline, Téléportation, Rempart, Tourbillon. La voie qui choisit ses combats.</p></div>
+        </div>
+      </section>
 
-  <section id="force">
+      <section id="force">
 %s
-    <p class="intro-section">Chaque pouvoir coûte de la Force. Ta réserve remonte seule quand tu as les pieds au sol, et deux pouvoirs vivent entièrement de cette mécanique.</p>
-    <div class="grille-info">
-      <div class="info"><h4>Concentration</h4><p>Rend de la Force d'un coup, au prix d'un ralentissement le temps de méditer. On médite à l'abri, pas au milieu d'un échange.</p></div>
-      <div class="info"><h4>Immunité</h4><p>Ne te protège que tant que ta réserve reste au-dessus d'un seuil : 50 %% au premier niveau, 35 %% au deuxième, 20 %% au troisième. Vider sa Force, c'est redevenir vulnérable.</p></div>
-    </div>
-  </section>
+        <p class="intro-section">Chaque pouvoir coûte de la Force. Ta réserve remonte seule quand tu as les pieds au sol, et deux pouvoirs vivent entièrement de cette mécanique.</p>
+        <div class="grille-info">
+          <div class="info"><h4>Concentration</h4><p>Rend de la Force d'un coup, au prix d'un ralentissement le temps de méditer. On médite à l'abri, pas au milieu d'un échange.</p></div>
+          <div class="info"><h4>Immunité</h4><p>Ne te protège que tant que ta réserve reste au-dessus d'un seuil : 50 %% au premier niveau, 35 %% au deuxième, 20 %% au troisième. Vider sa Force, c'est redevenir vulnérable.</p></div>
+        </div>
+      </section>
 
-  <section id="combat">
+      <section id="combat">
 %s
-    <p class="intro-section">Pendant un combat, l'interface te dit tout ce dont tu as besoin. Apprends à la lire, elle ne ment pas.</p>
-    <div class="grille-info">
-      <div class="info"><h4>La roue</h4><p>En bas de l'écran : tes pouvoirs actifs et le compte à rebours de celui que tu vises. Chaque pouvoir a son propre rechargement.</p></div>
-      <div class="info tonalite-bleu"><h4>Barre bleue</h4><p>Un effet que tu as lancé et qui dure : Camouflage, Perception, Riposte, Tourbillon.</p></div>
-      <div class="info tonalite-rouge"><h4>Barre rouge</h4><p>Un effet que tu subis : étourdissement, aveuglement, agenouillement forcé, pris dans un tourbillon.</p></div>
-      <div class="info tonalite-bleu"><h4>Éclat bleu</h4><p>Ton Immunité vient d'absorber un pouvoir ennemi.</p></div>
-    </div>
-  </section>
+        <p class="intro-section">Pendant un combat, l'interface te dit tout ce dont tu as besoin. Apprends à la lire, elle ne ment pas.</p>
+        <div class="grille-info">
+          <div class="info"><h4>La roue</h4><p>En bas de l'écran : tes pouvoirs actifs et le compte à rebours de celui que tu vises. Chaque pouvoir a son propre rechargement.</p></div>
+          <div class="info tonalite-bleu"><h4>Barre bleue</h4><p>Un effet que tu as lancé et qui dure : Camouflage, Perception, Riposte, Tourbillon.</p></div>
+          <div class="info tonalite-rouge"><h4>Barre rouge</h4><p>Un effet que tu subis : étourdissement, aveuglement, agenouillement forcé, pris dans un tourbillon.</p></div>
+          <div class="info tonalite-bleu"><h4>Éclat bleu</h4><p>Ton Immunité vient d'absorber un pouvoir ennemi.</p></div>
+        </div>
+      </section>
 ''' % (cartes,
-       entete_section(1, "Ta progression", "5 paliers", "#4F7BB5"),
-       entete_section(2, "Les séances d'entraînement", "1 par jour", "#4F7BB5"),
-       entete_section(3, "Les trois voies", "1 seule au choix", "#4F7BB5"),
-       entete_section(4, "La Force", "ta ressource", "#4F7BB5"),
-       entete_section(5, "Pendant le combat", "lire l'écran", "#4F7BB5"))
+       entete_section(1, "Ta progression", "5 paliers"),
+       entete_section(2, "Les séances d'entraînement", "1 par jour"),
+       entete_section(3, "Les trois voies", "1 seule au choix"),
+       entete_section(4, "La Force", "ta ressource"),
+       entete_section(5, "Pendant le combat", "lire l'écran"))
 
-page("index.html", "Accueil",
-     "Le wiki des Jedi du Clone Wars RP Cosmos : pouvoirs de Force, formes de combat, compétences et progression.",
-     corps, hero=True)
 
 # =============================================================================
-# Page 2 : les pouvoirs
+# Onglets 2 et 3 : les deux arbres, meme fabrication
 # =============================================================================
-par_cle = {cle: (label, noeuds) for cle, label, noeuds in POUVOIRS}
-blocs, ancres, n = [], [], 0
-for cle in ORDRE:
-    if cle not in par_cle or not par_cle[cle][1]:
-        continue
-    noeuds = par_cle[cle][1]
-    titre, couleur, note = VOIES[cle]
-    n += 1
-    ancres.append((cle, titre, couleur))
-    fiches = []
-    for pid, nom, jours in noeuds:
-        cout, rech, txt = P.get(pid, ("—", "—", ""))
-        fiches.append(fiche(nom, jours, [("Coût", cout), ("Rechargement", rech)], txt, couleur))
-    blocs.append('''  <section class="section-voie" id="%s" style="--voie:%s">
+def rubrique_arbre(source, titre, intro, place, compter, fabrique):
+    par_cle = {cle: noeuds for cle, _, noeuds in source}
+    blocs, ancres, n = [], [], 0
+    for cle in ORDRE:
+        noeuds = par_cle.get(cle)
+        if not noeuds:
+            continue
+        libelle, couleur, note = VOIES[cle]
+        n += 1
+        ancres.append((cle, libelle, couleur))
+        fiches = "".join(fabrique(noeud, couleur) for noeud in noeuds)
+        blocs.append('''      <section class="section-voie" id="%s" style="--voie:%s">
 %s
 %s
-    <div class="grille-cartes">%s</div>
-  </section>''' % (cle, couleur,
-                   entete_section(n, titre, "%d pouvoir%s" % (len(noeuds), "s" if len(noeuds) > 1 else ""), couleur),
-                   ('    <p class="intro-section">%s</p>' % e(note)) if note else "",
-                   "".join(fiches)))
+        <div class="grille-cartes">%s</div>
+      </section>''' % (cle, couleur,
+                       entete_section(n, libelle, compter(len(noeuds))),
+                       ('        <p class="intro-section">%s</p>' % e(note)) if note else "",
+                       fiches))
+    return tete_rubrique(titre, intro, ancres) + champ(place) + "".join(blocs)
 
-page("pouvoirs.html", "Pouvoirs",
-     "Tout ce qu'un Jedi peut apprendre, voie par voie et palier par palier.",
-     tete_page("Les pouvoirs",
-               "Les pouvoirs de Force présents dans l'arbre, avec leur coût, leur rechargement et le nombre de séances. Ceux qui n'y figurent pas ne sont apprenables par personne.",
-               ancres)
-     + (CHAMP % "Chercher un pouvoir, un effet, un coût...") + "".join(blocs))
 
-# =============================================================================
-# Page 3 : les formes
-# =============================================================================
-par_cle = {cle: (label, noeuds) for cle, label, noeuds in FORMES}
-blocs, ancres, n = [], [], 0
-for cle in ORDRE:
-    if cle not in par_cle or not par_cle[cle][1]:
-        continue
-    noeuds = par_cle[cle][1]
-    titre, couleur, _ = VOIES[cle]
-    n += 1
-    ancres.append((cle, titre, couleur))
-    fiches = []
-    for fid, nom, jours in noeuds:
-        st = FORMES_STATS.get(fid, {})
-        try:
-            pct = round((float(st.get("degats", "1")) - 1) * 100)
-            degats = ("+%d %%" % pct) if pct else "normaux"
-        except ValueError:
-            degats = "normaux"
-        chips = [("Dégâts", degats), ("Garde perdue", str(st.get("garde", "—"))),
-                 ("Sabre", "double" if st.get("gauche") else "simple")]
-        fiches.append(fiche(nom, jours, chips, FORMES_TXT.get(fid, ""), couleur))
-    blocs.append('''  <section class="section-voie" id="%s" style="--voie:%s">
-%s
-    <div class="grille-cartes">%s</div>
-  </section>''' % (cle, couleur,
-                   entete_section(n, titre, "%d forme%s" % (len(noeuds), "s" if len(noeuds) > 1 else ""), couleur),
-                   "".join(fiches)))
+def fiche_pouvoir(noeud, couleur):
+    pid, nom, jours = noeud
+    cout, rech, txt = P.get(pid, ("—", "—", ""))
+    return fiche(nom, jours, [("Coût", cout), ("Rechargement", rech)], txt, couleur)
 
-page("formes.html", "Formes", "Les styles de combat au sabre, dans l'ordre où on les apprend.",
-     tete_page("Les formes",
-               "Une forme change tes enchaînements, tes dégâts au sabre et la garde que tu perds en bloquant. Celles marquées double sabre utilisent la lame de la main gauche ; avec une forme à une main, le second manche reste au fourreau.",
-               ancres)
-     + (CHAMP % "Chercher une forme...") + "".join(blocs))
+
+def fiche_forme(noeud, couleur):
+    fid, nom, jours = noeud
+    st = FORMES_STATS.get(fid, {})
+    try:
+        pct = round((float(st.get("degats", "1")) - 1) * 100)
+        degats = ("+%d %%" % pct) if pct else "normaux"
+    except ValueError:
+        degats = "normaux"
+    chips = [("Dégâts", degats), ("Garde perdue", str(st.get("garde", "—"))),
+             ("Sabre", "double" if st.get("gauche") else "simple")]
+    return fiche(nom, jours, chips, FORMES_TXT.get(fid, ""), couleur)
+
+
+POUVOIRS_HTML = rubrique_arbre(
+    POUVOIRS, "Les pouvoirs",
+    "Les pouvoirs de Force présents dans l'arbre, avec leur coût, leur rechargement et le nombre de séances. Ceux qui n'y figurent pas ne sont apprenables par personne.",
+    "Chercher un pouvoir, un effet, un coût...",
+    lambda k: "%d pouvoir%s" % (k, "s" if k > 1 else ""),
+    fiche_pouvoir)
+
+FORMES_HTML = rubrique_arbre(
+    FORMES, "Les formes",
+    "Une forme change tes enchaînements, tes dégâts au sabre et la garde que tu perds en bloquant. Celles marquées double sabre utilisent la lame de la main gauche ; avec une forme à une main, le second manche reste au fourreau.",
+    "Chercher une forme...",
+    lambda k: "%d forme%s" % (k, "s" if k > 1 else ""),
+    fiche_forme)
+
 
 # =============================================================================
-# Page 4 : les compétences
+# Onglet 4 : les compétences
 # =============================================================================
 EFFETS = {
  "speed": "vitesse de course", "walk": "vitesse en marchant", "hp": "PV maximum",
@@ -312,31 +258,111 @@ def lisible(effets):
 
 blocs, ancres, n = [], [], 0
 for cle, label, noeuds in COMPETENCES:
-    couleur = COULEUR_COMP.get(cle, "#8FB4D8")
+    couleur = COULEUR_COMP.get(cle, "#6E7A88")
     n += 1
     ancres.append((cle, label, couleur))
     items = []
     for i, (nom, desc, points, prix, effets) in enumerate(noeuds, 1):
         eff = "".join('<span class="chip">%s</span>' % e(x) for x in lisible(effets))
         items.append('''<li>
-      <span class="rang">%d</span>
-      <div class="rang-corps">
-        <div class="carte-tete"><h3>%s</h3><span class="badge">%d point%s · %s dataris</span></div>
-        <div class="chips">%s</div>
-        <p>%s</p>
-      </div>
-    </li>''' % (i, e(nom), points, "s" if points > 1 else "",
-                 "{:,}".format(prix).replace(",", " "), eff, e(desc)))
-    blocs.append('''  <section class="section-voie" id="%s" style="--voie:%s">
+          <span class="rang">%d</span>
+          <div class="rang-corps">
+            <div class="carte-tete"><h3>%s</h3><span class="badge">%d point%s · %s dataris</span></div>
+            <div class="chips">%s</div>
+            <p>%s</p>
+          </div>
+        </li>''' % (i, e(nom), points, "s" if points > 1 else "",
+                    "{:,}".format(prix).replace(",", " "), eff, e(desc)))
+    blocs.append('''      <section class="section-voie" id="%s" style="--voie:%s">
 %s
-    <ol class="escalier">%s</ol>
-  </section>''' % (cle, couleur,
-                   entete_section(n, label, "%d compétences" % len(noeuds), couleur),
-                   "".join(items)))
+        <ol class="escalier">%s</ol>
+      </section>''' % (cle, couleur,
+                       entete_section(n, label, "%d compétences" % len(noeuds)),
+                       "".join(items)))
 
-page("competences.html", "Compétences",
-     "Les bonus permanents de l'arbre de compétences, leur coût en points et en dataris.",
-     tete_page("Les compétences",
-               "Des bonus permanents, qui agissent en continu sans rien lancer, tant que tu es sur un job Jedi. Les points viennent de ton niveau ; chaque compétence coûte en plus des dataris et s'achète dans l'ordre. Une voie complète demande 45 points et 110 000 dataris, le tronc 6 points et 13 000.",
-               ancres)
-     + "".join(blocs))
+COMPETENCES_HTML = tete_rubrique(
+    "Les compétences",
+    "Des bonus permanents, qui agissent en continu sans rien lancer, tant que tu es sur un job Jedi. Les points viennent de ton niveau ; chaque compétence coûte en plus des dataris et s'achète dans l'ordre. Une voie complète demande 45 points et 110 000 dataris, le tronc 6 points et 13 000.",
+    ancres) + "".join(blocs)
+
+
+# =============================================================================
+# Assemblage de la page unique
+# =============================================================================
+PANNEAUX = {"accueil": ACCUEIL, "pouvoirs": POUVOIRS_HTML,
+            "formes": FORMES_HTML, "competences": COMPETENCES_HTML}
+
+onglets = "".join(
+    '<a href="#%s" data-onglet="%s"%s>%s</a>' % (c, c, ' class="actif"' if i == 0 else "", e(t))
+    for i, (c, t) in enumerate(ONGLETS))
+
+panneaux = "".join(
+    '''    <div class="panneau" data-panneau="%s"%s>
+%s    </div>
+''' % (c, "" if i == 0 else " hidden", PANNEAUX[c])
+    for i, (c, _) in enumerate(ONGLETS))
+
+doc = '''<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wiki Jedi</title>
+<meta name="description" content="Le wiki des Jedi du Clone Wars RP Cosmos : pouvoirs de Force, formes de combat, compétences et progression.">
+<meta name="theme-color" content="#E8DCC8">
+<link rel="icon" type="image/png" href="logo-encre.png">
+<style>html,body{background:#E8DCC8;}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=%(vers)s">
+</head>
+<body>
+
+<header class="chapeau">
+  <div class="embleme"><img src="logo-encre.png" alt="Emblème de l'Ordre Jedi"></div>
+  <h1 class="titre-site">Ordre Jedi</h1>
+  <p class="sous-titre">Wiki des Jedi · Clone Wars RP Cosmos</p>
+  <p class="devise">Il n'y a pas d'émotion, il y a la paix</p>
+</header>
+
+<nav class="onglets">%(onglets)s</nav>
+
+<main>
+%(panneaux)s</main>
+
+<footer>
+  <span class="pied-embleme"><img src="logo-encre.png" alt=""></span>
+  <span>Créé par Poté</span>
+</footer>
+
+<script src="script.js?v=%(vers)s"></script>
+</body>
+</html>
+''' % {"onglets": onglets, "panneaux": panneaux, "vers": VERS}
+
+io.open(os.path.join(OUT, "index.html"), "w", encoding="utf-8", newline="\n").write(doc)
+
+# Les anciennes adresses restent valides : elles renvoient sur le bon onglet.
+# Un lien deja partage dans un Discord ne doit pas tomber sur une page morte.
+for fichier, cle, titre in [("pouvoirs.html", "pouvoirs", "les pouvoirs"),
+                            ("formes.html", "formes", "les formes"),
+                            ("competences.html", "competences", "les compétences")]:
+    redirection = '''<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Wiki Jedi</title>
+<link rel="icon" type="image/png" href="logo-encre.png">
+<link rel="canonical" href="index.html#%(cle)s">
+<meta http-equiv="refresh" content="0; url=index.html#%(cle)s">
+</head>
+<body>
+<p>Cette rubrique a rejoint la page principale. <a href="index.html#%(cle)s">Ouvrir %(titre)s</a>.</p>
+<script>location.replace("index.html#%(cle)s");</script>
+</body>
+</html>
+''' % {"cle": cle, "titre": e(titre)}
+    io.open(os.path.join(OUT, fichier), "w", encoding="utf-8", newline="\n").write(redirection)
+
+print("index.html + 3 redirections")
