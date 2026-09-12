@@ -1,24 +1,29 @@
-/* Wiki Jedi - feuille de style unique.
-   Parti pris : un fond sombre d'archive, une barre laterale fixe comme sur un
-   vrai wiki, et la couleur de la voie (vert Consulaire, bleu Gardien, or
-   Sentinelle) reprise du jeu, portee par la variable --voie.
-   Cree par Pote. */
+/* Wiki Jedi - feuille de style unique. Cree par Pote.
+   -------------------------------------------------------------------------
+   Direction artistique : les Archives du Temple. Fond de vide spatial, titres
+   graves en capitales romaines (Cinzel), corps de texte en Barlow et chiffres
+   en Share Tech Mono, comme une console. La seule lumiere de la page est celle
+   d'une lame : un bleu sabre, pose avec parcimonie.
+   La couleur de chaque voie est celle du jeu (--voie) : vert Consulaire, bleu
+   Gardien, or Sentinelle, or du Conseil.
+   ------------------------------------------------------------------------- */
 
 :root {
-  --fond:        #0B0E14;
-  --fond-cote:   #070910;
-  --carte:       #141A24;
-  --carte-haut:  #1A212D;
-  --trait:       #232B39;
-  --trait-fort:  #33404F;
-  --texte:       #DDE4EE;
-  --texte-doux:  #8E9BAC;
-  --texte-faible:#677383;
-  --voie:        #7E9AB4;
-  --cote-l:      264px;
-  --titre:       "Oswald", "Franklin Gothic Medium", Impact, sans-serif;
-  --corps:       "Source Sans 3", "Segoe UI", Helvetica, Arial, sans-serif;
-  --mono:        "IBM Plex Mono", Consolas, "Courier New", monospace;
+  --vide:        #05070C;
+  --panneau:     #0C1119;
+  --panneau-haut:#121925;
+  --trait:       #1C2432;
+  --trait-fort:  #2D3A4C;
+  --texte:       #D9E1EC;
+  --doux:        #94A2B5;
+  --faible:      #66748A;
+  --sabre:       #57ABFF;
+  --kyber:       #E0B45C;
+  --voie:        #8AA3BC;
+  --cote-l:      276px;
+  --grave:       "Cinzel", "Trajan Pro", Georgia, serif;
+  --corps:       "Barlow", "Segoe UI", Helvetica, Arial, sans-serif;
+  --console:     "Share Tech Mono", Consolas, "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -27,15 +32,30 @@ html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--fond);
+  background: var(--vide);
   color: var(--texte);
   font-family: var(--corps);
-  font-size: 16.5px;
-  line-height: 1.65;
+  font-size: 17px;
+  line-height: 1.68;
   -webkit-font-smoothing: antialiased;
 }
 
 a { color: inherit; }
+
+/* Le ciel derriere la page : une lueur froide en haut, un fond de nuit ailleurs.
+   Fixe, donc elle ne defile pas avec le texte. */
+.voute {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(1100px 620px at 22% -12%, rgba(70, 140, 235, .20), transparent 70%),
+    radial-gradient(820px 520px at 96% 4%, rgba(224, 180, 92, .07), transparent 72%),
+    linear-gradient(#05070C, #04050A);
+}
+
+.cote, main { position: relative; z-index: 1; }
 
 /* --------------------------------------------------------------------------
    Barre laterale
@@ -44,12 +64,13 @@ a { color: inherit; }
   position: fixed;
   inset: 0 auto 0 0;
   width: var(--cote-l);
-  background: var(--fond-cote);
+  background: rgba(5, 7, 12, .86);
+  backdrop-filter: blur(8px);
   border-right: 1px solid var(--trait);
-  padding: 26px 0 22px;
+  padding: 30px 0 24px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 26px;
   overflow-y: auto;
   z-index: 20;
 }
@@ -57,59 +78,77 @@ a { color: inherit; }
 .marque {
   display: flex;
   align-items: center;
-  gap: 11px;
-  padding: 0 22px;
+  gap: 13px;
+  padding: 0 24px;
   text-decoration: none;
-  font-family: var(--titre);
-  font-size: 21px;
-  font-weight: 500;
-  letter-spacing: .06em;
-  text-transform: uppercase;
   color: var(--texte);
 }
-.marque strong { color: #6FA8FF; font-weight: 600; }
-.marque .lame {
-  width: 3px;
-  height: 26px;
-  border-radius: 2px;
-  background: linear-gradient(#DCEBFF, #4B8FF5);
-  box-shadow: 0 0 9px rgba(90, 157, 240, .85);
+.marque .crete {
+  width: 38px;
+  height: 38px;
   flex: none;
+  color: var(--sabre);
+  opacity: .92;
+}
+.marque .crete .lame {
+  filter: drop-shadow(0 0 5px rgba(120, 190, 255, .9));
+}
+.marque .nom {
+  display: flex;
+  flex-direction: column;
+  font-family: var(--grave);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  line-height: 1.15;
+}
+.marque small {
+  font-family: var(--corps);
+  font-size: 10.5px;
+  font-weight: 400;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faible);
+  margin-top: 3px;
 }
 
 .nav-pages { display: flex; flex-direction: column; }
 .nav-pages a {
-  padding: 9px 22px;
+  padding: 9px 24px;
   text-decoration: none;
-  color: var(--texte-doux);
+  color: var(--doux);
   font-size: 15.5px;
   border-left: 2px solid transparent;
+  transition: color .14s ease, background .14s ease;
 }
-.nav-pages a:hover { color: var(--texte); background: rgba(255, 255, 255, .03); }
+.nav-pages a:hover { color: var(--texte); background: rgba(255, 255, 255, .035); }
 .nav-pages a.actif {
-  color: var(--texte);
+  color: #EAF2FF;
   font-weight: 600;
-  border-left-color: #5A9DF0;
-  background: rgba(90, 157, 240, .09);
+  border-left-color: var(--sabre);
+  background: linear-gradient(90deg, rgba(87, 171, 255, .16), transparent);
+  box-shadow: inset 1px 0 8px -2px rgba(87, 171, 255, .55);
 }
 
 .sommaire {
   display: flex;
   flex-direction: column;
   border-top: 1px solid var(--trait);
-  padding-top: 18px;
+  padding-top: 20px;
 }
 .titre-sommaire {
-  padding: 0 22px 8px;
+  padding: 0 24px 9px;
+  font-family: var(--console);
   font-size: 11px;
-  letter-spacing: .16em;
+  letter-spacing: .2em;
   text-transform: uppercase;
-  color: var(--texte-faible);
+  color: var(--faible);
 }
 .sommaire a {
-  padding: 5px 22px;
+  padding: 5px 24px;
   text-decoration: none;
-  color: var(--texte-doux);
+  color: var(--doux);
   font-size: 14.5px;
   border-left: 2px solid transparent;
 }
@@ -117,14 +156,15 @@ a { color: inherit; }
 
 .pied-cote {
   margin-top: auto;
-  padding: 16px 22px 0;
+  padding: 18px 24px 0;
   border-top: 1px solid var(--trait);
-  font-size: 12.5px;
-  color: var(--texte-faible);
-  letter-spacing: .04em;
+  font-family: var(--console);
+  font-size: 12px;
+  color: var(--faible);
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 
-/* Le bouton de menu ne sert qu'en petite largeur. */
 .bouton-menu { display: none; }
 
 /* --------------------------------------------------------------------------
@@ -132,85 +172,99 @@ a { color: inherit; }
    -------------------------------------------------------------------------- */
 main {
   margin-left: var(--cote-l);
-  max-width: 920px;
-  padding: 54px 40px 90px;
+  max-width: 960px;
+  padding: 62px 44px 100px;
 }
 
-.entete { margin-bottom: 46px; }
+.entete { margin-bottom: 52px; }
 .fil {
+  font-family: var(--console);
   font-size: 11.5px;
-  letter-spacing: .17em;
+  letter-spacing: .22em;
   text-transform: uppercase;
-  color: var(--texte-faible);
-  margin-bottom: 12px;
+  color: var(--faible);
+  margin-bottom: 16px;
 }
 h1 {
-  font-family: var(--titre);
-  font-weight: 500;
-  font-size: clamp(34px, 6vw, 50px);
-  line-height: 1.08;
-  letter-spacing: .015em;
-  margin: 0 0 14px;
+  font-family: var(--grave);
+  font-weight: 600;
+  font-size: clamp(32px, 5.4vw, 47px);
+  line-height: 1.1;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
   text-wrap: balance;
+}
+/* La lame sous le titre : c'est la seule vraie citation graphique du sabre. */
+h1::after {
+  content: "";
+  display: block;
+  width: 132px;
+  height: 2px;
+  margin-top: 18px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #DCEDFF, var(--sabre) 35%, rgba(87, 171, 255, 0));
+  box-shadow: 0 0 10px rgba(87, 171, 255, .65);
 }
 .chapeau {
   margin: 0;
-  max-width: 62ch;
-  font-size: 17.5px;
-  color: var(--texte-doux);
+  max-width: 60ch;
+  font-size: 18px;
+  color: var(--doux);
 }
 
 .bloc {
   border-top: 1px solid var(--trait);
-  padding-top: 30px;
-  margin-bottom: 52px;
+  padding-top: 34px;
+  margin-bottom: 56px;
   scroll-margin-top: 24px;
 }
 .bloc > h2, .tete-voie h2 {
-  font-family: var(--titre);
-  font-weight: 500;
-  font-size: 25px;
-  letter-spacing: .03em;
-  margin: 0 0 18px;
-  padding-left: 13px;
-  border-left: 4px solid var(--voie);
-  line-height: 1.2;
+  font-family: var(--grave);
+  font-weight: 600;
+  font-size: 22px;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+  margin: 0 0 20px;
+  padding-left: 15px;
+  border-left: 3px solid var(--voie);
+  line-height: 1.25;
 }
 .tete-voie {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 14px;
   flex-wrap: wrap;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 .tete-voie h2 { margin: 0; }
 .compteur {
-  font-family: var(--mono);
+  font-family: var(--console);
   font-size: 12px;
-  color: var(--texte-faible);
-  letter-spacing: .05em;
+  color: var(--faible);
+  letter-spacing: .12em;
+  text-transform: uppercase;
 }
 .note-voie {
-  margin: 0 0 20px 17px;
-  color: var(--texte-doux);
+  margin: 0 0 22px 18px;
+  color: var(--doux);
   font-style: italic;
-  max-width: 60ch;
+  max-width: 58ch;
 }
 
-.bloc p { max-width: 66ch; }
-.bloc ul { max-width: 66ch; padding-left: 20px; }
-.bloc li { margin-bottom: 7px; }
+.bloc p { max-width: 64ch; }
+.bloc ul { max-width: 64ch; padding-left: 20px; }
+.bloc li { margin-bottom: 8px; }
 
 .encadre {
-  background: var(--carte);
+  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau));
   border: 1px solid var(--trait);
   border-left: 3px solid var(--voie);
-  border-radius: 3px;
-  padding: 15px 18px;
-  margin: 22px 0 0;
-  color: var(--texte-doux);
-  max-width: 70ch;
+  padding: 16px 20px;
+  margin: 24px 0 0;
+  color: var(--doux);
+  max-width: 68ch;
 }
 .encadre strong { color: var(--texte); }
 
@@ -219,21 +273,32 @@ h1 {
    -------------------------------------------------------------------------- */
 .fiches {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-  gap: 14px;
-  margin-top: 18px;
+  grid-template-columns: repeat(auto-fill, minmax(316px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
 }
 
 .fiche {
-  background: var(--carte);
+  position: relative;
+  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 60%);
   border: 1px solid var(--trait);
-  border-top: 2px solid var(--voie);
-  border-radius: 3px;
-  padding: 16px 18px 18px;
+  padding: 17px 19px 19px;
   display: flex;
   flex-direction: column;
-  gap: 11px;
+  gap: 12px;
+  transition: border-color .15s ease, transform .15s ease;
 }
+/* Le liseré de voie tient lieu de reliure : c'est lui qui dit a quelle branche
+   appartient la fiche, sans repeter le nom de la voie sur chaque carte. */
+.fiche::before {
+  content: "";
+  position: absolute;
+  inset: -1px -1px auto -1px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--voie), rgba(255, 255, 255, 0) 85%);
+}
+.fiche:hover { border-color: var(--trait-fort); transform: translateY(-1px); }
+
 .fiche-tete {
   display: flex;
   align-items: baseline;
@@ -241,51 +306,50 @@ h1 {
   gap: 10px;
 }
 .fiche h3, .escalier h3 {
-  font-family: var(--titre);
-  font-weight: 500;
-  font-size: 18.5px;
-  letter-spacing: .025em;
+  font-family: var(--grave);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: .07em;
+  text-transform: uppercase;
   margin: 0;
   color: var(--voie);
-  line-height: 1.25;
+  line-height: 1.3;
 }
 .fiche p, .escalier p {
   margin: 0;
-  font-size: 15px;
-  color: var(--texte-doux);
+  font-size: 15.5px;
+  color: var(--doux);
   max-width: none;
 }
 
 .pastille {
   flex: none;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: .04em;
-  color: var(--texte-faible);
+  font-family: var(--console);
+  font-size: 11.5px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  color: var(--faible);
   border: 1px solid var(--trait-fort);
-  border-radius: 999px;
   padding: 2px 9px;
   white-space: nowrap;
 }
-.pastille.seances { color: var(--texte-doux); }
 
 .chips { display: flex; flex-wrap: wrap; gap: 6px; }
 .chip {
-  font-family: var(--mono);
-  font-size: 11.5px;
-  background: var(--carte-haut);
+  font-family: var(--console);
+  font-size: 12.5px;
+  background: rgba(255, 255, 255, .035);
   border: 1px solid var(--trait);
-  border-radius: 3px;
-  padding: 3px 8px;
+  padding: 3px 9px;
   color: var(--texte);
   font-variant-numeric: tabular-nums;
 }
 .chip .cle {
-  color: var(--texte-faible);
-  margin-right: 6px;
+  color: var(--faible);
+  margin-right: 7px;
   text-transform: uppercase;
-  font-size: 10px;
-  letter-spacing: .08em;
+  font-size: 10.5px;
+  letter-spacing: .12em;
 }
 
 /* --------------------------------------------------------------------------
@@ -294,31 +358,31 @@ h1 {
 .recherche {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 34px;
+  gap: 14px;
+  margin-bottom: 38px;
 }
 .recherche input {
   flex: 1;
   min-width: 0;
-  background: var(--carte);
+  background: var(--panneau);
   border: 1px solid var(--trait-fort);
-  border-radius: 3px;
-  padding: 11px 14px;
+  padding: 12px 15px;
   color: var(--texte);
   font-family: var(--corps);
-  font-size: 15.5px;
+  font-size: 16px;
 }
-.recherche input::placeholder { color: var(--texte-faible); }
+.recherche input::placeholder { color: var(--faible); }
 .recherche input:focus {
   outline: none;
-  border-color: #5A9DF0;
-  box-shadow: 0 0 0 3px rgba(90, 157, 240, .17);
+  border-color: var(--sabre);
+  box-shadow: 0 0 0 1px rgba(87, 171, 255, .45), 0 0 16px -4px rgba(87, 171, 255, .8);
 }
 .compte {
-  font-family: var(--mono);
-  font-size: 12px;
-  color: var(--texte-faible);
+  font-family: var(--console);
+  font-size: 12.5px;
+  color: var(--faible);
   white-space: nowrap;
+  letter-spacing: .08em;
 }
 
 /* --------------------------------------------------------------------------
@@ -326,32 +390,34 @@ h1 {
    -------------------------------------------------------------------------- */
 .grille-bref {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(auto-fit, minmax(206px, 1fr));
+  gap: 15px;
   margin-top: 4px;
 }
 .bref {
-  background: var(--carte);
+  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 70%);
   border: 1px solid var(--trait);
-  border-radius: 3px;
-  padding: 16px 18px;
+  padding: 18px 20px;
 }
 .bref .nombre {
   display: block;
-  font-family: var(--titre);
-  font-size: 36px;
+  font-family: var(--grave);
+  font-weight: 700;
+  font-size: 38px;
   line-height: 1;
-  color: #6FA8FF;
+  color: var(--sabre);
+  text-shadow: 0 0 18px rgba(87, 171, 255, .45);
 }
 .bref .quoi {
   display: block;
+  font-family: var(--console);
   font-size: 11.5px;
-  letter-spacing: .14em;
+  letter-spacing: .17em;
   text-transform: uppercase;
-  color: var(--texte-faible);
-  margin: 8px 0;
+  color: var(--faible);
+  margin: 10px 0;
 }
-.bref p { margin: 0; font-size: 14.5px; color: var(--texte-doux); max-width: none; }
+.bref p { margin: 0; font-size: 15px; color: var(--doux); max-width: none; }
 
 /* L'echelle est numerotee parce que l'ordre compte vraiment : on ne passe pas
    un palier avant d'avoir fini le precedent. */
@@ -359,108 +425,118 @@ h1 {
 .echelle li {
   counter-increment: palier;
   position: relative;
-  padding: 0 0 22px 46px;
-  border-left: 2px solid var(--trait);
-  margin-left: 14px;
+  padding: 0 0 26px 48px;
+  border-left: 1px solid var(--trait);
+  margin-left: 15px;
 }
 .echelle li:last-child { border-left-color: transparent; padding-bottom: 0; }
 .echelle li::before {
   content: counter(palier);
   position: absolute;
   left: -15px;
-  top: 0;
-  width: 28px;
-  height: 28px;
+  top: 1px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: var(--fond);
-  border: 2px solid var(--voie);
+  background: var(--vide);
+  border: 1px solid var(--voie);
   color: var(--voie);
-  font-family: var(--mono);
-  font-size: 13px;
+  font-family: var(--console);
+  font-size: 13.5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 0 14px -4px var(--voie);
 }
 .echelle h3 {
-  font-family: var(--titre);
-  font-weight: 500;
-  font-size: 19px;
-  letter-spacing: .03em;
-  margin: 1px 0 4px;
+  font-family: var(--grave);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+  margin: 3px 0 5px;
   color: var(--voie);
 }
-.echelle p { margin: 0; color: var(--texte-doux); }
+.echelle p { margin: 0; color: var(--doux); }
 
 .grille-voies {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 14px;
-  margin-bottom: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(246px, 1fr));
+  gap: 15px;
+  margin-bottom: 24px;
 }
 .voie {
-  background: var(--carte);
+  position: relative;
+  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 70%);
   border: 1px solid var(--trait);
-  border-top: 3px solid var(--voie);
-  border-radius: 3px;
-  padding: 18px;
+  padding: 20px;
+}
+.voie::before {
+  content: "";
+  position: absolute;
+  inset: -1px -1px auto -1px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--voie), rgba(255, 255, 255, 0));
 }
 .voie h3 {
-  font-family: var(--titre);
-  font-weight: 500;
-  font-size: 21px;
-  letter-spacing: .04em;
+  font-family: var(--grave);
+  font-weight: 600;
+  font-size: 19px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
   margin: 0;
   color: var(--voie);
 }
 .voie .devise {
-  margin: 2px 0 10px;
+  margin: 4px 0 12px;
   font-style: italic;
-  font-size: 14px;
-  color: var(--texte-faible);
+  font-size: 14.5px;
+  color: var(--faible);
 }
-.voie p { margin: 0; font-size: 14.5px; color: var(--texte-doux); max-width: none; }
+.voie p { margin: 0; font-size: 15px; color: var(--doux); max-width: none; }
 
 /* --------------------------------------------------------------------------
    Competences : un escalier, l'ordre d'achat est impose
    -------------------------------------------------------------------------- */
 .escalier {
   list-style: none;
-  margin: 18px 0 0;
+  margin: 20px 0 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 11px;
 }
 .escalier li {
   display: flex;
-  gap: 14px;
-  background: var(--carte);
+  gap: 15px;
+  background: linear-gradient(180deg, var(--panneau-haut), var(--panneau) 70%);
   border: 1px solid var(--trait);
   border-left: 3px solid var(--voie);
-  border-radius: 3px;
-  padding: 14px 16px;
+  padding: 15px 17px;
 }
 .escalier .rang {
   flex: none;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1px solid var(--trait-fort);
-  color: var(--texte-faible);
-  font-family: var(--mono);
-  font-size: 12px;
+  color: var(--faible);
+  font-family: var(--console);
+  font-size: 13px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.escalier .contenu { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px; }
+.escalier .contenu { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 9px; }
 
 footer {
   border-top: 1px solid var(--trait);
-  padding-top: 20px;
-  font-size: 12.5px;
-  letter-spacing: .05em;
-  color: var(--texte-faible);
+  padding-top: 22px;
+  font-family: var(--console);
+  font-size: 12px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--faible);
 }
 
 /* --------------------------------------------------------------------------
@@ -473,25 +549,27 @@ footer {
     top: 12px;
     left: 12px;
     z-index: 30;
-    background: var(--carte-haut);
+    background: var(--panneau-haut);
     border: 1px solid var(--trait-fort);
-    border-radius: 3px;
-    padding: 7px 13px;
-    font-size: 14px;
+    padding: 8px 15px;
+    font-family: var(--console);
+    font-size: 13px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
     color: var(--texte);
     cursor: pointer;
   }
   .cote {
     transform: translateX(-100%);
     transition: transform .18s ease;
-    box-shadow: 0 0 40px rgba(0, 0, 0, .6);
+    box-shadow: 0 0 46px rgba(0, 0, 0, .75);
   }
   .bascule-menu:checked ~ .cote { transform: none; }
-  main { margin-left: 0; padding: 66px 18px 70px; }
+  main { margin-left: 0; padding: 72px 18px 74px; }
   .fiches { grid-template-columns: 1fr; }
 }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .cote { transition: none; }
+  .cote, .fiche, .nav-pages a { transition: none; }
 }

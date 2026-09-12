@@ -31,6 +31,20 @@ ORDRE = ["padawan", "chevalier", "consulaire_i", "consulaire_a", "consulaire_m",
 PAGES = [("index.html", "Le fonctionnement"), ("pouvoirs.html", "Les pouvoirs"),
          ("formes.html", "Les formes"), ("competences.html", "Les compétences")]
 
+# Change de valeur a chaque retouche du style : le navigateur du joueur garde la
+# feuille en cache sinon, et il voit la page sans aucune mise en forme.
+VERS = "3"
+
+# L'embleme de l'Ordre, trace a la main : le halo de la lame vient du CSS.
+CRETE = ('<svg class="crete" viewBox="0 0 64 64" aria-hidden="true">'
+         '<g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round">'
+         '<path d="M13 37a19 19 0 0 0 38 0"/>'
+         '<path d="M13 37C10 25 12 15 16.5 9c1.8 8 4.6 14.5 8.5 18.5"/>'
+         '<path d="M51 37c3-12 1-22-3.5-28-1.8 8-4.6 14.5-8.5 18.5"/>'
+         '</g>'
+         '<path class="lame" d="M32 4l1.7 15.5V45h-3.4V19.5z" fill="currentColor"/>'
+         '</svg>')
+
 
 def e(x):
     return html.escape(str(x))
@@ -53,15 +67,16 @@ def page(nom, titre, sous_titre, sections, corps, script=""):
 <title>%(titre)s · Wiki Jedi</title>
 <meta name="description" content="%(sous)s">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap">
+<link rel="stylesheet" href="style.css?v=%(vers)s">
 </head>
 <body>
+<div class="voute" aria-hidden="true"></div>
 <input type="checkbox" id="menu" class="bascule-menu" hidden>
-<label for="menu" class="bouton-menu" aria-label="Menu">☰ Menu</label>
+<label for="menu" class="bouton-menu" aria-label="Menu">Menu</label>
 
 <aside class="cote">
-  <a class="marque" href="index.html"><span class="lame"></span><span>Wiki<strong>Jedi</strong></span></a>
+  <a class="marque" href="index.html">%(crete)s<span class="nom">Ordre Jedi<small>Archives du Temple</small></span></a>
   <nav class="nav-pages">%(liens)s</nav>
   %(sommaire)s
   <div class="pied-cote">Créé par Poté</div>
@@ -80,7 +95,7 @@ def page(nom, titre, sous_titre, sections, corps, script=""):
 </body>
 </html>
 ''' % {"titre": e(titre), "sous": e(sous_titre), "liens": liens, "sommaire": sommaire,
-       "corps": corps, "script": script}
+       "corps": corps, "script": script, "vers": VERS, "crete": CRETE}
     io.open(os.path.join(OUT, nom), "w", encoding="utf-8", newline="\n").write(doc)
 
 
