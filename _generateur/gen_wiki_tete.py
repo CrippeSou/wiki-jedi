@@ -108,7 +108,7 @@ P = {
  "healiii":     ("45 de Force", "10 s", "Rend 700 PV, sur toi."),
  "sharedhealing": ("10 de Force", "5 s", "Rend 500 PV au joueur visé, à moins de 300 unités. C'est le soin d'appoint du groupe. Rien n'est pris s'il est déjà en pleine santé."),
  "massheal":    ("5 de Force par personne soignée (10 requis)", "12 s", "Tant que tu maintiens la touche (3,5 s au plus), chaque joueur à moins de 200 unités, toi compris, récupère 30 % de ses PV maximum à chaque impulsion. Rien ne part si personne n'a besoin de soin."),
- "greaterheal": ("presque rien (5 de Force requis)", "6 s", "Soigne tes PV manquants, dans la limite de ta Force actuelle : avec 40 de Force, tu récupères au plus 40 PV."),
+ "greaterheal": ("55 de Force", "6 s", "Remet toute ta vie d'un coup. C'est le soin d'urgence, il coûte une vraie réserve. Rien n'est pris si tu es déjà en pleine santé."),
  "revive":      ("100 de Force", "5 s", "Rappelle un allié tombé, à l'endroit de son corps, avec 100 PV. Vise le corps, à moins de 250 unités. Le rechargement ne part que si la réanimation réussit."),
  "grab":        ("4 de Force par seconde", "5 s", "Saisit ce que tu vises à moins de 400 unités et le maintient tant que tu tiens la touche. Clic droit pour rapprocher, clic gauche pour éloigner : au-delà de 700 unités, la cible est projetée."),
  "sense1":      ("50 de Force", "1 s", "Tu vois les présences à travers les murs pendant 10 s, jusqu'à 800 unités, avec leur vie."),
