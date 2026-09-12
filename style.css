@@ -1,8 +1,11 @@
 /* Wiki Jedi. Cree par Pote.
    -------------------------------------------------------------------------
-   Une page calme, posee sur un papier chaud couleur sable. Beaucoup d'air,
-   coins arrondis, titres en serif chaud (Fraunces) et texte en Mulish.
-   Aucune lueur, aucune animation en boucle : la page se lit.
+   Une page calme, dans un brun chaud et sombre. Beaucoup d'air, coins
+   arrondis, titres en Lora et texte en Mulish. Aucune lueur, aucune animation
+   en boucle : la page se lit.
+
+   Fraunces a ete abandonne : la panse de son J descend sous la ligne de base
+   et se faisait couper dans les grands titres.
 
    L'en-tete ne bouge pas ; les quatre rubriques sont des onglets, juste en
    dessous, et leur contenu s'ouvre sous eux.
@@ -14,35 +17,35 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --sable:     #E8DCC8;   /* le fond de la page */
-  --sable-fonce:#DFD1B9;
-  --surface:   #F4EDE0;   /* les cartes : du papier, pas du blanc */
-  --surface2:  #EDE4D3;
-  --trait:     #D3C3A6;
-  --trait-fin: #DCCFB6;
+  --nuit:      #1E1A15;   /* le fond de la page : un brun chaud, presque noir */
+  --nuit-haut: #221D17;
+  --surface:   #2A241C;   /* les cartes */
+  --surface2:  #332C22;
+  --trait:     #433A2C;
+  --trait-fin: #372F25;
 
-  --encre:      #2B2419;
-  --encre-doux: #6A5E4C;
-  --encre-pale: #94876F;
+  --encre:      #F2EADC;  /* le texte fort */
+  --encre-doux: #C0B4A1;
+  --encre-pale: #8E8272;
 
-  --sceau:      #4F7A55;   /* le vert de l'Ordre, en sourdine */
-  --sceau-pale: #DFE7D8;
+  --sceau:      #8FB98C;  /* le vert de l'Ordre, en sourdine */
+  --sceau-pale: #26301F;
 
   --voie: var(--sceau);
 
-  --serif: "Fraunces", Georgia, "Times New Roman", serif;
+  --serif: "Lora", Georgia, "Times New Roman", serif;
   --sans:  "Mulish", "Segoe UI", Helvetica, Arial, sans-serif;
 
   --r-carte: 18px;
   --r-doux:  10px;
-  --ombre:   0 1px 2px rgba(43, 36, 25, .05), 0 10px 26px -18px rgba(43, 36, 25, .35);
+  --ombre:   0 1px 2px rgba(0, 0, 0, .25), 0 12px 28px -18px rgba(0, 0, 0, .8);
   --colonne: 940px;
 }
 
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--sable);
+  background: var(--nuit);
   color: var(--encre-doux);
   font-family: var(--sans);
   font-size: 17px;
@@ -74,10 +77,10 @@ body {
 
 .titre-site {
   font-family: var(--serif);
-  font-optical-sizing: auto;
-  font-size: clamp(2.4rem, 6vw, 3.9rem);
-  font-weight: 300;
-  line-height: 1.05;
+  font-size: clamp(2.3rem, 5.6vw, 3.6rem);
+  font-weight: 400;
+  line-height: 1.24;
+  padding-bottom: .08em;
   color: var(--encre);
   margin-bottom: .5rem;
 }
@@ -85,7 +88,6 @@ body {
 .devise {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 300;
   font-size: 1.15rem;
   color: var(--encre-doux);
   max-width: 34ch;
@@ -106,7 +108,7 @@ body {
   flex-wrap: wrap;
   gap: .3rem;
   padding: .8rem 1rem;
-  background: rgba(232, 220, 200, .93);
+  background: rgba(30, 26, 21, .93);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--trait-fin);
@@ -121,8 +123,8 @@ body {
   white-space: nowrap;
   transition: background .18s, color .18s;
 }
-.onglets a:hover { background: rgba(43, 36, 25, .06); color: var(--encre); }
-.onglets a.actif { background: var(--encre); color: var(--sable); }
+.onglets a:hover { background: rgba(242, 234, 220, .07); color: var(--encre); }
+.onglets a.actif { background: var(--encre); color: var(--nuit); font-weight: 700; }
 
 /* Le fondu a l'ouverture d'un onglet : discret, et jamais un deplacement. */
 .panneau.entre { animation: fondu .32s ease both; }
@@ -134,9 +136,10 @@ body {
 .tete-rubrique { max-width: var(--colonne); margin: 0 auto; padding: 3.4rem 2rem 0; }
 .titre-rubrique {
   font-family: var(--serif);
-  font-size: clamp(1.9rem, 4.4vw, 2.8rem);
-  font-weight: 300;
-  line-height: 1.14;
+  font-size: clamp(1.8rem, 4.2vw, 2.6rem);
+  font-weight: 400;
+  line-height: 1.24;
+  padding-bottom: .06em;
   color: var(--encre);
   margin-bottom: 1rem;
   text-wrap: balance;
@@ -144,20 +147,6 @@ body {
 .intro-rubrique { font-size: 1.08rem; max-width: 66ch; margin-bottom: 1.8rem; }
 .intro-rubrique strong { color: var(--encre); font-weight: 700; }
 .accroche { font-size: 1.15rem; margin-bottom: 2.2rem; }
-
-.ancres { display: flex; flex-wrap: wrap; gap: .45rem; }
-.ancres a {
-  font-size: .88rem;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--voie);
-  background: var(--surface);
-  border: 1px solid var(--trait);
-  border-radius: 999px;
-  padding: .28rem .9rem;
-  transition: border-color .18s, background .18s;
-}
-.ancres a:hover { border-color: var(--voie); background: var(--surface2); }
 
 /* --------------------------------------------------------------------------
    Raccourcis de l'accueil
@@ -221,9 +210,9 @@ section {
   margin-top: 2rem;
   font-size: 1rem;
   max-width: 68ch;
-  color: #3C5740;
+  color: #C3D9BE;
 }
-.note strong { color: #243B28; font-weight: 700; }
+.note strong { color: var(--encre); font-weight: 700; }
 
 /* --------------------------------------------------------------------------
    Cartes (pouvoirs, formes)
@@ -304,7 +293,7 @@ section {
 .recherche input:focus {
   outline: none;
   border-color: var(--sceau);
-  box-shadow: 0 0 0 3px rgba(79, 122, 85, .16);
+  box-shadow: 0 0 0 3px rgba(143, 185, 140, .2);
 }
 .compte { font-size: .9rem; color: var(--encre-pale); white-space: nowrap; }
 
@@ -358,7 +347,6 @@ section {
 .voie .devise-voie {
   font-family: var(--serif);
   font-style: italic;
-  font-weight: 300;
   font-size: 1rem;
   color: var(--voie);
   margin: .15rem 0 .9rem;
@@ -382,8 +370,8 @@ section {
 .info p { font-size: .96rem; line-height: 1.62; }
 /* Les deux barres du HUD gardent leur couleur reelle : bleu ce qu'on lance,
    rouge ce qu'on subit. C'est une information, pas une decoration. */
-.info.tonalite-bleu { border-top: 3px solid #4F7BB5; }
-.info.tonalite-rouge { border-top: 3px solid #B05348; }
+.info.tonalite-bleu { border-top: 3px solid #8CB0E0; }
+.info.tonalite-rouge { border-top: 3px solid #D9776B; }
 
 /* --------------------------------------------------------------------------
    Competences : l'ordre d'achat est impose, donc un escalier numerote
@@ -460,5 +448,5 @@ footer {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .panneau.entre { animation: none; }
-  .carte, .raccourci, .onglets a, .ancres a { transition: none; }
+  .carte, .raccourci, .onglets a { transition: none; }
 }

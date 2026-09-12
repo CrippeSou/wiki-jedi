@@ -18,24 +18,24 @@
 
 # Change de valeur a chaque retouche du style ou du script : sans ca, le
 # navigateur garde l'ancienne feuille en cache et la page s'affiche nue.
-VERS = "9"
+VERS = "10"
 
 # =============================================================================
 # Couleurs et libelles des voies
 # =============================================================================
 VOIES = {
- "padawan":      ("Padawan Jedi",        "#6E7A88", "Le tronc commun, avant toute spécialisation."),
- "chevalier":    ("Chevalier Jedi",      "#5F7283", "Ce qu'un Chevalier ajoute au tronc commun."),
- "consulaire_i": ("Consulaire · Initié", "#4E8F6A", "L'esprit ouvert à la Force : soigner, soutenir, tenir le groupe debout."),
- "consulaire_a": ("Consulaire · Avancé", "#3F7F5B", ""),
- "consulaire_m": ("Consulaire · Maître", "#33704E", ""),
- "gardien_i":    ("Gardien · Initié",    "#4F7BB5", "Le rempart de l'Ordre : encaisser, protéger, contenir."),
- "gardien_a":    ("Gardien · Avancé",    "#416BA3", ""),
- "gardien_m":    ("Gardien · Maître",    "#355B90", ""),
- "sentinelle_i": ("Sentinelle · Initié", "#9C7C2E", "La lame qui frappe la première : vitesse, discrétion, information."),
- "sentinelle_a": ("Sentinelle · Avancé", "#8B6D22", ""),
- "sentinelle_m": ("Sentinelle · Maître", "#7A5E1A", ""),
- "conseil":      ("Conseil Jedi",        "#A8862A", "Réservé au Conseil, au Maître de l'Ordre et au Grand Maître."),
+ "padawan":      ("Padawan Jedi",        "#A6B2BE", "Le tronc commun, avant toute spécialisation."),
+ "chevalier":    ("Chevalier Jedi",      "#B7C3CE", "Ce qu'un Chevalier ajoute au tronc commun."),
+ "consulaire_i": ("Consulaire · Initié", "#7FC49C", "L'esprit ouvert à la Force : soigner, soutenir, tenir le groupe debout."),
+ "consulaire_a": ("Consulaire · Avancé", "#6EB78C", ""),
+ "consulaire_m": ("Consulaire · Maître", "#5FA87D", ""),
+ "gardien_i":    ("Gardien · Initié",    "#8CB0E0", "Le rempart de l'Ordre : encaisser, protéger, contenir."),
+ "gardien_a":    ("Gardien · Avancé",    "#7BA0D6", ""),
+ "gardien_m":    ("Gardien · Maître",    "#6A90C9", ""),
+ "sentinelle_i": ("Sentinelle · Initié", "#D7B978", "La lame qui frappe la première : vitesse, discrétion, information."),
+ "sentinelle_a": ("Sentinelle · Avancé", "#C9A960", ""),
+ "sentinelle_m": ("Sentinelle · Maître", "#BB9A4C", ""),
+ "conseil":      ("Conseil Jedi",        "#E0C68A", "Réservé au Conseil, au Maître de l'Ordre et au Grand Maître."),
 }
 ORDRE = ["padawan", "chevalier", "consulaire_i", "consulaire_a", "consulaire_m",
          "gardien_i", "gardien_a", "gardien_m",
@@ -68,16 +68,15 @@ def fiche(nom, seances, chips, texte, couleur):
 </article>''' % (couleur, e(nom), e(sea), ch, texte)
 
 
-def tete_rubrique(titre, intro, ancres):
-    """Titre de la rubrique, son chapeau, et les raccourcis vers chaque palier
-    (12 sections sur les pouvoirs : sans eux on fait defiler a l'aveugle)."""
-    puces = "".join('<a href="#%s" style="--voie:%s">%s</a>' % (a, c, e(l)) for a, l, c in ancres)
+def tete_rubrique(titre, intro):
+    """Titre de la rubrique et son chapeau. La rangee de pastilles vers chaque
+    palier a ete RETIREE : les en-tetes de section numerotes suffisent, et elle
+    encombrait le haut de chaque rubrique."""
     return '''      <header class="tete-rubrique">
         <h2 class="titre-rubrique">%s</h2>
         <p class="intro-rubrique">%s</p>
-        <nav class="ancres">%s</nav>
       </header>
-''' % (e(titre), e(intro), puces)
+''' % (e(titre), e(intro))
 
 
 def champ(placeholder):
@@ -111,11 +110,11 @@ ACCUEIL = '''      <header class="tete-rubrique">
 %s
         <p class="intro-section">Un Jedi monte <strong>deux arbres</strong> : celui des pouvoirs de Force et celui des formes de combat. Les deux fonctionnent de la même façon, par paliers, et le passage d'un palier au suivant ne dépend pas que de toi.</p>
         <ol class="echelle">
-          <li style="--voie:#6E7A88"><h3>Padawan</h3><p>La branche Padawan s'ouvre à tout Jedi. Saut, Concentration, Extinction, Brèche.</p></li>
-          <li style="--voie:#5F7283"><h3>Chevalier</h3><p>Le grade de Chevalier ajoute la branche Chevalier : Lancer, Poussée, Attraction, Saut II.</p></li>
-          <li style="--voie:#4E8F6A"><h3>Initié de ta voie</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le premier palier de ta spécialisation.</p></li>
-          <li style="--voie:#8B6D22"><h3>Avancé</h3><p>Ce palier ne s'ouvre plus tout seul : le Conseil te l'accorde depuis l'onglet Gérance.</p></li>
-          <li style="--voie:#A8862A"><h3>Maître</h3><p>Même chose, accordé par le Conseil, une fois le palier Avancé terminé.</p></li>
+          <li style="--voie:#A6B2BE"><h3>Padawan</h3><p>La branche Padawan s'ouvre à tout Jedi. Saut, Concentration, Extinction, Brèche.</p></li>
+          <li style="--voie:#B7C3CE"><h3>Chevalier</h3><p>Le grade de Chevalier ajoute la branche Chevalier : Lancer, Poussée, Attraction, Saut II.</p></li>
+          <li style="--voie:#7FC49C"><h3>Initié de ta voie</h3><p>La whitelist de Gardien, Sentinelle ou Érudit ouvre le premier palier de ta spécialisation.</p></li>
+          <li style="--voie:#C9A960"><h3>Avancé</h3><p>Ce palier ne s'ouvre plus tout seul : le Conseil te l'accorde depuis l'onglet Gérance.</p></li>
+          <li style="--voie:#E0C68A"><h3>Maître</h3><p>Même chose, accordé par le Conseil, une fois le palier Avancé terminé.</p></li>
         </ol>
         <div class="note"><strong>Deux conditions pour ouvrir un palier :</strong> avoir la whitelist du palier, <em>et</em> avoir terminé le palier précédent en entier. À l'intérieur d'un palier, tu apprends ce que tu veux, dans l'ordre que tu veux.</div>
       </section>
@@ -135,9 +134,9 @@ ACCUEIL = '''      <header class="tete-rubrique">
 %s
         <p class="intro-section">On ne monte que dans <strong>une</strong> voie. Dès qu'un palier t'est accordé, les deux autres se ferment ; pour en changer, le Conseil doit d'abord te retirer tes paliers.</p>
         <div class="grille-voies">
-          <div class="voie" style="--voie:#4E8F6A"><h3>Consulaire</h3><p class="devise-voie">L'esprit ouvert à la Force</p><p>Le soin et le soutien : Soin I à III, Soin d'autrui, Soin de masse, Réanimation, Grand soin. C'est la voie qui tient un groupe debout.</p></div>
-          <div class="voie" style="--voie:#4F7BB5"><h3>Gardien</h3><p class="devise-voie">Le rempart de l'Ordre</p><p>Encaisser et contenir : Immunité, Riposte, Barrière, Mur de Force, Jugements, Agenouillement. La voie qui reste debout au milieu.</p></div>
-          <div class="voie" style="--voie:#8B6D22"><h3>Sentinelle</h3><p class="devise-voie">La lame qui frappe la première</p><p>Vitesse et information : Camouflage, Perception, Adrénaline, Téléportation, Rempart, Tourbillon. La voie qui choisit ses combats.</p></div>
+          <div class="voie" style="--voie:#7FC49C"><h3>Consulaire</h3><p class="devise-voie">L'esprit ouvert à la Force</p><p>Le soin et le soutien : Soin I à III, Soin d'autrui, Soin de masse, Réanimation, Grand soin. C'est la voie qui tient un groupe debout.</p></div>
+          <div class="voie" style="--voie:#8CB0E0"><h3>Gardien</h3><p class="devise-voie">Le rempart de l'Ordre</p><p>Encaisser et contenir : Immunité, Riposte, Barrière, Mur de Force, Jugements, Agenouillement. La voie qui reste debout au milieu.</p></div>
+          <div class="voie" style="--voie:#C9A960"><h3>Sentinelle</h3><p class="devise-voie">La lame qui frappe la première</p><p>Vitesse et information : Camouflage, Perception, Adrénaline, Téléportation, Rempart, Tourbillon. La voie qui choisit ses combats.</p></div>
         </div>
       </section>
 
@@ -173,14 +172,13 @@ ACCUEIL = '''      <header class="tete-rubrique">
 # =============================================================================
 def rubrique_arbre(source, titre, intro, place, compter, fabrique):
     par_cle = {cle: noeuds for cle, _, noeuds in source}
-    blocs, ancres, n = [], [], 0
+    blocs, n = [], 0
     for cle in ORDRE:
         noeuds = par_cle.get(cle)
         if not noeuds:
             continue
         libelle, couleur, note = VOIES[cle]
         n += 1
-        ancres.append((cle, libelle, couleur))
         fiches = "".join(fabrique(noeud, couleur) for noeud in noeuds)
         blocs.append('''      <section class="section-voie" id="%s" style="--voie:%s">
 %s
@@ -190,7 +188,7 @@ def rubrique_arbre(source, titre, intro, place, compter, fabrique):
                        entete_section(n, libelle, compter(len(noeuds))),
                        ('        <p class="intro-section">%s</p>' % e(note)) if note else "",
                        fiches))
-    return tete_rubrique(titre, intro, ancres) + champ(place) + "".join(blocs)
+    return tete_rubrique(titre, intro) + champ(place) + "".join(blocs)
 
 
 def fiche_pouvoir(noeud, couleur):
@@ -237,7 +235,7 @@ EFFETS = {
  "guard": "garde", "force_regen": "régénération de Force", "force_max": "Force maximum",
  "force_cost": "coût des pouvoirs",
 }
-COULEUR_COMP = {"tronc": "#6E7A88", "gardien": "#4F7BB5", "sentinelle": "#8B6D22", "consulaire": "#4E8F6A"}
+COULEUR_COMP = {"tronc": "#A6B2BE", "gardien": "#8CB0E0", "sentinelle": "#C9A960", "consulaire": "#7FC49C"}
 
 
 def lisible(effets):
@@ -256,11 +254,10 @@ def lisible(effets):
     return out
 
 
-blocs, ancres, n = [], [], 0
+blocs, n = [], 0
 for cle, label, noeuds in COMPETENCES:
-    couleur = COULEUR_COMP.get(cle, "#6E7A88")
+    couleur = COULEUR_COMP.get(cle, "#A6B2BE")
     n += 1
-    ancres.append((cle, label, couleur))
     items = []
     for i, (nom, desc, points, prix, effets) in enumerate(noeuds, 1):
         eff = "".join('<span class="chip">%s</span>' % e(x) for x in lisible(effets))
@@ -282,8 +279,7 @@ for cle, label, noeuds in COMPETENCES:
 
 COMPETENCES_HTML = tete_rubrique(
     "Les compétences",
-    "Des bonus permanents, qui agissent en continu sans rien lancer, tant que tu es sur un job Jedi. Les points viennent de ton niveau ; chaque compétence coûte en plus des dataris et s'achète dans l'ordre. Une voie complète demande 45 points et 110 000 dataris, le tronc 6 points et 13 000.",
-    ancres) + "".join(blocs)
+    "Des bonus permanents, qui agissent en continu sans rien lancer, tant que tu es sur un job Jedi. Les points viennent de ton niveau ; chaque compétence coûte en plus des dataris et s'achète dans l'ordre. Une voie complète demande 45 points et 110 000 dataris, le tronc 6 points et 13 000.") + "".join(blocs)
 
 
 # =============================================================================
@@ -309,18 +305,18 @@ doc = '''<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Wiki Jedi</title>
 <meta name="description" content="Le wiki des Jedi du Clone Wars RP Cosmos : pouvoirs de Force, formes de combat, compétences et progression.">
-<meta name="theme-color" content="#E8DCC8">
-<link rel="icon" type="image/png" href="logo-encre.png">
-<style>html,body{background:#E8DCC8;}</style>
+<meta name="theme-color" content="#1E1A15">
+<link rel="icon" type="image/png" href="logo-clair.png">
+<style>html,body{background:#1E1A15;}</style>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Mulish:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=%(vers)s">
 </head>
 <body>
 
 <header class="chapeau">
-  <div class="embleme"><img src="logo-encre.png" alt="Emblème de l'Ordre Jedi"></div>
+  <div class="embleme"><img src="logo-clair.png" alt="Emblème de l'Ordre Jedi"></div>
   <h1 class="titre-site">Ordre Jedi</h1>
   <p class="sous-titre">Wiki des Jedi · Clone Wars RP Cosmos</p>
   <p class="devise">Il n'y a pas d'émotion, il y a la paix</p>
@@ -332,7 +328,7 @@ doc = '''<!doctype html>
 %(panneaux)s</main>
 
 <footer>
-  <span class="pied-embleme"><img src="logo-encre.png" alt=""></span>
+  <span class="pied-embleme"><img src="logo-clair.png" alt=""></span>
   <span>Créé par Poté</span>
 </footer>
 
@@ -353,7 +349,7 @@ for fichier, cle, titre in [("pouvoirs.html", "pouvoirs", "les pouvoirs"),
 <head>
 <meta charset="utf-8">
 <title>Wiki Jedi</title>
-<link rel="icon" type="image/png" href="logo-encre.png">
+<link rel="icon" type="image/png" href="logo-clair.png">
 <link rel="canonical" href="index.html#%(cle)s">
 <meta http-equiv="refresh" content="0; url=index.html#%(cle)s">
 </head>
