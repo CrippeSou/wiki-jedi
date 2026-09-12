@@ -101,7 +101,7 @@
       </div>
         <p class="intro-section">Chaque pouvoir coûte de la Force. Ta réserve remonte seule quand tu as les pieds au sol, et deux pouvoirs vivent entièrement de cette mécanique.</p>
         <div class="grille-info">
-          <div class="info"><h4>Concentration</h4><p>Rend de la Force d'un coup, au prix d'un ralentissement le temps de méditer. On médite à l'abri, pas au milieu d'un échange.</p></div>
+          <div class="info"><h4>Concentration</h4><p>Rend de la Force petit à petit pendant que tu médites, et tu restes ralenti tout ce temps. On médite à l'abri, pas au milieu d'un échange. À Force pleine, elle ne fait rien et ne consomme pas son rechargement.</p></div>
           <div class="info"><h4>Immunité</h4><p>Ne te protège que tant que ta réserve reste au-dessus d'un seuil : 50 % au premier niveau, 35 % au deuxième, 20 % au troisième. Vider sa Force, c'est redevenir vulnérable.</p></div>
         </div>
       </section>
@@ -116,7 +116,8 @@
         <p class="intro-section">Pendant un combat, l'interface te dit tout ce dont tu as besoin. Apprends à la lire, elle ne ment pas.</p>
         <div class="grille-info">
           <div class="info"><h4>La roue</h4><p>En bas de l'écran : tes pouvoirs actifs et le compte à rebours de celui que tu vises. Chaque pouvoir a son propre rechargement.</p></div>
-          <div class="info tonalite-bleu"><h4>Barre bleue</h4><p>Un effet que tu as lancé et qui dure : Camouflage, Perception, Riposte, Tourbillon.</p></div>
+          <div class="info"><h4>Un pouvoir raté ne coûte rien</h4><p>Personne à portée, cible déjà soignée ou déjà en feu, Force insuffisante, jauge déjà pleine : le pouvoir ne fait rien, et il ne prend ni Force ni rechargement. Le rechargement part dès qu'il réussit.</p></div>
+          <div class="info tonalite-bleu"><h4>Barre bleue</h4><p>Un effet que tu as lancé et qui dure : Camouflage, Perception, Riposte, Tourbillon, Concentration.</p></div>
           <div class="info tonalite-rouge"><h4>Barre rouge</h4><p>Un effet que tu subis : étourdissement, aveuglement, agenouillement forcé, pris dans un tourbillon.</p></div>
           <div class="info tonalite-bleu"><h4>Éclat bleu</h4><p>Ton Immunité vient d'absorber un pouvoir ennemi.</p></div>
         </div>
@@ -141,20 +142,20 @@
         <p class="intro-section">Le tronc commun, avant toute spécialisation.</p>
         <div class="grille-cartes"><article class="carte" style="--voie:#A6B2BE">
   <div class="carte-tete"><h3>Saut</h3><span class="badge">Gratuit</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
-  <p>Bond en avant propulsé par la Force. Une onde de choc part au décollage (25 dégâts) et à l'arrivée (50 dégâts) dans un rayon de 200. Aucune chute ne te blesse pendant les 15 s qui suivent.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
+  <p>Bond en avant propulsé par la Force, depuis le sol. Aucune chute ne te blesse pendant les 15 s qui suivent.</p>
 </article><article class="carte" style="--voie:#A6B2BE">
   <div class="carte-tete"><h3>Concentration</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Rend 25 points de Force. Tu es ralenti de moitié pendant 15 s : on médite à l'abri, pas au milieu d'un échange.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
+  <p>Rend 25 points de Force petit à petit pendant 5 s, et tu es ralenti de moitié tout ce temps. Si tu meurs pendant la concentration, le reste est perdu. À Force pleine, rien ne se passe.</p>
 </article><article class="carte" style="--voie:#A6B2BE">
   <div class="carte-tete"><h3>Extinction</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
-  <p>Éteint les flammes sur la cible visée.</p>
+  <p>Éteint les flammes sur ce que tu vises, à moins de 300 unités. Si tu ne vises rien en feu mais que tu brûles, c'est toi qui es éteint.</p>
 </article><article class="carte" style="--voie:#A6B2BE">
   <div class="carte-tete"><h3>Brèche</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
-  <p>Ouvre une porte verrouillée à moins de 150 unités. Rien ne se consomme si tu ne vises pas une porte.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit (10 de Force requis)</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
+  <p>Ouvre une porte verrouillée à moins de 150 unités. Rien ne se passe si tu ne vises pas une porte.</p>
 </article></div>
       </section>      <section class="section-voie" id="chevalier" style="--voie:#B7C3CE">
       <div class="tete-section">
@@ -166,20 +167,20 @@
         <p class="intro-section">Ce qu&#x27;un Chevalier ajoute au tronc commun.</p>
         <div class="grille-cartes"><article class="carte" style="--voie:#B7C3CE">
   <div class="carte-tete"><h3>Lancer</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
-  <p>Projette l'objet que tu tiens par la Force.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>5 de Force par seconde de vol</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <p>Lance ton sabre, jusqu'à 800 unités. Il revient quand tu relâches la touche, quand tu rappuies ou quand ta Force est vide.</p>
 </article><article class="carte" style="--voie:#B7C3CE">
   <div class="carte-tete"><h3>Attraction</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
-  <p>Attire vers toi ce que tu vises, jusqu'à 200 unités.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force (20 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <p>Attire vers toi ce qui est devant, jusqu'à 200 unités. Rien n'est pris si rien ne bouge.</p>
 </article><article class="carte" style="--voie:#B7C3CE">
   <div class="carte-tete"><h3>Poussée</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
-  <p>Repousse devant toi, jusqu'à 800 unités. Aucun dégât : c'est du déplacement.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force (20 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <p>Repousse ce qui est devant toi, jusqu'à 800 unités. Aucun dégât : c'est du déplacement. Rien n'est pris si rien ne bouge.</p>
 </article><article class="carte" style="--voie:#B7C3CE">
   <div class="carte-tete"><h3>Saut II</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
-  <p>Même bond, plus haut. Utile pour franchir un mur ou décrocher d'un combat.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
+  <p>Même bond, bien plus haut. Utile pour franchir un mur ou décrocher d'un combat.</p>
 </article></div>
       </section>      <section class="section-voie" id="consulaire_i" style="--voie:#7FC49C">
       <div class="tete-section">
@@ -191,16 +192,16 @@
         <p class="intro-section">L&#x27;esprit ouvert à la Force : soigner, soutenir, tenir le groupe debout.</p>
         <div class="grille-cartes"><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Concentration avancée</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Rend 40 points de Force, avec un ralentissement un peu plus court (10 s).</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
+  <p>Rend 40 points de Force en seulement 3 s, avec un ralentissement un peu plus léger.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Soin</h3><span class="badge">1 séance</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>4 s</span></div>
   <p>Rend 200 PV, sur toi. Sans effet si tu es déjà au maximum, et rien n'est consommé dans ce cas.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Soin d&#x27;autrui</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
-  <p>Rend 500 PV au joueur visé, à moins de 300 unités. C'est le soin d'appoint du groupe.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
+  <p>Rend 500 PV au joueur visé, à moins de 300 unités. C'est le soin d'appoint du groupe. Rien n'est pris s'il est déjà en pleine santé.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Attraction II</h3><span class="badge">1 séance</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
@@ -211,8 +212,8 @@
   <p>Repousse deux fois plus fort.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Saisie</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>4 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>5 s entre deux prises</span></div>
-  <p>Soulève une cible à distance (600) et la maintient tant que tu tiens la touche.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>4 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
+  <p>Saisit ce que tu vises à moins de 400 unités et le maintient tant que tu tiens la touche. Clic droit pour rapprocher, clic gauche pour éloigner : au-delà de 700 unités, la cible est projetée.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Perception</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
@@ -220,23 +221,23 @@
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Barrière</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Bouclier personnel qui encaisse à ta place.</p>
+  <p>Bouclier personnel pendant 10 s : tu ne subis plus que 20 % des dégâts. Ta Force ne remonte pas tant qu'il tient.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Barrière de Force : Mur</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture</span><span class="chip"><span class="cle">Rechargement</span>10 s après la fin</span></div>
-  <p>Mur de Force devant toi. Ce qui vient du dehors ne blesse plus ceux qui sont derrière, et chaque coup absorbé te coûte de la Force. Il tient 30 s au maximum.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture (40 requis)</span><span class="chip"><span class="cle">Rechargement</span>8 s après la fin</span></div>
+  <p>Dresse un mur de Force devant toi tant que tu tiens la touche, 30 s au maximum. Chaque tir de PNJ qui le frappe te coûte 1 point de Force. Le rechargement part quand le mur tombe.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Jugement I</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
-  <p>Éclair de jugement bleu, 40 dégâts par impulsion, dans un cône de 14° jusqu'à 700 unités. Se maintient 3,5 s.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion (10 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <p>Éclair de jugement bleu tant que tu tiens la touche, 3,5 s au maximum : 40 dégâts par impulsion, dans un cône étroit jusqu'à 700 unités. Les impulsions coûtent même si rien n'est touché.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Démantèlement</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
-  <p>Se charge en maintenant la touche : jusqu'à 350 dégâts sur ce que tu vises à moins de 400 unités. Plus tu charges, plus ça frappe fort.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force au coup (50 requis pour charger)</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
+  <p>Maintiens la touche pour charger, relâche pour frapper : de 100 à 350 dégâts selon la charge, sur tous les joueurs et PNJ dans un cône devant toi, à moins de 400 unités. Rien n'est pris si le coup ne touche personne.</p>
 </article><article class="carte" style="--voie:#7FC49C">
   <div class="carte-tete"><h3>Soin de masse</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>5 de Force par personne</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
-  <p>Soigne 30 % des PV maximum de chaque joueur dans un rayon de 200, et continue pendant 3,5 s tant que tu maintiens.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>5 de Force par personne soignée (10 requis)</span><span class="chip"><span class="cle">Rechargement</span>12 s</span></div>
+  <p>Tant que tu maintiens la touche (3,5 s au plus), chaque joueur à moins de 200 unités, toi compris, récupère 30 % de ses PV maximum à chaque impulsion. Rien ne part si personne n'a besoin de soin.</p>
 </article></div>
       </section>      <section class="section-voie" id="consulaire_a" style="--voie:#6EB78C">
       <div class="tete-section">
@@ -253,7 +254,7 @@
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Réanimation</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>100 de Force</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
-  <p>Rappelle un allié tombé, à l'endroit de son corps. Vise le corps. Le rechargement ne part que si la réanimation réussit.</p>
+  <p>Rappelle un allié tombé, à l'endroit de son corps, avec 100 PV. Vise le corps, à moins de 250 unités. Le rechargement ne part que si la réanimation réussit.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Soin II</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
@@ -261,35 +262,35 @@
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Embrasement</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
-  <p>Embrase la cible visée à moins de 200 unités.</p>
+  <p>Embrase le joueur ou le PNJ visé à moins de 200 unités. Rien n'est pris si la cible brûle déjà.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Tourbillon</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>20 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>16 s</span></div>
   <p>Pose un vortex au sol jusqu'à 800 unités. Il aspire tout, fait monter les gens dans les airs pendant 3 s, inflige 200 dégâts au sommet puis les éjecte. L'Immunité ne protège pas de ce pouvoir.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Immunité</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>passif</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
-  <p>Tant que ta Force dépasse 50 %, les pouvoirs de Force lancés sur toi n'ont aucun effet et t'en rendent un peu. Rien à activer : il suffit de l'apprendre.</p>
+  <p>Tant que ta Force dépasse 50 %, les pouvoirs de Force lancés sur toi n'ont aucun effet et te rendent 1 point de Force. Il faut porter un job Jedi. Rien à activer : il suffit de l'apprendre. Ne protège ni du Tourbillon, ni des Agenouillements, ni du Rempart, ni de l'Embrasement.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Barrière de Force : Dôme</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture</span><span class="chip"><span class="cle">Rechargement</span>10 s après la fin</span></div>
-  <p>Dôme de protection autour de toi. Les tirs venus de l'extérieur n'atteignent plus ceux qui sont dedans, à ton prix en Force. Il tient 30 s au maximum.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture (40 requis), puis 1 à 10 par coup absorbé</span><span class="chip"><span class="cle">Rechargement</span>8 s après la fin</span></div>
+  <p>Dôme d'environ 166 unités de rayon autour de toi, tant que tu tiens la touche (30 s au maximum). Les coups venus de l'extérieur n'atteignent plus ceux qui sont dedans, joueurs et PNJ, et chaque coup absorbé te coûte de la Force. Ce qui se passe à l'intérieur n'est pas protégé.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Assaut télékinétique</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
-  <p>Arrache un rocher et le projette sur ta cible.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
+  <p>Arrache un rocher et le tient tant que tu maintiens la touche ; relâche pour le projeter. 1500 dégâts à l'impact.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Jugement II</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion (10 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair vert, 55 dégâts par impulsion.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Agenouillement [Ciblé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
-  <p>Force la cible visée à rester à genoux tant que tu maintiens la touche.</p>
+  <p>Force le joueur visé, à moins de 300 unités, à rester à genoux tant que tu maintiens la touche.</p>
 </article><article class="carte" style="--voie:#6EB78C">
   <div class="carte-tete"><h3>Rempart</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>24 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Rempart : tu échanges ta position avec un joueur proche (300 unités).</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>24 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
+  <p>Rempart : tu échanges ta position avec un joueur proche, à moins de 300 unités, sans avoir à le viser.</p>
 </article></div>
       </section>      <section class="section-voie" id="consulaire_m" style="--voie:#5FA87D">
       <div class="tete-section">
@@ -301,8 +302,8 @@
 
         <div class="grille-cartes"><article class="carte" style="--voie:#5FA87D">
   <div class="carte-tete"><h3>Grand soin</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
-  <p>Remet toute ta vie d'un coup. C'est le soin d'urgence, il coûte une vraie réserve.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>presque rien (5 de Force requis)</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
+  <p>Soigne tes PV manquants, dans la limite de ta Force actuelle : avec 40 de Force, tu récupères au plus 40 PV.</p>
 </article><article class="carte" style="--voie:#5FA87D">
   <div class="carte-tete"><h3>Soin III</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
@@ -318,19 +319,19 @@
 </article><article class="carte" style="--voie:#5FA87D">
   <div class="carte-tete"><h3>Grande poussée</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
-  <p>Souffle large : tout ce qui est devant toi part à 900 unités, très vite. Aucun dégât direct.</p>
+  <p>Souffle large : tout ce qui est devant toi, jusqu'à 900 unités, part très vite. Aucun dégât direct.</p>
 </article><article class="carte" style="--voie:#5FA87D">
   <div class="carte-tete"><h3>Grande attraction</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Attire violemment tout ce qui est devant toi, jusqu'à 900 unités.</p>
 </article><article class="carte" style="--voie:#5FA87D">
   <div class="carte-tete"><h3>Jugement III</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion (10 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair violet, 70 dégâts par impulsion.</p>
 </article><article class="carte" style="--voie:#5FA87D">
   <div class="carte-tete"><h3>Agenouillement</h3><span class="badge">5 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
-  <p>Met à genoux tout le monde dans un rayon de 300 pendant 6 s.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>12 s</span></div>
+  <p>Met à genoux tous les joueurs à moins de 300 unités pendant 6 s, alliés compris. Rien n'est pris si personne n'est à portée.</p>
 </article></div>
       </section>      <section class="section-voie" id="gardien_i" style="--voie:#8CB0E0">
       <div class="tete-section">
@@ -342,8 +343,8 @@
         <p class="intro-section">Le rempart de l&#x27;Ordre : encaisser, protéger, contenir.</p>
         <div class="grille-cartes"><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Concentration avancée</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Rend 40 points de Force, avec un ralentissement un peu plus court (10 s).</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
+  <p>Rend 40 points de Force en seulement 3 s, avec un ralentissement un peu plus léger.</p>
 </article><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Attraction II</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
@@ -354,24 +355,24 @@
   <p>Repousse deux fois plus fort.</p>
 </article><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Riposte</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>12 s</span></div>
-  <p>Pendant 10 s, tu renvoies la moitié des dégâts reçus à celui qui te frappe, et tu n'en encaisses qu'une petite partie.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
+  <p>Pendant 10 s, tu ne subis plus que 15 % des dégâts, et la moitié des dégâts reçus est renvoyée à celui qui te frappe.</p>
 </article><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Immunité</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>passif</span><span class="chip"><span class="cle">Rechargement</span>aucun</span></div>
-  <p>Tant que ta Force dépasse 50 %, les pouvoirs de Force lancés sur toi n'ont aucun effet et t'en rendent un peu. Rien à activer : il suffit de l'apprendre.</p>
+  <p>Tant que ta Force dépasse 50 %, les pouvoirs de Force lancés sur toi n'ont aucun effet et te rendent 1 point de Force. Il faut porter un job Jedi. Rien à activer : il suffit de l'apprendre. Ne protège ni du Tourbillon, ni des Agenouillements, ni du Rempart, ni de l'Embrasement.</p>
 </article><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Barrière</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Bouclier personnel qui encaisse à ta place.</p>
+  <p>Bouclier personnel pendant 10 s : tu ne subis plus que 20 % des dégâts. Ta Force ne remonte pas tant qu'il tient.</p>
 </article><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Adrénaline</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
-  <p>+200 de vitesse de course tant que tu maintiens.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>environ 3 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
+  <p>+200 de vitesse tant que tu maintiens la touche.</p>
 </article><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Saisie</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>4 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>5 s entre deux prises</span></div>
-  <p>Soulève une cible à distance (600) et la maintient tant que tu tiens la touche.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>4 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>5 s</span></div>
+  <p>Saisit ce que tu vises à moins de 400 unités et le maintient tant que tu tiens la touche. Clic droit pour rapprocher, clic gauche pour éloigner : au-delà de 700 unités, la cible est projetée.</p>
 </article><article class="carte" style="--voie:#8CB0E0">
   <div class="carte-tete"><h3>Perception</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
@@ -387,11 +388,11 @@
 
         <div class="grille-cartes"><article class="carte" style="--voie:#7BA0D6">
   <div class="carte-tete"><h3>Barrière de Force : Mur</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture</span><span class="chip"><span class="cle">Rechargement</span>10 s après la fin</span></div>
-  <p>Mur de Force devant toi. Ce qui vient du dehors ne blesse plus ceux qui sont derrière, et chaque coup absorbé te coûte de la Force. Il tient 30 s au maximum.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>10 de Force à l&#x27;ouverture (40 requis)</span><span class="chip"><span class="cle">Rechargement</span>8 s après la fin</span></div>
+  <p>Dresse un mur de Force devant toi tant que tu tiens la touche, 30 s au maximum. Chaque tir de PNJ qui le frappe te coûte 1 point de Force. Le rechargement part quand le mur tombe.</p>
 </article><article class="carte" style="--voie:#7BA0D6">
   <div class="carte-tete"><h3>Jugement II</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion (10 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair vert, 55 dégâts par impulsion.</p>
 </article><article class="carte" style="--voie:#7BA0D6">
   <div class="carte-tete"><h3>Immunité [Avancé]</h3><span class="badge">3 séances</span></div>
@@ -400,11 +401,11 @@
 </article><article class="carte" style="--voie:#7BA0D6">
   <div class="carte-tete"><h3>Agenouillement [Ciblé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
-  <p>Force la cible visée à rester à genoux tant que tu maintiens la touche.</p>
+  <p>Force le joueur visé, à moins de 300 unités, à rester à genoux tant que tu maintiens la touche.</p>
 </article><article class="carte" style="--voie:#7BA0D6">
   <div class="carte-tete"><h3>Assaut télékinétique</h3><span class="badge">6 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
-  <p>Arrache un rocher et le projette sur ta cible.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
+  <p>Arrache un rocher et le tient tant que tu maintiens la touche ; relâche pour le projeter. 1500 dégâts à l'impact.</p>
 </article></div>
       </section>      <section class="section-voie" id="gardien_m" style="--voie:#6A90C9">
       <div class="tete-section">
@@ -416,11 +417,11 @@
 
         <div class="grille-cartes"><article class="carte" style="--voie:#6A90C9">
   <div class="carte-tete"><h3>Agenouillement</h3><span class="badge">5 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
-  <p>Met à genoux tout le monde dans un rayon de 300 pendant 6 s.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>12 s</span></div>
+  <p>Met à genoux tous les joueurs à moins de 300 unités pendant 6 s, alliés compris. Rien n'est pris si personne n'est à portée.</p>
 </article><article class="carte" style="--voie:#6A90C9">
   <div class="carte-tete"><h3>Jugement Fulgurant</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force (50 requis)</span><span class="chip"><span class="cle">Rechargement</span>25 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force (50 requis)</span><span class="chip"><span class="cle">Rechargement</span>20 s</span></div>
   <p>Un éclair bleu frappe une cible unique jusqu'à 1000 unités : 40 dégâts, et elle tombe à genoux, immobilisée 6 s, entourée d'une aura électrique.</p>
 </article><article class="carte" style="--voie:#6A90C9">
   <div class="carte-tete"><h3>Immunité [Maîtrisé]</h3><span class="badge">5 séances</span></div>
@@ -429,7 +430,7 @@
 </article><article class="carte" style="--voie:#6A90C9">
   <div class="carte-tete"><h3>Grande poussée</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
-  <p>Souffle large : tout ce qui est devant toi part à 900 unités, très vite. Aucun dégât direct.</p>
+  <p>Souffle large : tout ce qui est devant toi, jusqu'à 900 unités, part très vite. Aucun dégât direct.</p>
 </article><article class="carte" style="--voie:#6A90C9">
   <div class="carte-tete"><h3>Grande attraction</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
@@ -445,16 +446,16 @@
         <p class="intro-section">La lame qui frappe la première : vitesse, discrétion, information.</p>
         <div class="grille-cartes"><article class="carte" style="--voie:#D7B978">
   <div class="carte-tete"><h3>Concentration avancée</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Rend 40 points de Force, avec un ralentissement un peu plus court (10 s).</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>gratuit</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
+  <p>Rend 40 points de Force en seulement 3 s, avec un ralentissement un peu plus léger.</p>
 </article><article class="carte" style="--voie:#D7B978">
   <div class="carte-tete"><h3>Saut III</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>45 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
-  <p>Le bond le plus haut des trois.</p>
+  <p>Le bond le plus haut et le plus long des trois.</p>
 </article><article class="carte" style="--voie:#D7B978">
   <div class="carte-tete"><h3>Adrénaline</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
-  <p>+200 de vitesse de course tant que tu maintiens.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>environ 3 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
+  <p>+200 de vitesse tant que tu maintiens la touche.</p>
 </article><article class="carte" style="--voie:#D7B978">
   <div class="carte-tete"><h3>Attraction II</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
@@ -462,11 +463,11 @@
 </article><article class="carte" style="--voie:#D7B978">
   <div class="carte-tete"><h3>Barrière</h3><span class="badge">2 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Bouclier personnel qui encaisse à ta place.</p>
+  <p>Bouclier personnel pendant 10 s : tu ne subis plus que 20 % des dégâts. Ta Force ne remonte pas tant qu'il tient.</p>
 </article><article class="carte" style="--voie:#D7B978">
   <div class="carte-tete"><h3>Camouflage</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>30 s après la fin</span></div>
-  <p>Invisibilité totale pendant 25 s. Tirer, être touché, mourir ou rappuyer te révèle. Une barre affiche le temps restant.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>25 s après la fin</span></div>
+  <p>Invisibilité totale pendant 25 s, sans bruit de pas. Tirer, être touché, mourir ou rappuyer te révèle. Une barre affiche le temps restant. Le rechargement bloque les trois niveaux de Camouflage.</p>
 </article><article class="carte" style="--voie:#D7B978">
   <div class="carte-tete"><h3>Perception</h3><span class="badge">4 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>50 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
@@ -486,28 +487,28 @@
 
         <div class="grille-cartes"><article class="carte" style="--voie:#C9A960">
   <div class="carte-tete"><h3>Rempart</h3><span class="badge">2 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>24 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Rempart : tu échanges ta position avec un joueur proche (300 unités).</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>24 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
+  <p>Rempart : tu échanges ta position avec un joueur proche, à moins de 300 unités, sans avoir à le viser.</p>
 </article><article class="carte" style="--voie:#C9A960">
   <div class="carte-tete"><h3>Perception [Maîtrisé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>25 s de vision, jusqu'à 2400 unités.</p>
 </article><article class="carte" style="--voie:#C9A960">
   <div class="carte-tete"><h3>Adrénaline II</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>environ 3 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>+400 de vitesse.</p>
 </article><article class="carte" style="--voie:#C9A960">
   <div class="carte-tete"><h3>Camouflage II</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>30 s après la fin</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>25 s après la fin</span></div>
   <p>Invisibilité totale pendant 40 s.</p>
 </article><article class="carte" style="--voie:#C9A960">
   <div class="carte-tete"><h3>Jugement II</h3><span class="badge">3 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion (10 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
   <p>Éclair vert, 55 dégâts par impulsion.</p>
 </article><article class="carte" style="--voie:#C9A960">
   <div class="carte-tete"><h3>Agenouillement [Ciblé]</h3><span class="badge">3 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
-  <p>Force la cible visée à rester à genoux tant que tu maintiens la touche.</p>
+  <p>Force le joueur visé, à moins de 300 unités, à rester à genoux tant que tu maintiens la touche.</p>
 </article><article class="carte" style="--voie:#C9A960">
   <div class="carte-tete"><h3>Téléportation</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force</span><span class="chip"><span class="cle">Rechargement</span>2 s</span></div>
@@ -527,23 +528,23 @@
   <p>40 s de vision, jusqu'à 3200 unités. La version la moins chère et la plus longue.</p>
 </article><article class="carte" style="--voie:#BB9A4C">
   <div class="carte-tete"><h3>Tourbillon</h3><span class="badge">5 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>20 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>35 de Force</span><span class="chip"><span class="cle">Rechargement</span>16 s</span></div>
   <p>Pose un vortex au sol jusqu'à 800 unités. Il aspire tout, fait monter les gens dans les airs pendant 3 s, inflige 200 dégâts au sommet puis les éjecte. L'Immunité ne protège pas de ce pouvoir.</p>
 </article><article class="carte" style="--voie:#BB9A4C">
   <div class="carte-tete"><h3>Jugement Fulgurant</h3><span class="badge">4 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force (50 requis)</span><span class="chip"><span class="cle">Rechargement</span>25 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force (50 requis)</span><span class="chip"><span class="cle">Rechargement</span>20 s</span></div>
   <p>Un éclair bleu frappe une cible unique jusqu'à 1000 unités : 40 dégâts, et elle tombe à genoux, immobilisée 6 s, entourée d'une aura électrique.</p>
 </article><article class="carte" style="--voie:#BB9A4C">
   <div class="carte-tete"><h3>Agenouillement</h3><span class="badge">5 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>15 s</span></div>
-  <p>Met à genoux tout le monde dans un rayon de 300 pendant 6 s.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>25 de Force</span><span class="chip"><span class="cle">Rechargement</span>12 s</span></div>
+  <p>Met à genoux tous les joueurs à moins de 300 unités pendant 6 s, alliés compris. Rien n'est pris si personne n'est à portée.</p>
 </article><article class="carte" style="--voie:#BB9A4C">
   <div class="carte-tete"><h3>Adrénaline III</h3><span class="badge">5 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>2 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>environ 3 de Force par seconde</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>+400 de vitesse, pour une consommation identique.</p>
 </article><article class="carte" style="--voie:#BB9A4C">
   <div class="carte-tete"><h3>Camouflage III</h3><span class="badge">6 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>30 s après la fin</span></div>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>40 de Force</span><span class="chip"><span class="cle">Rechargement</span>25 s après la fin</span></div>
   <p>Invisibilité totale pendant 120 s.</p>
 </article></div>
       </section>      <section class="section-voie" id="conseil" style="--voie:#E0C68A">
@@ -556,20 +557,20 @@
         <p class="intro-section">Réservé au Conseil, au Maître de l&#x27;Ordre et au Grand Maître.</p>
         <div class="grille-cartes"><article class="carte" style="--voie:#E0C68A">
   <div class="carte-tete"><h3>Boulder Lancer</h3><span class="badge">7 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>100 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
-  <p>Un bloc de pierre lancé à pleine vitesse. Il faut appuyer deux fois pour confirmer : c'est cher et ça ne se lance pas par erreur.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>100 de Force</span><span class="chip"><span class="cle">Rechargement</span>6 s</span></div>
+  <p>Un bloc de pierre lancé à pleine vitesse, qui explose au contact. Il faut appuyer deux fois pour confirmer : c'est cher et ça ne se lance pas par erreur.</p>
 </article><article class="carte" style="--voie:#E0C68A">
   <div class="carte-tete"><h3>Pas de l&#x27;ombre</h3><span class="badge">5 séances</span></div>
   <div class="chips"><span class="chip"><span class="cle">Coût</span>20 de Force puis un filet</span><span class="chip"><span class="cle">Rechargement</span>3 s</span></div>
   <p>Pas de l'ombre : +400 de vitesse, la course du Conseil.</p>
 </article><article class="carte" style="--voie:#E0C68A">
   <div class="carte-tete"><h3>Jugement IV</h3><span class="badge">5 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
-  <p>Éclair doré, 85 dégâts par impulsion. Réservé au Conseil.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>7 de Force par impulsion (10 requis)</span><span class="chip"><span class="cle">Rechargement</span>1 s</span></div>
+  <p>Éclair doré, 85 dégâts par impulsion.</p>
 </article><article class="carte" style="--voie:#E0C68A">
   <div class="carte-tete"><h3>Aveuglement</h3><span class="badge">5 séances</span></div>
-  <div class="chips"><span class="chip"><span class="cle">Coût</span>80 de Force</span><span class="chip"><span class="cle">Rechargement</span>10 s</span></div>
-  <p>Aveugle tous les adversaires dans un rayon de 200 pendant 8,5 s. Ils voient un voile très sombre, pas un écran noir.</p>
+  <div class="chips"><span class="chip"><span class="cle">Coût</span>80 de Force</span><span class="chip"><span class="cle">Rechargement</span>8 s</span></div>
+  <p>Aveugle tous les joueurs à moins de 200 unités pendant 8,5 s, alliés compris : leur écran devient presque noir. Rien n'est pris si personne n'est touché.</p>
 </article></div>
       </section>    </div>
     <div class="panneau" data-panneau="formes" hidden>

@@ -144,7 +144,7 @@ ACCUEIL = '''      <header class="tete-rubrique">
 %s
         <p class="intro-section">Chaque pouvoir coûte de la Force. Ta réserve remonte seule quand tu as les pieds au sol, et deux pouvoirs vivent entièrement de cette mécanique.</p>
         <div class="grille-info">
-          <div class="info"><h4>Concentration</h4><p>Rend de la Force d'un coup, au prix d'un ralentissement le temps de méditer. On médite à l'abri, pas au milieu d'un échange.</p></div>
+          <div class="info"><h4>Concentration</h4><p>Rend de la Force petit à petit pendant que tu médites, et tu restes ralenti tout ce temps. On médite à l'abri, pas au milieu d'un échange. À Force pleine, elle ne fait rien et ne consomme pas son rechargement.</p></div>
           <div class="info"><h4>Immunité</h4><p>Ne te protège que tant que ta réserve reste au-dessus d'un seuil : 50 %% au premier niveau, 35 %% au deuxième, 20 %% au troisième. Vider sa Force, c'est redevenir vulnérable.</p></div>
         </div>
       </section>
@@ -154,7 +154,8 @@ ACCUEIL = '''      <header class="tete-rubrique">
         <p class="intro-section">Pendant un combat, l'interface te dit tout ce dont tu as besoin. Apprends à la lire, elle ne ment pas.</p>
         <div class="grille-info">
           <div class="info"><h4>La roue</h4><p>En bas de l'écran : tes pouvoirs actifs et le compte à rebours de celui que tu vises. Chaque pouvoir a son propre rechargement.</p></div>
-          <div class="info tonalite-bleu"><h4>Barre bleue</h4><p>Un effet que tu as lancé et qui dure : Camouflage, Perception, Riposte, Tourbillon.</p></div>
+          <div class="info"><h4>Un pouvoir raté ne coûte rien</h4><p>Personne à portée, cible déjà soignée ou déjà en feu, Force insuffisante, jauge déjà pleine : le pouvoir ne fait rien, et il ne prend ni Force ni rechargement. Le rechargement part dès qu'il réussit.</p></div>
+          <div class="info tonalite-bleu"><h4>Barre bleue</h4><p>Un effet que tu as lancé et qui dure : Camouflage, Perception, Riposte, Tourbillon, Concentration.</p></div>
           <div class="info tonalite-rouge"><h4>Barre rouge</h4><p>Un effet que tu subis : étourdissement, aveuglement, agenouillement forcé, pris dans un tourbillon.</p></div>
           <div class="info tonalite-bleu"><h4>Éclat bleu</h4><p>Ton Immunité vient d'absorber un pouvoir ennemi.</p></div>
         </div>
