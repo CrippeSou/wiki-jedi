@@ -126,7 +126,7 @@ ACCUEIL = '''      <header class="tete-rubrique">
           <div class="info"><h4>Un apprentissage à la fois</h4><p>Tant qu'une séance est en cours, aucun autre apprentissage ne peut démarrer, dans aucun des deux arbres.</p></div>
           <div class="info"><h4>Apprendre puis équiper</h4><p>Un pouvoir appris n'arrive pas tout seul dans ta roue : il faut l'activer dans l'arbre. Les passifs, eux, agissent dès qu'ils sont appris.</p></div>
           <div class="info"><h4>Les entrées gratuites</h4><p>Celles marquées « Gratuit » s'obtiennent d'un seul clic, sans attendre.</p></div>
-          <div class="info"><h4>F6</h4><p>Le menu du sabre : inventaire, arbres, réglages. C'est de là que tout se pilote.</p></div>
+          <div class="info"><h4>F6</h4><p>Le menu du sabre : inventaire, arbres, réglages. C'est de là que tout se pilote. La touche se change dans /options, onglet Touches.</p></div>
         </div>
       </section>
 
@@ -194,7 +194,7 @@ def rubrique_arbre(source, titre, intro, place, compter, fabrique):
 
 def fiche_pouvoir(noeud, couleur):
     pid, nom, jours = noeud
-    cout, rech, txt = P.get(pid, ("—", "—", ""))
+    cout, rech, txt = P.get(pid, ("-", "-", ""))
     return fiche(nom, jours, [("Coût", cout), ("Rechargement", rech)], txt, couleur)
 
 
@@ -206,7 +206,7 @@ def fiche_forme(noeud, couleur):
         degats = ("+%d %%" % pct) if pct else "normaux"
     except ValueError:
         degats = "normaux"
-    chips = [("Dégâts", degats), ("Garde perdue", str(st.get("garde", "—"))),
+    chips = [("Dégâts", degats), ("Garde perdue", str(st.get("garde", "-"))),
              ("Sabre", "double" if st.get("gauche") else "simple")]
     return fiche(nom, jours, chips, FORMES_TXT.get(fid, ""), couleur)
 
