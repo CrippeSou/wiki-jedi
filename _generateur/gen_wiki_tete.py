@@ -124,7 +124,7 @@ P = {
  "judgementiv": ("7 de Force par impulsion (10 requis)", "1 s", "Éclair doré, 85 dégâts par impulsion."),
  "judgementstun": ("40 de Force (50 requis)", "20 s", "Un éclair bleu frappe une cible unique jusqu'à 1000 unités : 40 dégâts, et elle tombe à genoux, immobilisée 6 s, entourée d'une aura électrique."),
  "clascleave":  ("10 de Force au coup (50 requis pour charger)", "5 s", "Maintiens la touche pour charger, relâche pour frapper : de 100 à 350 dégâts selon la charge, sur tous les joueurs et PNJ dans un cône devant toi, à moins de 400 unités. Rien n'est pris si le coup ne touche personne."),
- "whirlwind":   ("35 de Force", "16 s", "Pose un vortex au sol jusqu'à 800 unités. Il aspire tout, fait monter les gens dans les airs pendant 3 s, inflige 200 dégâts au sommet puis les éjecte. L'Immunité ne protège pas de ce pouvoir."),
+ "whirlwind":   ("35 de Force", "16 s", "Pose un vortex au sol jusqu'à 800 unités. Il aspire jusqu'à 7 personnes ou PNJ à la fois (et les objets légers), fait monter les gens dans les airs pendant 3 s, inflige 200 dégâts au sommet puis les éjecte. L'Immunité ne protège pas de ce pouvoir."),
  "immunity":    ("passif", "aucun", "Tant que ta Force dépasse 50 %, les pouvoirs de Force lancés sur toi n'ont aucun effet et te rendent 1 point de Force. Il faut porter un job Jedi. Rien à activer : il suffit de l'apprendre. Ne protège ni du Tourbillon, ni des Agenouillements, ni du Rempart, ni de l'Embrasement."),
  "immunityii":  ("passif", "aucun", "Même protection, mais elle tient tant que ta Force dépasse 35 %."),
  "immunityiii": ("passif", "aucun", "Même protection, jusqu'à 20 % de Force seulement."),
